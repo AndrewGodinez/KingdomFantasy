@@ -20,6 +20,21 @@
             <artifactId>javafx-fxml</artifactId>
             <version>25.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.palexdev</groupId>
+            <artifactId>materialfx</artifactId>
+            <version>11.16.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>21.21.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -28,7 +43,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>25</release>
                 </configuration>
             </plugin>
             <plugin>
