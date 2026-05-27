@@ -3,6 +3,7 @@ module una.ac.cr.kingdomfantasy {
     requires javafx.fxml;
     requires java.base;
     requires jakarta.persistence;
+    requires io.github.palexdev.materialfx;
 
     opens una.ac.cr.kingdomfantasy to javafx.fxml;
     exports una.ac.cr.kingdomfantasy;
