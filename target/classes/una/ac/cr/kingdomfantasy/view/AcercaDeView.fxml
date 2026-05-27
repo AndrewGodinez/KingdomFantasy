@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" prefHeight="680.0" prefWidth="1100.0" styleClass="jfx-root-about" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="una.ac.cr.kingdomfantasy.controller.AcercaDeController">
+
+    <top>
+        <HBox alignment="CENTER" styleClass="jfx-bar-top">
+            <padding>
+                <Insets bottom="18.0" left="24.0" right="24.0" top="18.0" />
+            </padding>
+            <Label styleClass="jfx-title-badge" text="ACERCA DE" />
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane>
+            <HBox alignment="CENTER" spacing="0.0">
+                <VBox alignment="CENTER" maxWidth="500.0" prefWidth="500.0" spacing="20.0" styleClass="jfx-panel-about">
+                    <VBox alignment="CENTER" spacing="4.0">
+                        <Label styleClass="jfx-label-about-title" text="KINGDOM" />
+                        <Label styleClass="jfx-label-about-subtitle" text="Fantasy" />
+                    </VBox>
+
+                    <Label styleClass="jfx-label-about-divider" text="◆" />
+               <Separator prefHeight="29.0" prefWidth="424.0" />
+
+                    <HBox alignment="CENTER" styleClass="jfx-box-about-info">
+                        <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS">
+                            <Label styleClass="jfx-label-about-info" text="UNIVERSIDAD NACIONAL" />
+                            <Label styleClass="jfx-label-about-info-value" text="Sede Regional Brunca" />
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="12.0">
+                        <VBox alignment="CENTER" spacing="2.0" styleClass="jfx-box-about-info" HBox.hgrow="ALWAYS">
+                            <Label styleClass="jfx-label-about-info" text="CURSO" />
+                            <Label styleClass="jfx-label-about-info-value" text="Programación II" />
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="2.0" styleClass="jfx-box-about-info" HBox.hgrow="ALWAYS">
+                            <Label styleClass="jfx-label-about-info" text="CICLO" />
+                            <Label styleClass="jfx-label-about-info-value" text="I Ciclo 2026" />
+                        </VBox>
+                    </HBox>
+
+                    <HBox alignment="CENTER" styleClass="jfx-box-about-info">
+                        <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS">
+                            <Label styleClass="jfx-label-about-info" text="PROFESOR" />
+                            <Label styleClass="jfx-label-about-info-value" text="Máster Carlos Carranza Blanco" />
+                        </VBox>
+                    </HBox>
+
+                    <VBox alignment="CENTER" spacing="10.0" styleClass="jfx-section-about-dev">
+                        <Label styleClass="jfx-label-about-dev" text="DESARROLLADO POR" />
+                        <Label fx:id="lblDeveloper1" styleClass="jfx-label-about-dev-name" text="[Tu Nombre Aquí]" />
+                        <Label fx:id="lblDeveloper2" styleClass="jfx-label-about-dev-sub" text="[Nombre del Compañero]" />
+                    </VBox>
+                </VBox>
+            </HBox>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" styleClass="jfx-bar-bottom">
+            <padding>
+                <Insets bottom="14.0" left="24.0" right="24.0" top="14.0" />
+            </padding>
+            <MFXButton fx:id="btnBack" mnemonicParsing="false" onAction="#onActionBack" styleClass="jfx-btn-ghost" text="Volver al Menú" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
