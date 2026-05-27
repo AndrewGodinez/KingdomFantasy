@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import una.ac.cr.kingdomfantasy.util.FlowController;
 
 /**
  * JavaFX App
@@ -17,9 +18,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        stage.setMinHeight(720);
+        stage.setMinWidth(1280);
+        FlowController.getInstance().InitializeFlow(stage, null);
+        FlowController.getInstance().goViewInWindow("PrincipalView");
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -27,7 +29,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

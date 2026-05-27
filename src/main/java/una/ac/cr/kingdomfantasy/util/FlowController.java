@@ -70,8 +70,8 @@ public class FlowController {
         this.idioma = idioma;
         // Precarga en background las vistas más usadas para que el primer cambio sea instantáneo
         javafx.application.Platform.runLater(() -> warmUpViews(
-            "PrincipalView", "ImprovementsView", "LoginView",
-            "NewPlayerView", "RankingView", "AboutUsView", "InputDeviceView", "InstructionsView"
+            "PrincipalView", "AcercaDeView", "LoginView",
+            "JuegoView", "RankingView", "MejorasView", "AjustesView", "RegistroView"
         ));
     }
 
@@ -93,7 +93,7 @@ public class FlowController {
                 if (loader == null) {
                     try {
                         loader = new FXMLLoader(App.class.getResource(
-                                "/cr/ac/una/kingdomfantasy/view/" + name + ".fxml"), this.idioma);
+                                "/una/ac/cr/kingdomfantasy/view/" + name + ".fxml"), this.idioma);
                         loader.load();
                         loaders.put(name, loader);
                     } catch (Exception ex) {
@@ -207,7 +207,7 @@ public class FlowController {
         controller.initialize();
         Stage stage = new Stage();
         stage.getIcons().add(new Image(
-                getClass().getResourceAsStream("/cr/ac/una/kingdomfantasy/resource/GameLogo.png")));
+                getClass().getResourceAsStream("/una/ac/cr/kingdomfantasy/resource/GameLogo.png")));
         stage.setTitle(controller.getNombreVista());
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
