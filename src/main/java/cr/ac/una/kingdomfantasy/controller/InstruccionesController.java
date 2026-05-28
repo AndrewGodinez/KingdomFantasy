@@ -6,13 +6,11 @@ package cr.ac.una.kingdomfantasy.controller;
 
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -20,22 +18,12 @@ import javafx.scene.layout.BorderPane;
  *
  * @author Usuario
  */
-public class LoginController extends Controller implements Initializable {
+public class InstruccionesController extends Controller implements Initializable {
 
     @FXML
     private BorderPane root;
     @FXML
-    private Label lbLogin;
-    @FXML
-    private MFXButton btnCancel;
-    @FXML
-    private MFXTextField txfName;
-    @FXML
-    private Label lblMessage;
-    @FXML
-    private MFXButton btnLogin;
-    @FXML
-    private MFXButton btnCreatePlayer;
+    private MFXButton btnBackControls;
 
     /**
      * Initializes the controller class.
@@ -45,22 +33,13 @@ public class LoginController extends Controller implements Initializable {
         // TODO
     }    
 
+    @FXML
+    private void onActionBackControls(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("AjustesView", getStage());
+    }
+
     @Override
     public void initialize() {
-    }
-
-    @FXML
-    private void onActionBtnCancel(ActionEvent event) {
-        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
-    }
-
-    @FXML
-    private void onActionBtnLogin(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnCreatePlayer(ActionEvent event) {
-        FlowController.getInstance().goViewInStage("RegistroView", getStage());
     }
     
 }

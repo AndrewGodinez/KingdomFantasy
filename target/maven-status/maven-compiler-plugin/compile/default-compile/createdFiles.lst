@@ -11,6 +11,7 @@ cr\ac\una\kingdomfantasy\util\Mensaje.class
 cr\ac\una\kingdomfantasy\util\BindingUtils.class
 cr\ac\una\kingdomfantasy\controller\AjustesController.class
 cr\ac\una\kingdomfantasy\App.class
+cr\ac\una\kingdomfantasy\controller\InstruccionesController.class
 cr\ac\una\kingdomfantasy\controller\JuegoController.class
 cr\ac\una\kingdomfantasy\controller\MejorasController.class
 cr\ac\una\kingdomfantasy\util\FlowController.class

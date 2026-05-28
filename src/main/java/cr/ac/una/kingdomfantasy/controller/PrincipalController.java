@@ -51,14 +51,17 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnIniciarSesion(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("LoginView", getStage());
     }
 
     @FXML
     private void onActionBtnRanking(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("RankingView", getStage());
     }
 
     @FXML
     private void onActionBtnComenzar(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("MejorasView", getStage());
     }
 
     @FXML
@@ -68,10 +71,12 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnNuevoJugador(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("RegistroView", getStage());
     }
 
     @FXML
     private void onActionBtnControles(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("AjustesView", getStage());
     }
 
     @Override

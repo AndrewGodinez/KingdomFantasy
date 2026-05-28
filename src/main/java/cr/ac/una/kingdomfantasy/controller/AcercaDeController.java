@@ -4,6 +4,7 @@
  */
 package cr.ac.una.kingdomfantasy.controller;
 
+import cr.ac.una.kingdomfantasy.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,6 +40,7 @@ public class AcercaDeController extends Controller implements Initializable {
 
     @FXML
     private void onActionBack(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }
 
     @Override
