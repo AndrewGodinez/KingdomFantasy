@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" prefHeight="700.0" prefWidth="1100.0" styleClass="jfx-root-mainmenu" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.PrincipalController">
+    <children>
+        <ImageView fx:id="imvFondo" fitHeight="571.0" fitWidth="731.0" pickOnBounds="true" preserveRatio="false">
+            <image>
+                <Image url="@../resource/MainMenu.png" />
+            </image>
+        </ImageView>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                            <children>
+                                <MFXButton fx:id="btnIniciarSesion" onAction="#onActionBtnIniciarSesion" styleClass="jfx-btn-menu-corner" text="Iniciar Sesión" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <MFXButton fx:id="btnRanking" onAction="#onActionBtnRanking" styleClass="jfx-btn-menu-corner" text="Ranking" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+                <ImageView fx:id="imvLogo" fitHeight="203.0" fitWidth="278.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                    <image>
+                        <Image url="@../resource/GameLogo.png" />
+                    </image>
+                </ImageView>
+                <VBox alignment="TOP_CENTER" prefWidth="727.0" spacing="14.0" VBox.vgrow="ALWAYS">
+                    <MFXButton fx:id="btnComenzar" onAction="#onActionBtnComenzar" prefHeight="44.0" prefWidth="210.0" styleClass="jfx-btn-primary" text="Comenzar" />
+                    <MFXButton fx:id="btnAcercaDe" onAction="#onActionBtnAcercaDe" prefHeight="44.0" prefWidth="210.0" styleClass="jfx-btn-ghost" text="Acerca De" />
+                </VBox>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <MFXButton fx:id="btnNuevoJugador" onAction="#onActionBtnNuevoJugador" styleClass="jfx-btn-menu-corner" text="Nuevo Jugador" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                <MFXButton fx:id="btnControles" onAction="#onActionBtnControles" styleClass="jfx-btn-menu-corner" text="Controles" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+   <stylesheets>
+      <URL value="@../style/Styles.css" />
+      <URL value="@../style/MainStyle.css" />
+   </stylesheets>
+</StackPane>
