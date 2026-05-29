@@ -5,6 +5,8 @@
 package cr.ac.una.kingdomfantasy.model;
 
 import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -12,90 +14,171 @@ import java.util.List;
  */
 public class MejoraDto {
     private Long id;
-    private Integer nivelVelocidadBallesta;
-    private Integer nivelDaOBallesta;
-    private Integer nivelEfectoMeteoro;
-    private Integer nivelRangoMeteoro;
-    private Integer nivelEfectoHielo;
-    private Integer nivelRangoHielo;
+    private StringProperty nivelVelocidadBallesta;
+    private StringProperty nivelDaOBallesta;
+    private StringProperty nivelEfectoMeteoro;
+    private StringProperty nivelRangoMeteoro;
+    private StringProperty nivelEfectoHielo;
+    private StringProperty nivelRangoHielo;
     private Long version;
     private List<Partida> partidaList;
 
     public MejoraDto() {
-        this.nivelVelocidadBallesta = 0;
-        this.nivelDaOBallesta = 0;
-        this.nivelEfectoMeteoro = 0;
-        this.nivelRangoMeteoro = 0;
-        this.nivelEfectoHielo = 0;
-        this.nivelRangoHielo = 0;
+        this.nivelVelocidadBallesta = new SimpleStringProperty("");
+        this.nivelDaOBallesta = new SimpleStringProperty("");
+        this.nivelEfectoMeteoro = new SimpleStringProperty("");
+        this.nivelRangoMeteoro = new SimpleStringProperty("");
+        this.nivelEfectoHielo = new SimpleStringProperty("");
+        this.nivelRangoHielo = new SimpleStringProperty("");
     }
 
     public MejoraDto(Mejora mejora) {
         this.id = mejora.getId();
-        this.nivelVelocidadBallesta = mejora.getNivelVelocidadBallesta();
-        this.nivelDaOBallesta = mejora.getNivelDaOBallesta();
-        this.nivelEfectoMeteoro = mejora.getNivelEfectoMeteoro();
-        this.nivelRangoMeteoro = mejora.getNivelRangoMeteoro();
-        this.nivelEfectoHielo = mejora.getNivelEfectoHielo();
-        this.nivelRangoHielo = mejora.getNivelRangoHielo();
+        this.nivelVelocidadBallesta.set(mejora.getNivelVelocidadBallesta().toString());
+        this.nivelDaOBallesta.set(mejora.getNivelDaOBallesta().toString());
+        this.nivelEfectoMeteoro.set(mejora.getNivelEfectoMeteoro().toString());
+        this.nivelRangoMeteoro.set(mejora.getNivelRangoMeteoro().toString());
+        this.nivelEfectoHielo.set(mejora.getNivelEfectoHielo().toString());
+        this.nivelRangoHielo.set(mejora.getNivelRangoHielo().toString());
         this.version = mejora.getVersion();
         this.partidaList = mejora.getPartidaList();
     }
 
-    public Long getId() {
+
+
+    public StringProperty getNivelVelocidadBallestaProperty() {
+        return nivelVelocidadBallesta;
+    }
+
+    public void setNivelVelocidadBallestaProperty(StringProperty nivelVelocidadBallesta) {
+        this.nivelVelocidadBallesta = nivelVelocidadBallesta;
+    }
+
+    public StringProperty getNivelDaOBallestaProperty() {
+        return nivelDaOBallesta;
+    }
+
+    public void setNivelDaOBallestaProperty(StringProperty nivelDaOBallesta) {
+        this.nivelDaOBallesta = nivelDaOBallesta;
+    }
+
+    public StringProperty getNivelEfectoMeteoroProperty() {
+        return nivelEfectoMeteoro;
+    }
+
+    public void setNivelEfectoMeteoroProperty(StringProperty nivelEfectoMeteoro) {
+        this.nivelEfectoMeteoro = nivelEfectoMeteoro;
+    }
+
+    public StringProperty getNivelRangoMeteoroProperty() {
+        return nivelRangoMeteoro;
+    }
+
+    public void setNivelRangoMeteoroProperty(StringProperty nivelRangoMeteoro) {
+        this.nivelRangoMeteoro = nivelRangoMeteoro;
+    }
+
+    public StringProperty getNivelEfectoHieloProperty() {
+        return nivelEfectoHielo;
+    }
+
+    public void setNivelEfectoHieloProperty(StringProperty nivelEfectoHielo) {
+        this.nivelEfectoHielo = nivelEfectoHielo;
+    }
+
+    public StringProperty getNivelRangoHieloProperty() {
+        return nivelRangoHielo;
+    }
+
+
+    public void setNivelRangoHieloProperty(StringProperty nivelRangoHielo) {
+        this.nivelRangoHielo = nivelRangoHielo;
+    }
+    
+   public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public Integer getNivelVelocidadBallesta() {
-        return nivelVelocidadBallesta;
+        if(this.nivelVelocidadBallesta.get() != null && !this.nivelVelocidadBallesta.get().isBlank()){
+            return Integer.valueOf(this.nivelVelocidadBallesta.get());
+        }
+        else{
+            return null;
+        } 
     }
 
     public void setNivelVelocidadBallesta(Integer nivelVelocidadBallesta) {
-        this.nivelVelocidadBallesta = nivelVelocidadBallesta;
+        this.nivelVelocidadBallesta.set(nivelVelocidadBallesta.toString());
     }
 
     public Integer getNivelDaOBallesta() {
-        return nivelDaOBallesta;
+        if(this.nivelDaOBallesta.get() != null && !this.nivelDaOBallesta.get().isBlank()){
+            return Integer.valueOf(this.nivelDaOBallesta.get());
+        }
+        else{
+            return null;
+        } 
     }
 
     public void setNivelDaOBallesta(Integer nivelDaOBallesta) {
-        this.nivelDaOBallesta = nivelDaOBallesta;
+        this.nivelDaOBallesta.set(nivelDaOBallesta.toString());
     }
 
     public Integer getNivelEfectoMeteoro() {
-        return nivelEfectoMeteoro;
+        if(this.nivelEfectoMeteoro.get() != null && !this.nivelEfectoMeteoro.get().isBlank()){
+            return Integer.valueOf(this.nivelEfectoMeteoro.get());
+        }
+        else{
+            return null;
+        }
     }
 
     public void setNivelEfectoMeteoro(Integer nivelEfectoMeteoro) {
-        this.nivelEfectoMeteoro = nivelEfectoMeteoro;
+        this.nivelEfectoMeteoro.set(nivelEfectoMeteoro.toString());
     }
 
     public Integer getNivelRangoMeteoro() {
-        return nivelRangoMeteoro;
+        if(this.nivelRangoMeteoro.get() != null && !this.nivelRangoMeteoro.get().isBlank()){
+            return Integer.valueOf(this.nivelRangoMeteoro.get());
+        }
+        else{
+            return null;
+        }
     }
 
     public void setNivelRangoMeteoro(Integer nivelRangoMeteoro) {
-        this.nivelRangoMeteoro = nivelRangoMeteoro;
+        this.nivelRangoMeteoro.set(nivelRangoMeteoro.toString());
     }
 
     public Integer getNivelEfectoHielo() {
-        return nivelEfectoHielo;
+        if(this.nivelEfectoHielo.get() != null && !this.nivelEfectoHielo.get().isBlank()){
+            return Integer.valueOf(this.nivelEfectoHielo.get());
+        }
+        else{
+            return null;
+        }
     }
 
     public void setNivelEfectoHielo(Integer nivelEfectoHielo) {
-        this.nivelEfectoHielo = nivelEfectoHielo;
+        this.nivelEfectoHielo.set(nivelEfectoHielo.toString());
     }
 
     public Integer getNivelRangoHielo() {
-        return nivelRangoHielo;
+        if(this.nivelRangoHielo.get() != null && !this.nivelRangoHielo.get().isBlank()){
+            return Integer.valueOf(this.nivelRangoHielo.get());
+        }
+        else{
+            return null;
+        }
     }
 
     public void setNivelRangoHielo(Integer nivelRangoHielo) {
-        this.nivelRangoHielo = nivelRangoHielo;
+        this.nivelRangoHielo.set(nivelRangoHielo.toString());
     }
 
     public Long getVersion() {
@@ -113,7 +196,6 @@ public class MejoraDto {
     public void setPartidaList(List<Partida> partidaList) {
         this.partidaList = partidaList;
     }
-
     @Override
     public int hashCode() {
         int hash = 0;
