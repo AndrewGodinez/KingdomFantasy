@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" prefHeight="540.0" prefWidth="960.0" styleClass="jfx-root-mainmenu" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.PrincipalController">
+    <children>
+        <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="false">
+            <image>
+                <Image url="@../resource/menu_screen.png" />
+            </image>
+        </ImageView>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="OFFLINE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                        <MFXButton fx:id="btnSalir" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnSalir" prefHeight="52.0" prefWidth="100.0" styleClass="jfx-btn-menu-corner" text="Salir" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+                </HBox>
+                <ImageView fx:id="imvLogo" fitHeight="203.0" fitWidth="278.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                    <image>
+                        <Image url="@../resource/GameLogo.png" />
+                    </image>
+                </ImageView>
+                <VBox alignment="TOP_CENTER" prefWidth="727.0" spacing="14.0" VBox.vgrow="ALWAYS">
+                       <MFXButton fx:id="btnNuevoJugador" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnNuevoJugador" prefHeight="52.0" prefWidth="180.0" styleClass="jfx-btn-primary" text="Nuevo Jugador" />
+                    <MFXButton fx:id="btnComenzar" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnComenzar" prefHeight="52.0" prefWidth="210.0" styleClass="jfx-btn-primary" text="Jugar" />
+                       <MFXButton fx:id="btnIniciarSesion" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnIniciarSesion" prefHeight="52.0" prefWidth="170.0" styleClass="jfx-btn-primary" text="Iniciar Sesión" />
+                       <MFXButton fx:id="btnControles" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnControles" prefHeight="52.0" prefWidth="140.0" styleClass="jfx-btn-primary" text="Opciones" />
+                </VBox>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <MFXButton fx:id="btnRanking" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnRanking" prefHeight="52.0" prefWidth="210.0" styleClass="jfx-btn-menu-corner" text="Ranking" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                             <MFXButton fx:id="btnAcercaDe" layoutX="761.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnAcercaDe" prefHeight="52.0" prefWidth="210.0" styleClass="jfx-btn-ghost" text="Acerca De" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+   <stylesheets>
+      <URL value="@../style/Styles.css" />
+      <URL value="@../style/MainStyle.css" />
+   </stylesheets>
+</StackPane>

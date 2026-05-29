@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" prefHeight="660.0" prefWidth="1100.0" styleClass="jfx-root-improvements" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.MejorasController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="jfx-bar-top">
+            <padding>
+                <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
+            </padding>
+            <VBox spacing="2.0">
+                <Label styleClass="jfx-label-screen-title" text="Mejoras y Equipamiento" />
+                <Label fx:id="lbCurrentLevel" styleClass="jfx-label-hud-value" text="Nivel actual: 1" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER_RIGHT" spacing="2.0">
+                <Label styleClass="jfx-label-hud-caption" text="Monedas" />
+                <Label fx:id="lbGold" styleClass="jfx-label-gold-total" text="0" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="2.0">
+                <Label styleClass="jfx-label-hud-caption" text="Puntos historicos" />
+                <Label fx:id="lbTotalPoints" styleClass="jfx-label-points-total" text="0" />
+            </VBox>
+            <MFXButton fx:id="btnBackMenu" mnemonicParsing="false" onAction="#onActionBtnBackMenu" styleClass="jfx-btn-ghost" text="Volver al Menú" />
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane" styleClass="jfx-tabs-upgrade" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Ballesta">
+                    <VBox spacing="18.0">
+                        <padding>
+                            <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
+                        </padding>
+                        <GridPane hgap="18.0" vgap="18.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="ALWAYS" />
+                                <RowConstraints />
+                            </rowConstraints>
+                            <children>
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="🏹" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Daño de la Ballesta" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Cada nivel aumenta el daño de cada flecha." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgCrossbowDamage" maxWidth="1.7976931348623157E308" progress="0.12" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lbCrossbowDamageLevel" styleClass="jfx-label-upgrade-level" text="Nivel 3/25" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbCrossbowDamageCost" styleClass="jfx-label-upgrade-cost" text="18 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseCrossbowDamage" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseCrossbowDamage" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseCrossbowDamage" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseCrossbowDamage" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeCrossbowDamage" mnemonicParsing="false" onAction="#onActionBtnUpgradeCrossbowDamage" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="⚡" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Velocidad de Disparo" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Reduce la recarga y acelera el disparo." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgCrossbowSpeed" maxWidth="1.7976931348623157E308" progress="0.04" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lbCrossbowSpeedLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/25" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbCrossbowSpeedCost" styleClass="jfx-label-upgrade-cost" text="16 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseCrossbowSpeed" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseCrossbowSpeed" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseCrossbowSpeed" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseCrossbowSpeed" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeCrossbowSpeed" mnemonicParsing="false" onAction="#onActionBtnUpgradeCrossbowSpeed" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade jfx-card-upgrade-wide" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                    <Label styleClass="jfx-label-upgrade-title" text="Skin de Ballesta" />
+                                    <Label styleClass="jfx-label-upgrade-copy" text="Selecciona la apariencia de la ballesta que se verá durante la partida" />
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <MFXButton fx:id="btnCrossBowGreen" mnemonicParsing="false" onAction="#onActionBtnCrossBowGreen" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-green jfx-btn-skin" text="Verde">
+                                            <graphic>
+                                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../resource/CrossbowGreenClean.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </MFXButton>
+                                        <MFXButton fx:id="btnCrossBowPurple" mnemonicParsing="false" onAction="#onActionBtnCrossBowPurple" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-purple jfx-btn-skin" text="Morada">
+                                            <graphic>
+                                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../resource/CrossbowPurpleClean.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </MFXButton>
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbSelectedSkin" styleClass="jfx-label-upgrade-level" text="Seleccionada: Verde" />
+                                    </HBox>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Defensa">
+                    <VBox spacing="18.0">
+                        <padding>
+                            <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
+                        </padding>
+                        <GridPane hgap="18.0" vgap="18.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints />
+                            </rowConstraints>
+                            <children>
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="🏰" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Vida del Castillo" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Aumenta la vida inicial del castillo." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgCastleHealth" maxWidth="1.7976931348623157E308" progress="0.1" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lbCastleHealthLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbCastleHealthCost" styleClass="jfx-label-upgrade-cost" text="10 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseCastleHealth" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseCastleHealth" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseCastleHealth" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseCastleHealth" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeCastleHealth" mnemonicParsing="false" onAction="#onActionBtnUpgradeCastleHealth" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="✨" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Maná" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Aumenta la capacidad máxima de maná." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgElixir" maxWidth="1.7976931348623157E308" progress="0.1" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lbElixirLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbElixirCost" styleClass="jfx-label-upgrade-cost" text="8 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseElixir" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseElixir" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseElixir" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseElixir" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeElixir" mnemonicParsing="false" onAction="#onActionBtnUpgradeElixir" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Hechizos">
+                    <VBox spacing="18.0">
+                        <padding>
+                            <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
+                        </padding>
+                        <GridPane hgap="18.0" vgap="18.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
+                            <children>
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="☄" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Daño del Meteoro" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Aumenta el daño que recibe cada monstruo al ser impactado." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgMeteor" maxWidth="1.7976931348623157E308" progress="0.1" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lbMeteorLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbMeteorCost" styleClass="jfx-label-upgrade-cost" text="12 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseMeteor" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseMeteor" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseMeteor" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseMeteor" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeMeteor" mnemonicParsing="false" onAction="#onActionBtnUpgradeMeteor" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="🎯" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Rango de Meteoro" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Aumenta el radio de impacto del meteoro." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgMeteorRadius" maxWidth="1.7976931348623157E308" progress="0.1" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lblMeteorRadiusLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbMeteorRadiusCost" styleClass="jfx-label-upgrade-cost" text="12 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseMeteorRadius" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseMeteorRadius" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseMeteorRadius" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseMeteorRadius" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeMeteorRadius" mnemonicParsing="false" onAction="#onActionBtnUpgradeMeteorRadius" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="❄" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Duración del Hechizo de Hielo" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Cada nivel añade 0.5 segundos al hechizo de congelación." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgIce" maxWidth="1.7976931348623157E308" progress="0.1" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lblIceLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbIceCost" styleClass="jfx-label-upgrade-cost" text="12 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseIce" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseIce" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseIce" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseIce" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeIce" mnemonicParsing="false" onAction="#onActionBtnUpgradeIce" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                        <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
+                                            <Label styleClass="jfx-label-upgrade-icon" text="🎯" />
+                                        </VBox>
+                                        <VBox spacing="3.0">
+                                            <Label styleClass="jfx-label-upgrade-title" text="Rango de Hielo" />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Aumenta el área de congelación del hechizo." />
+                                        </VBox>
+                                    </HBox>
+                                    <ProgressBar fx:id="pgIceRadius" maxWidth="1.7976931348623157E308" progress="0.1" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                        <Label fx:id="lblIceRadiusLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lbIceRadiusCost" styleClass="jfx-label-upgrade-cost" text="12 monedas" />
+                                        <MFXButton fx:id="btnReviewDecreaseIceRadius" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseIceRadius" styleClass="jfx-btn-review-step" text="-" visible="false" />
+                                        <MFXButton fx:id="btnReviewIncreaseIceRadius" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewIncreaseIceRadius" styleClass="jfx-btn-review-step" text="+" visible="false" />
+                                        <MFXButton fx:id="btnUpgradeIceRadius" mnemonicParsing="false" onAction="#onActionBtnUpgradeIceRadius" styleClass="jfx-btn-upgrade" text="Mejorar" />
+                                    </HBox>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12.0" styleClass="jfx-bar-bottom">
+            <padding>
+                <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
+            </padding>
+            <MFXButton fx:id="btnReviewMaxAll" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewMaxAll" styleClass="jfx-btn-review primary" text="Maxear mejoras" visible="false" />
+            <Region HBox.hgrow="ALWAYS" />
+            <MFXButton fx:id="btnStartGame" mnemonicParsing="false" onAction="#onActionBtnStartGame" styleClass="jfx-btn-green" text="Entrar al Juego" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

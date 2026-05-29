@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" prefHeight="680.0" prefWidth="1100.0" styleClass="jfx-root-newplayer" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.RegistroController">
+
+    <top>
+        <HBox alignment="CENTER" styleClass="jfx-bar-top">
+            <padding>
+                <Insets bottom="18.0" left="24.0" right="24.0" top="18.0" />
+            </padding>
+            <Label fx:id="lbNewPlayer" styleClass="jfx-title-badge" text="NUEVO JUGADOR" />
+        </HBox>
+    </top>
+
+    <center>
+        <HBox spacing="24.0">
+            <padding>
+                <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+            </padding>
+
+            <VBox spacing="18.0" styleClass="jfx-card-upgrade" HBox.hgrow="ALWAYS">
+                <VBox spacing="6.0">
+               <HBox>
+                  <children>
+                     <MFXTextField fx:id="txfName" floatMode="BORDER" floatingText="Ingresa tu nombre" maxWidth="1.7976931348623157E308" styleClass="jfx-field-kingdom" HBox.hgrow="ALWAYS" />
+                  </children>
+               </HBox>
+                </VBox>
+
+                <VBox spacing="10.0">
+                    <Label styleClass="jfx-label-upgrade-title" text="Skin de la Ballesta" />
+                    <Label styleClass="jfx-label-upgrade-copy" text="Selecciona la apariencia que tendrá tu ballesta" />
+                    <HBox spacing="16.0">
+                        <MFXButton fx:id="btnCrossBowGreen" mnemonicParsing="false" onAction="#onActionBtnCrossBowGreen" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-green jfx-btn-skin" text="Verde">
+                            <graphic>
+                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resource/CrossbowGreenClean.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnCrossBowPurple" mnemonicParsing="false" onAction="#onActionBtnCrossBowPurple" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-purple jfx-btn-skin" text="Morada">
+                            <graphic>
+                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resource/CrossbowPurpleClean.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </MFXButton>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <Separator orientation="VERTICAL" />
+
+            <VBox alignment="CENTER" spacing="18.0" styleClass="jfx-card-upgrade" HBox.hgrow="ALWAYS">
+                <Label styleClass="jfx-label-section-title" text="AVATAR DEL JUGADOR" />
+                <Label styleClass="jfx-label-upgrade-copy" text="Carga una Imagen de Perfil" />
+                <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                    <VBox alignment="CENTER" maxHeight="199.0" maxWidth="225.0" minHeight="150.0" minWidth="150.0" prefHeight="199.0" prefWidth="225.0" styleClass="jfx-icon-avatar">
+                        <ImageView fx:id="imgAvatar" fitHeight="178.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <MFXButton fx:id="btnLoadImage" mnemonicParsing="false" onAction="#onActionBtnLoadImage" styleClass="jfx-btn-ghost" text="Cargar Imagen" />
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12.0" styleClass="jfx-bar-bottom">
+            <padding>
+                <Insets bottom="14.0" left="24.0" right="24.0" top="14.0" />
+            </padding>
+            <Label fx:id="lblMessage" styleClass="jfx-label-status" text="" />
+            <Region HBox.hgrow="ALWAYS" />
+            <MFXButton fx:id="btnCancel" mnemonicParsing="false" onAction="#onActionBtnCancel" styleClass="jfx-btn-ghost" text="Cancelar" />
+            <MFXButton fx:id="btnCreatePlayer" mnemonicParsing="false" onAction="#onActionBtnCreatePlayer" styleClass="jfx-btn-green" text="Crear Jugador" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
