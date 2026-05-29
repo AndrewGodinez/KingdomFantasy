@@ -49,7 +49,7 @@ public class Player implements Serializable {
     private Long id;
     @Lob
     @Column(name = "PLY_FOTO_PERFIL")
-    private Byte fotoPerfil;
+    private byte[] fotoPerfil;
     @Basic(optional = false)
     @Column(name = "PLY_NOMBRE")
     private String nombre;
@@ -94,11 +94,11 @@ public class Player implements Serializable {
         this.id = id;
     }
 
-    public Byte getFotoPerfil() {
+    public byte[] getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(Byte fotoPerfil) {
+    public void setFotoPerfil(byte[] fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 
