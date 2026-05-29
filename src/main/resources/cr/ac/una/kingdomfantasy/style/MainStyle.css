@@ -22,8 +22,9 @@
 .jfx-bar-bottom,
 .jfx-bar-hud,
 .jfx-bar-ability {
-    -fx-background-color: rgba(12, 9, 3, 0.97);
+    -fx-background-color: rgba(42, 30, 10, 0.8);
     -fx-border-color: rgba(212, 162, 28, 0.22);
+    -fx-background-radius: 8px;
 }
 
 .jfx-bar-top {
@@ -77,7 +78,7 @@
 /* ── HUD PILLS ────────────────────────────────────────────────── */
 
 .jfx-hud-pill {
-    -fx-background-color: #2a1e0a;
+    -fx-background-color: rgba(42, 30, 10, 0.8);
     -fx-background-insets: 0;
     -fx-background-radius: 999px;
     -fx-border-color: #6a5020;
@@ -86,6 +87,12 @@
     -fx-text-fill: #f7e9c6;
     -fx-font-weight: 900;
 }
+
+.jfx-hud-strong-font {
+    -fx-text-fill: #f7e9c6;
+    -fx-font-weight: 900;
+}
+
 
 .jfx-hud-pill.secondary {
     -fx-background-color: #2b2630;
