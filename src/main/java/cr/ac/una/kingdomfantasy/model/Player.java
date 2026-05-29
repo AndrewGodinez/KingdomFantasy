@@ -49,7 +49,7 @@ public class Player implements Serializable {
     private Long id;
     @Lob
     @Column(name = "PLY_FOTO_PERFIL")
-    private Serializable fotoPerfil;
+    private Byte fotoPerfil;
     @Basic(optional = false)
     @Column(name = "PLY_NOMBRE")
     private String nombre;
@@ -71,17 +71,20 @@ public class Player implements Serializable {
     public Player() {
     }
 
-    public Player(Long plyId) {
-        this.id = plyId;
+    public Player(PlayerDto playerDto) { 
+        this.id = playerDto.getId();
+        actualizar(playerDto);
     }
 
-//    public Player(BigDecimal plyId, String plyNombre, Date plyFechaRegistro, BigInteger plyVersion, BigInteger plyIdBallesta) {
-//        this.id = plyId;
-//        this.nombre = plyNombre;
-//        this.fechaRegistro = plyFechaRegistro;
-//        this.version = plyVersion;
-//        this.idBallesta = plyIdBallesta;
-//    }
+    public void actualizar(PlayerDto playerDto) {
+        this.nombre = playerDto.getNombre();
+        this.fechaRegistro = playerDto.getFechaRegistro();
+        this.version = playerDto.getVersion();
+        this.idBallesta = playerDto.getIdBallesta();
+        this.fechaRegistro = playerDto.getFechaRegistro();
+        this.puntosTotales = playerDto.getPuntosTotales();
+        this.partidaList = playerDto.getPartidaList();
+    }
 
     public Long getId() {
         return id;
@@ -91,11 +94,11 @@ public class Player implements Serializable {
         this.id = id;
     }
 
-    public Serializable getFotoPerfil() {
+    public Byte getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(Serializable fotoPerfil) {
+    public void setFotoPerfil(Byte fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 

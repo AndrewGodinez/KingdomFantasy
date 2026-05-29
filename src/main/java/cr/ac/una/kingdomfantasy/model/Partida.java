@@ -67,13 +67,18 @@ public class Partida implements Serializable {
     public Partida() {
     }
 
-    public Partida(Long parId) {
-        this.id = parId;
+    public Partida(PartidaDto partidaDto) {
+        this.id = partidaDto.getId();
+        actualizar(partidaDto);
     }
 
-    public Partida(Long parId, Long parVersion) {
-        this.id = parId;
-        this.version = parVersion;
+    public void actualizar(PartidaDto partidaDto) {      
+        this.nivelActual = partidaDto.getNivelActual();
+        this.puntosActuales = partidaDto.getPuntosActuales();
+        this.fechaGuardado = partidaDto.getFechaGuardado();
+        this.version = partidaDto.getVersion();
+        this.idmej = partidaDto.getIdmej();
+        this.idply = partidaDto.getIdply();
     }
 
     public Long getId() {
