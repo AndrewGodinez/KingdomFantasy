@@ -47,6 +47,7 @@ public class PrincipalController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         imvFondo.fitHeightProperty().bind(root.heightProperty());
         imvFondo.fitWidthProperty().bind(root.widthProperty());
+       
     }    
 
     @FXML

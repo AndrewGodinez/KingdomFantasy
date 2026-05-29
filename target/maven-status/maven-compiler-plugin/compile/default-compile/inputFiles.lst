@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\module-info.java
 C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\AjustesController.java
 C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\RegistroController.java
@@ -18,3 +19,31 @@ C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdom
 C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\Controller.java
 C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\AppContext.java
 C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Object.java
+=======
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/LoginController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/FlowController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/PlayerDto.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/App.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/JuegoController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/MejorasController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/EntityManagerHelper.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/InGameController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/PrincipalController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Partida.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/PartidaDto.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/RegistroController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/Formato.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/Controller.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/Mensaje.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/AjustesController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/RankingController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/InstruccionesController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/BindingUtils.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Mejora.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/MejoraDto.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/AcercaDeController.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/AppContext.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/Respuesta.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/module-info.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Player.java
+>>>>>>> Stashed changes

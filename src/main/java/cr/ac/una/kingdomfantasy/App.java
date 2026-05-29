@@ -21,6 +21,7 @@ public class App extends Application {
         stage.setMinHeight(720);
         stage.setMinWidth(1280);
         FlowController.getInstance().InitializeFlow(stage, null);
+        FlowController.getInstance().setFullScreen(true);
         FlowController.getInstance().goViewInWindow("PrincipalView");
     }
 

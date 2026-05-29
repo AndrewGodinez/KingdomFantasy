@@ -38,6 +38,7 @@ public class FlowController {
     private static ResourceBundle idioma;
     private static HashMap<String, FXMLLoader> loaders = new HashMap<>();
     private Object parameter;
+    private static Boolean fullScr;
 
     private FlowController() {
     }
@@ -224,7 +225,7 @@ public class FlowController {
         MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
         stage.setScene(scene);
         // Usar prefSize del FXML como tamaño inicial de la ventana
-        if (root instanceof Region region) {
+        if (root instanceof Region region && !fullScr) {
             double pw = region.getPrefWidth();
             double ph = region.getPrefHeight();
             if (pw > 0 && ph > 0) {
@@ -288,6 +289,12 @@ public class FlowController {
 
     public void salir() {
         this.mainStage.close();
+    }
+    
+    public void setFullScreen(Boolean full){
+        this.fullScr = full;
+        mainStage.setFullScreen(full);
+
     }
     
 }
