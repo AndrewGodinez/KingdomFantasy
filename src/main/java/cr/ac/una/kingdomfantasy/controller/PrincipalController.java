@@ -39,6 +39,8 @@ public class PrincipalController extends Controller implements Initializable {
     private MFXButton btnNuevoJugador;
     @FXML
     private MFXButton btnControles;
+    @FXML
+    private MFXButton btnSalir;
 
     /**
      * Initializes the controller class.
@@ -81,6 +83,11 @@ public class PrincipalController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
+    }
+
+    @FXML
+    private void onActionBtnSalir(ActionEvent event) {
+        getStage().close();
     }
     
 }
