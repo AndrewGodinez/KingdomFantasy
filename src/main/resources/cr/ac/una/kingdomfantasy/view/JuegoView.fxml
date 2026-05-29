@@ -2,11 +2,12 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
@@ -14,146 +15,165 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<BorderPane fx:id="root" prefHeight="640.0" prefWidth="980.0" styleClass="jfx-root-game" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.JuegoController">
-   <top>
-      <VBox spacing="8.0" styleClass="jfx-bar-hud">
-         <padding>
-            <Insets bottom="10.0" left="14.0" right="14.0" top="10.0" />
-         </padding>
-         <HBox alignment="CENTER_LEFT" spacing="10.0">
-            <Label fx:id="lblLevel" styleClass="jfx-hud-pill" text="Nivel 1" />
-            <VBox minWidth="170.0" spacing="3.0" HBox.hgrow="ALWAYS">
-               <HBox alignment="CENTER_LEFT">
-                  <Label styleClass="jfx-label-hud-caption" text="Progreso" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lblWaveValue" styleClass="jfx-label-hud-value" text="0/0" />
-               </HBox>
-               <ProgressBar fx:id="prgWave" maxWidth="1.7976931348623157E308" progress="0.0" styleClass="jfx-bar-wave" />
-            </VBox>
-            <VBox minWidth="150.0" spacing="3.0" HBox.hgrow="ALWAYS">
-               <HBox alignment="CENTER_LEFT">
-                  <Label styleClass="jfx-label-hud-caption" text="Tiempo" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lblTimer" styleClass="jfx-label-hud-value" text="01:30" />
-               </HBox>
-               <ProgressBar fx:id="prgLevelTime" maxWidth="1.7976931348623157E308" progress="0.0" styleClass="jfx-bar-time" />
-            </VBox>
-            <VBox minWidth="150.0" spacing="2.0" styleClass="jfx-score-hud-card">
-               <Label styleClass="jfx-label-score-caption" text="Puntos " />
-               <Label fx:id="lblLevelPoints" styleClass="jfx-label-score-value" text="0 pts" />
-            </VBox>
-            <VBox minWidth="96.0" spacing="2.0" styleClass="jfx-score-hud-card multiplier">
-               <Label styleClass="jfx-label-score-caption" text="Multiplicador" />
-               <Label fx:id="lblScoreMultiplier" styleClass="jfx-label-score-multiplier" text="x1.00" />
-            </VBox>
-            <MFXButton fx:id="btnPause" mnemonicParsing="false" onAction="#onActionPause" styleClass="jfx-btn-pause" text="Pausa" />
-            <MFXButton fx:id="btnBackToMenu" mnemonicParsing="false" onAction="#onActionBackToMenu" styleClass="jfx-btn-ghost" text="Menu" />
-         </HBox>
-         <HBox alignment="CENTER_LEFT" spacing="10.0">
-            <VBox minWidth="210.0" spacing="3.0" HBox.hgrow="ALWAYS">
-               <HBox alignment="CENTER_LEFT">
-                  <Label styleClass="jfx-label-hud-caption" text="Castillo" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lblCastleValue" styleClass="jfx-label-hud-value" text="100%" />
-               </HBox>
-               <ProgressBar fx:id="prgCastle" maxWidth="1.7976931348623157E308" progress="1.0" styleClass="jfx-bar-health" />
-            </VBox>
-            <VBox minWidth="170.0" spacing="3.0" HBox.hgrow="ALWAYS">
-               <HBox alignment="CENTER_LEFT">
-                  <Label styleClass="jfx-label-hud-caption" text="Mana" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lblManaValue" styleClass="jfx-label-hud-value" text="100/100" />
-               </HBox>
-               <ProgressBar fx:id="prgMana" maxWidth="1.7976931348623157E308" progress="1.0" styleClass="jfx-bar-mana" />
-            </VBox>
-         </HBox>
-         <HBox fx:id="reviewHud" alignment="CENTER_LEFT" managed="false" spacing="10.0" styleClass="jfx-review-hud" visible="false">
-            <Label fx:id="lblReviewMode" styleClass="jfx-label-review-mode" text="REVISION" />
-            <MFXButton fx:id="btnReviewPreviousLevel" mnemonicParsing="false" onAction="#onActionReviewPreviousLevel" styleClass="jfx-btn-review" text="Nivel -" />
-            <MFXButton fx:id="btnReviewCompleteLevel" mnemonicParsing="false" onAction="#onActionReviewCompleteLevel" styleClass="jfx-btn-review primary" text="Completar" />
-            <MFXButton fx:id="btnReviewNextLevel" mnemonicParsing="false" onAction="#onActionReviewNextLevel" styleClass="jfx-btn-review" text="Nivel +" />
-            <MFXButton fx:id="btnReviewLevel100" mnemonicParsing="false" onAction="#onActionReviewLevel100" styleClass="jfx-btn-review" text="Nivel 100" />
-            <Label styleClass="jfx-label-review-help" text="Saltos rapidos para probar niveles sin guardar progreso real." />
-         </HBox>
-      </VBox>
-   </top>
-   <center>
-      <StackPane fx:id="battlefieldFrame" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="260.0" prefHeight="430.0" prefWidth="980.0" styleClass="jfx-frame-battlefield">
+<AnchorPane id="AnchorPane" fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.JuegoController">
+   <children>
+      <StackPane fx:id="battlefieldFrame" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane fx:id="gameWorld" prefHeight="672.0" prefWidth="1584.0">
+            <Pane fx:id="gameWorld" prefHeight="540.0" prefWidth="960.0">
                <children>
-                  <ImageView fx:id="imvBattlefield" fitHeight="672.0" fitWidth="1584.0" pickOnBounds="true">
+                  <ImageView fx:id="imvBattlefield" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" smooth="false">
                      <image>
                         <Image url="@../resource/game_field.png" />
                      </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
                   </ImageView>
-                  <Pane fx:id="worldPane" prefHeight="672.0" prefWidth="1584.0">
+                  <Pane fx:id="worldPane" prefHeight="540.0" prefWidth="960.0">
                      <children>
-                        <Rectangle fx:id="castleZone" height="674.0" layoutX="-1.0" layoutY="-1.0" opacity="0.22" styleClass="jfx-zone-castle" width="260.0" />
-                        <ImageView fx:id="imvCrossbow" fitHeight="58.0" fitWidth="100.0" layoutX="120.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
-                        <Pane fx:id="actorPane" pickOnBounds="false" prefHeight="672.0" prefWidth="1584.0" />
-                        <Pane fx:id="projectilePane" pickOnBounds="false" prefHeight="672.0" prefWidth="1584.0" />
-                        <Pane fx:id="effectsPane" pickOnBounds="false" prefHeight="672.0" prefWidth="1584.0" />
+                        <Rectangle fx:id="castleZone" height="540.0" opacity="0.22" stroke="TRANSPARENT" styleClass="jfx-zone-castle" width="215.0" />
+                        <ImageView fx:id="imvCrossbow" fitHeight="105.0" fitWidth="135.0" layoutX="110.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@../resource/ballesta_morada.png" />
+                           </image>
+                        </ImageView>
+                        <Pane fx:id="actorPane" prefHeight="466.0" prefWidth="940.0" />
+                        <Pane fx:id="projectilePane" prefHeight="466.0" prefWidth="940.0" />
+                        <Pane fx:id="effectsPane" prefHeight="466.0" prefWidth="940.0" />
                      </children>
                   </Pane>
                </children>
             </Pane>
-            <StackPane fx:id="pauseOverlay" managed="false" styleClass="jfx-overlay-pause" visible="false">
-               <VBox alignment="CENTER" maxWidth="460.0" spacing="16.0" styleClass="jfx-panel-pause">
-                  <ImageView fx:id="imvOverlayAnimation" fitHeight="220.0" fitWidth="300.0" managed="false" preserveRatio="true" smooth="true" visible="false" />
-                  <Label fx:id="lblOverlayTitle" styleClass="jfx-label-overlay-title" text="Pausa" />
-                  <Label fx:id="lblOverlayMessage" styleClass="jfx-label-overlay-message" text="Partida detenida" />
-                  <HBox alignment="CENTER" spacing="12.0">
-                     <MFXButton fx:id="btnResumeOverlay" mnemonicParsing="false" onAction="#onActionResume" styleClass="jfx-btn-primary" text="Continuar" />
-                     <MFXButton fx:id="btnBackToImprovements" mnemonicParsing="false" onAction="#onActionBackToImprovements" styleClass="jfx-btn-ghost" text="Mejoras" />
-                  </HBox>
-               </VBox>
-            </StackPane>
          </children>
       </StackPane>
-   </center>
-   <bottom>
-      <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="jfx-bar-ability">
-         <padding>
-            <Insets bottom="10.0" left="14.0" right="14.0" top="10.0" />
-         </padding>
-         <VBox alignment="CENTER" spacing="4.0" styleClass="jfx-spell-slot">
-            <MFXButton fx:id="btnHeroPortrait" mnemonicParsing="false" onAction="#onActionHeroPortrait" styleClass="jfx-btn-spell">
-               <graphic>
-                  <ImageView fx:id="imvHeroPortrait" fitHeight="52.0" fitWidth="52.0" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/Garrick.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MFXButton>
-            <Label styleClass="jfx-label-spell" text="Heroe" />
-         </VBox>
-         <VBox alignment="CENTER" spacing="4.0" styleClass="jfx-spell-slot">
-            <MFXButton fx:id="btnMeteorSpell" mnemonicParsing="false" onAction="#onActionMeteorSpell" styleClass="jfx-btn-spell">
-               <graphic>
-                  <ImageView fx:id="imvMeteorSpell" fitHeight="52.0" fitWidth="52.0" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/MeteorSpellIconNormal.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MFXButton>
-            <Label styleClass="jfx-label-spell" text="Meteoro" />
-         </VBox>
-         <VBox alignment="CENTER" spacing="4.0" styleClass="jfx-spell-slot">
-            <MFXButton fx:id="btnIceSpell" mnemonicParsing="false" onAction="#onActionIceSpell" styleClass="jfx-btn-spell">
-               <graphic>
-                  <ImageView fx:id="imvIceSpell" fitHeight="52.0" fitWidth="52.0" preserveRatio="true">
-                     <image>
-                        <Image url="@../resource/IceSpellIconNormal.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MFXButton>
-            <Label styleClass="jfx-label-spell" text="Hielo" />
-         </VBox>
-         <Region HBox.hgrow="ALWAYS" />
-      </HBox>
-   </bottom>
-</BorderPane>
+      <VBox prefHeight="540.0" prefWidth="960.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="503.0" prefWidth="960.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="60.0" prefWidth="255.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox prefHeight="60.0" prefWidth="784.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label styleClass="jfx-hud-pill" text="Nivel 1" />
+                        <VBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="207.0" styleClass="jfx-bar-ability">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="33.0" prefWidth="207.0">
+                                 <children>
+                                    <Label prefHeight="15.0" prefWidth="105.0" styleClass="jfx-hud-strong-font" text="Progreso" />
+                                    <Region prefHeight="48.0" prefWidth="61.0" />
+                                    <Label styleClass="jfx-hud-strong-font" text="0/0" />
+                                 </children>
+                              </HBox>
+                              <ProgressBar prefWidth="200.0" progress="0.0" styleClass="jfx-bar-wave" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="38.0" prefWidth="230.0" styleClass="jfx-bar-ability">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="33.0" prefWidth="207.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="141.0" styleClass="jfx-hud-strong-font" text="Puntos" />
+                                    <Label styleClass="jfx-hud-strong-font" text="0pts" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="207.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="131.0" styleClass="jfx-hud-strong-font" text="Multiplicador" />
+                                    <Label styleClass="jfx-hud-strong-font" text="1.00X" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="360.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="100.0" styleClass="jfx-spell-slot">
+                           <children>
+                              <MFXButton styleClass="jfx-btn-spell">
+                                 <graphic>
+                                    <ImageView fitHeight="55.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                       <image>
+                                          <Image url="@../resource/Garrick.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MFXButton>
+                              <Label contentDisplay="CENTER" styleClass="jfx-label-spell" text="Heroe" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="19.0" layoutY="19.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="100.0" styleClass="jfx-spell-slot">
+                           <children>
+                              <MFXButton prefHeight="67.0" prefWidth="54.0" styleClass="jfx-btn-spell">
+                                 <graphic>
+                                    <ImageView fitHeight="55.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                       <image>
+                                          <Image url="@../resource/MeteorSpellIconNormal.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MFXButton>
+                              <Label contentDisplay="CENTER" styleClass="jfx-label-spell" text="Meteoro" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="202.0" layoutY="19.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="100.0" styleClass="jfx-spell-slot">
+                           <children>
+                              <MFXButton styleClass="jfx-btn-spell">
+                                 <graphic>
+                                    <ImageView fitHeight="55.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                       <image>
+                                          <Image url="@../resource/IceSpellIconNormal.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MFXButton>
+                              <Label contentDisplay="CENTER" styleClass="jfx-label-spell" text="Hielo" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="260.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="270.0" styleClass="jfx-hud-pill">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="313.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="25.0" prefWidth="308.0">
+                                       <children>
+                                          <Label styleClass="jfx-label-hud-caption" text="Vida:" />
+                                          <Region prefHeight="25.0" prefWidth="109.0" />
+                                          <Label styleClass="jfx-label-hud-caption" text="100%" />
+                                       </children>
+                                    </HBox>
+                                    <ProgressBar prefWidth="200.0" progress="1.0" styleClass="jfx-bar-health" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="313.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="25.0" prefWidth="308.0">
+                                       <children>
+                                          <Label styleClass="jfx-label-hud-caption" text="Maná" />
+                                          <Region prefHeight="25.0" prefWidth="109.0" />
+                                          <Label styleClass="jfx-label-hud-caption" text="100%" />
+                                       </children>
+                                    </HBox>
+                                    <ProgressBar prefWidth="200.0" progress="1.0" styleClass="jfx-bar-mana" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
