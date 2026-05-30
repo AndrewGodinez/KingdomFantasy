@@ -49,6 +49,10 @@ public class Mejora implements Serializable {
     private Integer nivelEfectoHielo;
     @Column(name = "MEJ_NIVEL_RANGO_HIELO")
     private Integer nivelRangoHielo;
+    @Column(name = "MEJ_NIVEL_CASTILLO")
+    private Integer nivelCastillo;
+    @Column(name = "MEJ_NIVEL_ELIXIR")
+    private Integer nivelElixir;
     @Basic(optional = false)
     @Column(name = "MEJ_VERSION")
     @Version
@@ -71,6 +75,8 @@ public class Mejora implements Serializable {
        this.nivelRangoMeteoro = mejoraDto.getNivelRangoMeteoro();
        this.nivelEfectoHielo = mejoraDto.getNivelEfectoHielo();
        this.nivelRangoHielo = mejoraDto.getNivelRangoHielo();
+       this.nivelCastillo = mejoraDto.getNivelCastillo();
+       this.nivelElixir = mejoraDto.getNivelElixir();
        this.version = mejoraDto.getVersion();
        this.partidaList = mejoraDto.getPartidaList();
     }
@@ -130,7 +136,23 @@ public class Mejora implements Serializable {
     public void setNivelRangoHielo(Integer nivelRangoHielo) {
         this.nivelRangoHielo = nivelRangoHielo;
     }
+    
+    public Integer getNivelCastillo() {
+        return nivelCastillo;
+    }
 
+    public void setNivelCastillo(Integer nivelCastillo) {
+        this.nivelCastillo = nivelCastillo;
+    }
+
+    public Integer getNivelElixir() {
+        return nivelElixir;
+    }
+
+    public void setNivelElixir(Integer nivelElixir) {
+        this.nivelElixir = nivelElixir;
+    }
+    
     public Long getVersion() {
         return version;
     }

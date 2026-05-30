@@ -16,6 +16,8 @@ public class MejoraDto {
     private StringProperty nivelRangoMeteoro;
     private StringProperty nivelEfectoHielo;
     private StringProperty nivelRangoHielo;
+    private StringProperty nivelCastillo;
+    private StringProperty nivelElixir;
     private Long version;
     private List<Partida> partidaList;
 
@@ -26,6 +28,8 @@ public class MejoraDto {
         this.nivelRangoMeteoro = new SimpleStringProperty("");
         this.nivelEfectoHielo = new SimpleStringProperty("");
         this.nivelRangoHielo = new SimpleStringProperty("");
+        this.nivelCastillo = new SimpleStringProperty("");
+        this.nivelElixir = new SimpleStringProperty("");
     }
 
     public MejoraDto(Mejora mejora) {
@@ -37,6 +41,8 @@ public class MejoraDto {
         this.nivelRangoMeteoro.set(mejora.getNivelRangoMeteoro().toString());
         this.nivelEfectoHielo.set(mejora.getNivelEfectoHielo().toString());
         this.nivelRangoHielo.set(mejora.getNivelRangoHielo().toString());
+        this.nivelCastillo.set(mejora.getNivelCastillo().toString());
+        this.nivelElixir.set(mejora.getNivelElixir().toString());
         this.version = mejora.getVersion();
         this.partidaList = mejora.getPartidaList();
     }
@@ -90,6 +96,46 @@ public class MejoraDto {
 
     public void setNivelRangoHieloProperty(StringProperty nivelRangoHielo) {
         this.nivelRangoHielo = nivelRangoHielo;
+    }
+    
+    public StringProperty getNivelCastilloProperty() {
+    return nivelCastillo;
+    }
+
+    public void setNivelCastilloProperty(StringProperty nivelCastillo) {
+    this.nivelCastillo = nivelCastillo;
+    }
+
+    public StringProperty getNivelElixirProperty() {
+    return nivelElixir;
+    }
+
+    public void setNivelElixirProperty(StringProperty nivelElixir) {
+    this.nivelElixir = nivelElixir;
+    }
+
+    public Integer getNivelCastillo() {
+    if (this.nivelCastillo.get() != null && !this.nivelCastillo.get().isBlank()) {
+        return Integer.valueOf(this.nivelCastillo.get());
+    } else {
+        return null;
+    }
+    } 
+
+    public void setNivelCastillo(Integer nivelCastillo) {
+    this.nivelCastillo.set(nivelCastillo.toString());
+    }
+
+    public Integer getNivelElixir() {
+    if (this.nivelElixir.get() != null && !this.nivelElixir.get().isBlank()) {
+        return Integer.valueOf(this.nivelElixir.get());
+    } else {
+        return null;
+    }
+    }
+
+    public void setNivelElixir(Integer nivelElixir) {
+    this.nivelElixir.set(nivelElixir.toString());
     }
     
    public Long getId() {

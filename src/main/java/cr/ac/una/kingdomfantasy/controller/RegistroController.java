@@ -104,7 +104,9 @@ public class RegistroController extends Controller implements Initializable {
             mejora.setNivelRangoMeteoro(1);
             mejora.setNivelEfectoHielo(1);
             mejora.setNivelRangoHielo(1);
-
+            mejora.setNivelCastillo(1);
+            mejora.setNivelElixir(1);
+            
             Partida partida = new Partida();
             partida.setNivelActual(1);
             partida.setPuntosActuales(0L);
