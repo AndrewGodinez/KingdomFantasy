@@ -26,7 +26,7 @@ public class PlayerDto {
 
    
     
-    PlayerDto(){
+   public PlayerDto(){
      this.fotoPerfil = null;
      this.nombre = new SimpleStringProperty("");
      this.fechaRegistro = null;
@@ -34,7 +34,7 @@ public class PlayerDto {
      this.idBallesta = 0;
     }
     
-    PlayerDto(Player player){
+    public PlayerDto(Player player){
     this.id = player.getId();
     this.fotoPerfil = player.getFotoPerfil();
     this.nombre.set(player.getNombre());

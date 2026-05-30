@@ -20,6 +20,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -35,7 +36,9 @@ import java.util.List;
 @Table(name = "DEF_PLAYER")
 @NamedQueries({
     @NamedQuery(name = "Player.findAll", query = "SELECT p FROM Player p"),
-    @NamedQuery(name = "Player.findByPlyId", query = "SELECT p FROM Player p WHERE p.plyId = :plyId")
+    @NamedQuery(name = "Player.findById", query = "SELECT p FROM Player p WHERE p.id = :id"),
+    @NamedQuery(name = "Player.findByNombre",query = "SELECT p FROM Player p WHERE p.nombre = :nombre"),
+    @NamedQuery(name = "Player.findAllByRanking",query = "SELECT p FROM Player p ORDER BY p.puntosTotales DESC")
    })
 public class Player implements Serializable {
 
@@ -59,13 +62,14 @@ public class Player implements Serializable {
     private LocalDate fechaRegistro;
     @Basic(optional = false)
     @Column(name = "PLY_VERSION")
+    @Version
     private Long version;
     @Column(name = "PLY_PUNTOS_TOTALES")
     private Long puntosTotales;
     @Basic(optional = false)
     @Column(name = "PLY_ID_BALLESTA")
     private Integer idBallesta;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parIdply", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idply", fetch = FetchType.LAZY)
     private List<Partida> partidaList;
 
     public Player() {

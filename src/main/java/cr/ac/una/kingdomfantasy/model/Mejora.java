@@ -17,6 +17,7 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -56,8 +57,9 @@ public class Mejora implements Serializable {
     private Integer nivelRangoHielo;
     @Basic(optional = false)
     @Column(name = "MEJ_VERSION")
+    @Version
     private Long version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parIdmej", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idmej", fetch = FetchType.LAZY)
     private List<Partida> partidaList;
 
     public Mejora() {

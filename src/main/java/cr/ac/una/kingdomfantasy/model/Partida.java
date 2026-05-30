@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.model;
 
 import jakarta.persistence.Basic;
@@ -39,7 +35,6 @@ import java.util.Date;
 public class Partida implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @SequenceGenerator(name = "DEF_PARTIDA_PAR_ID_GENERATOR", sequenceName = "una.DEF_PARTIDA_SEQ01", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEF_PARTIDA_PAR_ID_GENERATOR")
