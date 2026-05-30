@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.model;
 
 import java.util.List;
@@ -15,7 +11,7 @@ import javafx.beans.property.StringProperty;
 public class MejoraDto {
     private Long id;
     private StringProperty nivelVelocidadBallesta;
-    private StringProperty nivelDaOBallesta;
+    private StringProperty nivelDanoBallesta;
     private StringProperty nivelEfectoMeteoro;
     private StringProperty nivelRangoMeteoro;
     private StringProperty nivelEfectoHielo;
@@ -25,7 +21,7 @@ public class MejoraDto {
 
     public MejoraDto() {
         this.nivelVelocidadBallesta = new SimpleStringProperty("");
-        this.nivelDaOBallesta = new SimpleStringProperty("");
+        this.nivelDanoBallesta = new SimpleStringProperty("");
         this.nivelEfectoMeteoro = new SimpleStringProperty("");
         this.nivelRangoMeteoro = new SimpleStringProperty("");
         this.nivelEfectoHielo = new SimpleStringProperty("");
@@ -35,7 +31,7 @@ public class MejoraDto {
     public MejoraDto(Mejora mejora) {
         this.id = mejora.getId();
         this.nivelVelocidadBallesta.set(mejora.getNivelVelocidadBallesta().toString());
-        this.nivelDaOBallesta.set(mejora.getNivelDaOBallesta().toString());
+        this.nivelDanoBallesta.set(mejora.getNivelDanoBallesta().toString());
         this.nivelEfectoMeteoro.set(mejora.getNivelEfectoMeteoro().toString());
         this.nivelRangoMeteoro.set(mejora.getNivelRangoMeteoro().toString());
         this.nivelEfectoHielo.set(mejora.getNivelEfectoHielo().toString());
@@ -54,12 +50,12 @@ public class MejoraDto {
         this.nivelVelocidadBallesta = nivelVelocidadBallesta;
     }
 
-    public StringProperty getNivelDaOBallestaProperty() {
-        return nivelDaOBallesta;
+    public StringProperty getNivelDanoBallestaProperty() {
+        return nivelDanoBallesta;
     }
 
-    public void setNivelDaOBallestaProperty(StringProperty nivelDaOBallesta) {
-        this.nivelDaOBallesta = nivelDaOBallesta;
+    public void setNivelDanoBallestaProperty(StringProperty nivelDaOBallesta) {
+        this.nivelDanoBallesta = nivelDaOBallesta;
     }
 
     public StringProperty getNivelEfectoMeteoroProperty() {
@@ -116,17 +112,17 @@ public class MejoraDto {
         this.nivelVelocidadBallesta.set(nivelVelocidadBallesta.toString());
     }
 
-    public Integer getNivelDaOBallesta() {
-        if(this.nivelDaOBallesta.get() != null && !this.nivelDaOBallesta.get().isBlank()){
-            return Integer.valueOf(this.nivelDaOBallesta.get());
+    public Integer getNivelDanoBallesta() {
+        if(this.nivelDanoBallesta.get() != null && !this.nivelDanoBallesta.get().isBlank()){
+            return Integer.valueOf(this.nivelDanoBallesta.get());
         }
         else{
             return null;
         } 
     }
 
-    public void setNivelDaOBallesta(Integer nivelDaOBallesta) {
-        this.nivelDaOBallesta.set(nivelDaOBallesta.toString());
+    public void setNivelDanoBallesta(Integer nivelDaOBallesta) {
+        this.nivelDanoBallesta.set(nivelDaOBallesta.toString());
     }
 
     public Integer getNivelEfectoMeteoro() {

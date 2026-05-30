@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.model;
 
 import jakarta.persistence.Basic;
@@ -19,8 +15,6 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -31,7 +25,7 @@ import java.util.List;
 @Table(name = "DEF_MEJORA")
 @NamedQueries({
     @NamedQuery(name = "Mejora.findAll", query = "SELECT m FROM Mejora m"),
-    @NamedQuery(name = "Mejora.findByMejId", query = "SELECT m FROM Mejora m WHERE m.mejId = :mejId")
+    @NamedQuery(name = "Mejora.findById", query = "SELECT m FROM Mejora m WHERE m.id =:id")
     })
 public class Mejora implements Serializable {
 
@@ -45,8 +39,8 @@ public class Mejora implements Serializable {
     private Long id;
     @Column(name = "MEJ_NIVEL_VELOCIDAD_BALLESTA")
     private Integer nivelVelocidadBallesta;
-    @Column(name = "MEJ_NIVEL_DA\ufffdO_BALLESTA")
-    private Integer nivelDaOBallesta;
+    @Column(name = "MEJ_NIVEL_DANO_BALLESTA")
+    private Integer nivelDanoBallesta;
     @Column(name = "MEJ_NIVEL_EFECTO_METEORO")
     private Integer nivelEfectoMeteoro;
     @Column(name = "MEJ_NIVEL_RANGO_METEORO")
@@ -72,7 +66,7 @@ public class Mejora implements Serializable {
 
     public void actualizar(MejoraDto mejoraDto) {     
        this.nivelVelocidadBallesta = mejoraDto.getNivelVelocidadBallesta();
-       this.nivelDaOBallesta = mejoraDto.getNivelDaOBallesta();
+       this.nivelDanoBallesta = mejoraDto.getNivelDanoBallesta();
        this.nivelEfectoMeteoro = mejoraDto.getNivelEfectoMeteoro();
        this.nivelRangoMeteoro = mejoraDto.getNivelRangoMeteoro();
        this.nivelEfectoHielo = mejoraDto.getNivelEfectoHielo();
@@ -97,12 +91,12 @@ public class Mejora implements Serializable {
         this.nivelVelocidadBallesta = nivelVelocidadBallesta;
     }
 
-    public Integer getNivelDaOBallesta() {
-        return nivelDaOBallesta;
+    public Integer getNivelDanoBallesta() {
+        return nivelDanoBallesta;
     }
 
-    public void setNivelDaOBallesta(Integer nivelDaOBallesta) {
-        this.nivelDaOBallesta = nivelDaOBallesta;
+    public void setNivelDanoBallesta(Integer nivelDanoBallesta) {
+        this.nivelDanoBallesta = nivelDanoBallesta;
     }
 
     public Integer getNivelEfectoMeteoro() {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.model;
 
 import java.time.LocalDate;
@@ -27,7 +23,12 @@ public class PartidaDto {
 
     public PartidaDto(Partida partida) {
         this.id = partida.getId();
-        
+        this.nivelActual = partida.getNivelActual();
+        this.puntosActuales = partida.getPuntosActuales();
+        this.fechaGuardado = partida.getFechaGuardado();
+        this.version = partida.getVersion();
+        this.idmej = partida.getIdmej();
+        this.idply = partida.getIdply();
     }
 
     public Long getId() {

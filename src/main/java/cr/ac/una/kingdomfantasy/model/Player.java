@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.model;
 
 import jakarta.persistence.Basic;
@@ -18,14 +14,9 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,7 +49,6 @@ public class Player implements Serializable {
     private String nombre;
     @Basic(optional = false)
     @Column(name = "PLY_FECHA_REGISTRO")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate fechaRegistro;
     @Basic(optional = false)
     @Column(name = "PLY_VERSION")
@@ -81,11 +71,11 @@ public class Player implements Serializable {
     }
 
     public void actualizar(PlayerDto playerDto) {
+        this.fotoPerfil = playerDto.getFotoPerfil();
         this.nombre = playerDto.getNombre();
         this.fechaRegistro = playerDto.getFechaRegistro();
         this.version = playerDto.getVersion();
         this.idBallesta = playerDto.getIdBallesta();
-        this.fechaRegistro = playerDto.getFechaRegistro();
         this.puntosTotales = playerDto.getPuntosTotales();
         this.partidaList = playerDto.getPartidaList();
     }

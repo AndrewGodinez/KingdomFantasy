@@ -34,13 +34,13 @@ public class PlayerService {
             Logger.getLogger(PlayerService.class.getName()).log(Level.SEVERE, "Ocurrio un error al consultar el jugador.", ex);
             return new Respuesta(false, "Ocurrio un error al consultar el jugador.", "getPlayer NonUniqueResultException");
   } catch (Exception ex) {
+            if (et.isActive()) { et.rollback(); }
             Logger.getLogger(PlayerService.class.getName()).log(Level.SEVERE, "Error obteniendo al jugador llamado [" + nombre + "]", ex);
             return new Respuesta(false, "Error obteniendo el jugador.", "getPlayer " + ex.getMessage());
   }
   }
   
   public Respuesta guardarPlayer(PlayerDto playerDto){
-  
   try {
   et=em.getTransaction();
   et.begin();
@@ -48,6 +48,7 @@ public class PlayerService {
   if(playerDto.getId()!=null && playerDto.getId()>0){
   player = em.find(Player.class, playerDto.getId());
   if(player==null){
+  et.rollback();    
   return new Respuesta(false, "No se encontró un jugador a modificar.", "guardarPlayer NoResultException");
   }
   player.actualizar(playerDto);
@@ -59,6 +60,7 @@ public class PlayerService {
   et.commit();
   return new Respuesta(true,"","","Jugador",new PlayerDto(player));
   } catch (Exception ex) {
+            if (et.isActive()) { et.rollback(); }
             Logger.getLogger(PlayerService.class.getName()).log(Level.SEVERE, "Error guardando el jugador", ex);
             return new Respuesta(false, "Error guardando el jugador.", "guardaJugador" + ex.getMessage());
   }
@@ -74,13 +76,10 @@ public class PlayerService {
         }
         return new Respuesta(true, "", "", "Players", playersDto);
     } catch (Exception ex) {
+        if (et.isActive()) { et.rollback(); }
         Logger.getLogger(PlayerService.class.getName()).log(Level.SEVERE, "Error obteniendo ranking", ex);
         return new Respuesta(false, "Error obteniendo el ranking.", "getAllPlayersRanking " + ex.getMessage());
     }
   }
-  
-  
-  
-  
-  
+
 }
