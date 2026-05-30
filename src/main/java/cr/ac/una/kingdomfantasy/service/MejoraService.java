@@ -55,8 +55,10 @@ public class MejoraService {
   mejora= new Mejora (mejoraDto);
   em.persist(mejora);
   }
-  et.commit();
-  return new Respuesta(true,"","","Mejora",new MejoraDto(mejora));
+  Respuesta respuesta = new Respuesta(true, "", "", "Mejora", new MejoraDto(mejora));
+  respuesta.setResultado("MejoraEntity", mejora);
+  et.commit(); 
+  return respuesta;
   } catch (Exception ex) {
             if (et.isActive()) { et.rollback(); }
             Logger.getLogger(MejoraService.class.getName()).log(Level.SEVERE, "Error guardando la mejora", ex);

@@ -29,6 +29,7 @@ public class MejoraDto {
     }
 
     public MejoraDto(Mejora mejora) {
+        this();
         this.id = mejora.getId();
         this.nivelVelocidadBallesta.set(mejora.getNivelVelocidadBallesta().toString());
         this.nivelDanoBallesta.set(mejora.getNivelDanoBallesta().toString());

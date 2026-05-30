@@ -31,6 +31,7 @@ public class PlayerDto {
     }
     
     public PlayerDto(Player player){
+    this();
     this.id = player.getId();
     this.fotoPerfil = player.getFotoPerfil();
     this.nombre.set(player.getNombre());

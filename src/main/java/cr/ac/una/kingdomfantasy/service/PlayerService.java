@@ -1,5 +1,7 @@
 package cr.ac.una.kingdomfantasy.service;
 
+import cr.ac.una.kingdomfantasy.model.Mejora;
+import cr.ac.una.kingdomfantasy.model.Partida;
 import cr.ac.una.kingdomfantasy.model.Player;
 import cr.ac.una.kingdomfantasy.model.PlayerDto;
 import cr.ac.una.kingdomfantasy.util.EntityManagerHelper;
@@ -40,31 +42,41 @@ public class PlayerService {
   }
   }
   
-  public Respuesta guardarPlayer(PlayerDto playerDto){
+  public Respuesta guardarPlayer(PlayerDto playerDto) {
   try {
-  et=em.getTransaction();
-  et.begin();
-  Player player;
-  if(playerDto.getId()!=null && playerDto.getId()>0){
-  player = em.find(Player.class, playerDto.getId());
-  if(player==null){
-  et.rollback();    
-  return new Respuesta(false, "No se encontró un jugador a modificar.", "guardarPlayer NoResultException");
-  }
-  player.actualizar(playerDto);
-  player= em.merge(player);
-  } else{
-  player= new Player(playerDto);
-  em.persist(player);
-  }
-  et.commit();
-  return new Respuesta(true,"","","Jugador",new PlayerDto(player));
+    et = em.getTransaction();
+    et.begin();
+    Player player;
+    if (playerDto.getId() != null && playerDto.getId() > 0) {
+      player = em.find(Player.class, playerDto.getId());
+      if (player == null) {
+        et.rollback();
+        return new Respuesta(false, "No se encontró un jugador a modificar.", "guardarPlayer NoResultException");
+      }
+      player.actualizar(playerDto);
+      player = em.merge(player);
+    } else {
+      player = new Player(playerDto);
+      if (player.getPartidaList() != null) {
+        for (Partida partida : player.getPartidaList()) {
+          partida.setIdply(player);
+          if (partida.getIdmej() != null && partida.getIdmej().getId() == null) {
+            em.persist(partida.getIdmej());
+          }
+        }
+      }
+      em.persist(player);
+    }
+    et.commit();
+    return new Respuesta(true, "", "", "Jugador", new PlayerDto(player));
   } catch (Exception ex) {
-            if (et.isActive()) { et.rollback(); }
-            Logger.getLogger(PlayerService.class.getName()).log(Level.SEVERE, "Error guardando el jugador", ex);
-            return new Respuesta(false, "Error guardando el jugador.", "guardaJugador" + ex.getMessage());
+    if (et != null && et.isActive()) {
+      et.rollback();
+    }
+    Logger.getLogger(PlayerService.class.getName()).log(Level.SEVERE, "Error guardando el jugador", ex);
+    return new Respuesta(false, "Error guardando el jugador.", "guardarPlayer " + ex.getMessage());
   }
-  }
+}
   
   public Respuesta getAllPlayersRanking(){
   try {
