@@ -194,6 +194,11 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeCrossbowDamage(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelDanoBallesta());
+    int costo = nivel * 18;
+    comprarMejora(nivel, 25, costo, () -> {
+    mejoraDto.setNivelDanoBallesta(nivel + 1);
+    });
     }
 
     @FXML
@@ -206,6 +211,11 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeCrossbowSpeed(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelVelocidadBallesta());
+    int costo = nivel * 16;
+    comprarMejora(nivel, 25, costo, () -> {
+    mejoraDto.setNivelVelocidadBallesta(nivel + 1);
+    });
     }
 
     @FXML
@@ -232,6 +242,11 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeCastleHealth(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelCastillo());
+    int costo = nivel * 10;
+    comprarMejora(nivel, 10, costo, () -> {
+    mejoraDto.setNivelCastillo(nivel + 1);
+    });
     }
 
     @FXML
@@ -244,6 +259,11 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeElixir(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelElixir());
+    int costo = nivel * 8;
+    comprarMejora(nivel, 10, costo, () -> {
+    mejoraDto.setNivelElixir(nivel + 1);
+    });
     }
 
     @FXML
@@ -256,6 +276,11 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeMeteor(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelEfectoMeteoro());
+    int costo = nivel * 12;
+    comprarMejora(nivel, 10, costo, () -> {
+    mejoraDto.setNivelEfectoMeteoro(nivel + 1);
+    });
     }
 
     @FXML
@@ -268,6 +293,11 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeMeteorRadius(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelRangoMeteoro());
+    int costo = nivel * 12;
+    comprarMejora(nivel, 10, costo, () -> {
+    mejoraDto.setNivelRangoMeteoro(nivel + 1);
+    });
     }
 
     @FXML
@@ -280,6 +310,11 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeIce(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelEfectoHielo());
+    int costo = nivel * 12;
+    comprarMejora(nivel, 10, costo, () -> {
+    mejoraDto.setNivelEfectoHielo(nivel + 1);
+    });
     }
 
     @FXML
@@ -292,6 +327,12 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeIceRadius(ActionEvent event) {
+    int nivel = numero(mejoraDto.getNivelRangoHielo());
+    int costo = nivel * 12;
+
+    comprarMejora(nivel, 10, costo, () -> {
+    mejoraDto.setNivelRangoHielo(nivel + 1);
+    });
     }
     
     private void cargarSesion(){
@@ -360,5 +401,25 @@ public class MejorasController extends Controller implements Initializable {
     private Long numero(Long valor) {
     return valor == null ? 0L : valor;
  }
+    
+    private void comprarMejora(int nivelActual, int nivelMaximo, int costo, Runnable subirNivel) {
+    Long monedas = numero(partidaDto.getPuntosActuales());
+    if (nivelActual >= nivelMaximo) {
+        return;
+    }
+    if (monedas < costo) {
+        return;
+    }
+    subirNivel.run();
+    partidaDto.setPuntosActuales(monedas - costo);
+    Respuesta respuesta = mejoraService.comprarMejora(mejoraDto, partidaDto);
+    if (respuesta.getEstado()) {
+        mejoraDto = (MejoraDto) respuesta.getResultado("Mejora");
+        partidaDto = (PartidaDto) respuesta.getResultado("Partida");
+        AppContext.getInstance().set("Mejora", mejoraDto);
+        AppContext.getInstance().set("Partida", partidaDto);
+        cargarDatosPantalla();
+    }
+  }   
     
 }

@@ -2,6 +2,8 @@ package cr.ac.una.kingdomfantasy.service;
 
 import cr.ac.una.kingdomfantasy.model.Mejora;
 import cr.ac.una.kingdomfantasy.model.MejoraDto;
+import cr.ac.una.kingdomfantasy.model.Partida;
+import cr.ac.una.kingdomfantasy.model.PartidaDto;
 import cr.ac.una.kingdomfantasy.util.EntityManagerHelper;
 import cr.ac.una.kingdomfantasy.util.Respuesta;
 import jakarta.persistence.EntityManager;
@@ -63,6 +65,37 @@ public class MejoraService {
             if (et.isActive()) { et.rollback(); }
             Logger.getLogger(MejoraService.class.getName()).log(Level.SEVERE, "Error guardando la mejora", ex);
             return new Respuesta(false, "Error guardando la mejora.", "guardarMejora" + ex.getMessage());
+  }
+ }
+  
+  public Respuesta comprarMejora(MejoraDto mejoraDto, PartidaDto partidaDto) {
+  try {
+    et = em.getTransaction();
+    et.begin();
+    Mejora mejora = em.find(Mejora.class, mejoraDto.getId());
+    Partida partida = em.find(Partida.class, partidaDto.getId());
+    if (mejora == null) {
+      et.rollback();
+      return new Respuesta(false, "No se encontró la mejora.", "comprarMejora Mejora null");
+    }
+    if (partida == null) {
+      et.rollback();
+      return new Respuesta(false, "No se encontró la partida.", "comprarMejora Partida null");
+    }
+    mejora.actualizar(mejoraDto);
+    partida.setPuntosActuales(partidaDto.getPuntosActuales());
+    mejora = em.merge(mejora);
+    partida = em.merge(partida);
+    et.commit();
+    Respuesta respuesta = new Respuesta(true, "", "", "Mejora", new MejoraDto(mejora));
+    respuesta.setResultado("Partida", new PartidaDto(partida));
+    return respuesta;
+  } catch (Exception ex) {
+    if (et != null && et.isActive()) {
+      et.rollback();
+    }
+    Logger.getLogger(MejoraService.class.getName()).log(Level.SEVERE, "Error comprando mejora", ex);
+    return new Respuesta(false, "Error comprando la mejora.", "comprarMejora " + ex.getMessage());
   }
  }
   
