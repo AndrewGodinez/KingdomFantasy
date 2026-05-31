@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.controller;
 
+import cr.ac.una.kingdomfantasy.model.PlayerDto;
+import cr.ac.una.kingdomfantasy.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import cr.ac.una.kingdomfantasy.util.FlowController;
+import cr.ac.una.kingdomfantasy.util.Mensaje;
+import cr.ac.una.kingdomfantasy.util.Respuesta;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -41,7 +43,11 @@ public class PrincipalController extends Controller implements Initializable {
     private MFXButton btnControles;
     @FXML
     private MFXButton btnSalir;
-
+    @FXML
+    private Label lblOnline;
+    
+    PlayerDto playerDto= new PlayerDto();
+    
     /**
      * Initializes the controller class.
      */
@@ -50,6 +56,14 @@ public class PrincipalController extends Controller implements Initializable {
         imvFondo.fitHeightProperty().bind(root.heightProperty());
         imvFondo.fitWidthProperty().bind(root.widthProperty());
     }    
+    
+    @Override
+    public void initialize() {
+     playerDto= (PlayerDto) AppContext.getInstance().get("Player");
+     if(playerDto!=null){
+     lblOnline.setText("Online");
+     }
+    }
 
     @FXML
     private void onActionBtnIniciarSesion(ActionEvent event) {
@@ -63,7 +77,11 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnComenzar(ActionEvent event) {
+        if(playerDto!=null){
         FlowController.getInstance().goViewInStage("MejorasView", getStage());
+        } else {
+        new Mensaje().showModal(Alert.AlertType.WARNING, "Jugador Sin Registrar", getStage(), "Por Favor Inicie Sesión Antes de Comenzar");
+        }
     }
 
     @FXML
@@ -79,10 +97,6 @@ public class PrincipalController extends Controller implements Initializable {
     @FXML
     private void onActionBtnControles(ActionEvent event) {
         FlowController.getInstance().goViewInStage("AjustesView", getStage());
-    }
-
-    @Override
-    public void initialize() {
     }
 
     @FXML

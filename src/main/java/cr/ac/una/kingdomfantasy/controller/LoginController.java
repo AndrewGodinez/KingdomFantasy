@@ -61,42 +61,32 @@ public class LoginController extends Controller implements Initializable {
     @FXML
     private void onActionBtnLogin(ActionEvent event) {
         String nombre = txfName.getText().trim();
-
         if (nombre.isEmpty()) {
             lblMessage.setText("Debe ingresar el nombre del jugador.");
             return;
         }
-
         Respuesta respuestaPlayer = playerService.getPlayerByName(nombre);
-
         if (!respuestaPlayer.getEstado()) {
             lblMessage.setText("No existe un jugador con ese nombre.");
             return;
         }
-
         PlayerDto playerDto = (PlayerDto) respuestaPlayer.getResultado("Player");
         Respuesta respuestaPartida = partidaService.getPartida(playerDto.getId());
-
         if (!respuestaPartida.getEstado()) {
             lblMessage.setText("El jugador no tiene partida registrada.");
             return;
         }
-
         PartidaDto partidaDto = (PartidaDto) respuestaPartida.getResultado("Partida");
         Respuesta respuestaMejora = mejoraService.getMejora(partidaDto.getIdmej().getId());
-
         if (!respuestaMejora.getEstado()) {
             lblMessage.setText("No se encontraron las mejoras del jugador.");
             return;
         }
-
         MejoraDto mejoraDto = (MejoraDto) respuestaMejora.getResultado("Mejora");
-
         AppContext.getInstance().set("Player", playerDto);
         AppContext.getInstance().set("Partida", partidaDto);
         AppContext.getInstance().set("Mejora", mejoraDto);
-
-        FlowController.getInstance().goViewInStage("MejorasView", getStage());
+        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }
 
     @FXML
