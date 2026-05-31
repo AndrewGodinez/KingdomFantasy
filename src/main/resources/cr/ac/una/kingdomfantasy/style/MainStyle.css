@@ -411,6 +411,31 @@
     -fx-translate-y: 1;
 }
 
+.jfx-ghost-background {
+    -fx-background-color: rgba(238, 231, 211, 0.15);
+    -fx-text-fill: rgba(255,255,255,1);
+    -fx-border-color: rgba(238, 231, 211, 0.28);
+    -fx-background-radius: 14px;
+    -fx-border-radius: 14px;
+}
+
+.jfx-ghost-text-bg {
+    -fx-text-fill: rgba(255,255,255,1);
+     -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.jfx-ghost-text-bg-context {
+    -fx-text-fill: rgba(255,255,255,0.87);
+     -fx-font-size: 10px;
+    -fx-font-weight: 400;
+}
+
+.jfx-circle-image {
+    -fx-background-radius: 50%;
+}
+
+
 /* MENU CORNER */
 .jfx-btn-menu-corner {
     -fx-background-color: rgba(18, 13, 5, 0.82);
