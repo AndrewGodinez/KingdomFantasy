@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="660.0" prefWidth="1100.0" styleClass="jfx-root-improvements" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.MejorasController">
+<BorderPane fx:id="root" prefHeight="660.0" prefWidth="1100.0" styleClass="jfx-root-improvements" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.MejorasController">
 
     <top>
         <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="jfx-bar-top">
@@ -61,7 +61,11 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="🏹" />
+                                 <ImageView fitHeight="51.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../resource/UpgradeDamage.png" />
+                                    </image>
+                                 </ImageView>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Daño de la Ballesta" />
@@ -82,7 +86,13 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="⚡" />
+                                 <children>
+                                    <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resource/UpgradeSpeed.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Velocidad de Disparo" />
@@ -106,18 +116,18 @@
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <MFXButton fx:id="btnCrossBowGreen" mnemonicParsing="false" onAction="#onActionBtnCrossBowGreen" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-green jfx-btn-skin" text="Verde">
                                             <graphic>
-                                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../resource/CrossbowGreenClean.png" />
+                                                        <Image url="@../resource/ballesta_verde.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                         </MFXButton>
                                         <MFXButton fx:id="btnCrossBowPurple" mnemonicParsing="false" onAction="#onActionBtnCrossBowPurple" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-purple jfx-btn-skin" text="Morada">
                                             <graphic>
-                                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../resource/CrossbowPurpleClean.png" />
+                                                        <Image url="@../resource/ballesta_morada.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -148,7 +158,13 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="🏰" />
+                                 <children>
+                                    <ImageView fitHeight="80.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resource/UpgradeLife.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Vida del Castillo" />
@@ -169,7 +185,13 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="✨" />
+                                 <children>
+                                    <ImageView fitHeight="95.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resource/UpgradeMana.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Maná" />
@@ -209,7 +231,13 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="☄" />
+                                 <children>
+                                    <ImageView fitHeight="58.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resource/UpgradeMeteorite.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Daño del Meteoro" />
@@ -230,7 +258,13 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="🎯" />
+                                 <children>
+                                    <ImageView fitHeight="75.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resource/UpgradeMeteorite.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Rango de Meteoro" />
@@ -251,7 +285,13 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="❄" />
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resource/UpgradeIce.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Duración del Hechizo de Hielo" />
@@ -272,7 +312,13 @@
                                 <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                            <Label styleClass="jfx-label-upgrade-icon" text="🎯" />
+                                 <children>
+                                    <ImageView fitHeight="89.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resource/UpgradeIce.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Rango de Hielo" />
