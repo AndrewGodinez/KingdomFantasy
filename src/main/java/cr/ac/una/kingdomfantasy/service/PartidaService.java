@@ -9,6 +9,8 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -63,5 +65,23 @@ public class PartidaService {
             return new Respuesta(false, "Error guardando la partida.", "guardarPartida" + ex.getMessage());
   }
  }
+  
+  public Respuesta getRanking() {
+  try {
+    TypedQuery<Partida> qryPartidas = em.createNamedQuery("Partida.findRanking", Partida.class);
+    List<Partida> partidas = qryPartidas.getResultList();
+    List<PartidaDto> partidasDto = new ArrayList<>();
+    for (Partida partida : partidas) {
+      partidasDto.add(new PartidaDto(partida));
+    }
+    return new Respuesta(true, "", "", "Partidas", partidasDto);
+  } catch (Exception ex) {
+    if (et != null && et.isActive()) {
+      et.rollback();
+    }
+    Logger.getLogger(PartidaService.class.getName()).log(Level.SEVERE, "Error obteniendo ranking", ex);
+    return new Respuesta(false, "Error obteniendo el ranking.", "getRanking " + ex.getMessage());
+  }
+}
   
 }

@@ -25,7 +25,8 @@ import java.time.LocalDate;
 @Table(name = "DEF_PARTIDA")
 @NamedQueries({
     @NamedQuery(name = "Partida.findAll", query = "SELECT p FROM Partida p"),
-    @NamedQuery(name = "Partida.findByIdply", query = "SELECT p FROM Partida p WHERE p.idply.id = :idply")
+    @NamedQuery(name = "Partida.findByIdply", query = "SELECT p FROM Partida p WHERE p.idply.id = :idply"),
+    @NamedQuery(name="Partida.findRanking", query = "SELECT p FROM Partida p JOIN FETCH p.idply ORDER BY p.nivelActual DESC, p.idply.puntosTotales DESC")
     })
 public class Partida implements Serializable {
 
