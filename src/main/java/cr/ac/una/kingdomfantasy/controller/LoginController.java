@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
 public class LoginController extends Controller implements Initializable {
@@ -65,7 +67,24 @@ public class LoginController extends Controller implements Initializable {
             lblMessage.setText("Debe ingresar el nombre del jugador.");
             return;
         }
-        Respuesta respuestaPlayer = playerService.getPlayerByName(nombre);
+        verificarJugador(nombre);
+    }
+
+    @FXML
+    private void onActionBtnCreatePlayer(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("RegistroView", getStage());
+    }
+
+    @FXML
+    private void onKeyPressedTxfName(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER && !txfName.getText().isBlank()){
+        String nombre = txfName.getText().trim();   
+        verificarJugador(nombre);
+        }
+    }
+    
+    private void verificarJugador(String nombre){
+    Respuesta respuestaPlayer = playerService.getPlayerByName(nombre);
         if (!respuestaPlayer.getEstado()) {
             lblMessage.setText("No existe un jugador con ese nombre.");
             return;
@@ -87,10 +106,5 @@ public class LoginController extends Controller implements Initializable {
         AppContext.getInstance().set("Partida", partidaDto);
         AppContext.getInstance().set("Mejora", mejoraDto);
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
-    }
-
-    @FXML
-    private void onActionBtnCreatePlayer(ActionEvent event) {
-        FlowController.getInstance().goViewInStage("RegistroView", getStage());
     }
 }
