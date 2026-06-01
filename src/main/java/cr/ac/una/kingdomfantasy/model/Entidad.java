@@ -15,18 +15,30 @@ public abstract class Entidad {
     private Vector2D posicion;
     private HitBox hitBox;
     private TipoAnimacion animacion;
-    private Boolean activo;
-    private static final Double DELTA_TIME = 0.016;
+    private Boolean activo;    
     
     public abstract void actualizar();  
-    public abstract void dibujar();
     public abstract void manejarEvento(TipoEvento evento);
-    public void alHaberColision(HitBox objetoColision){
-        if(hitBox.hayColision(objetoColision)){
+    public void alHaberColision(Entidad objetoColision){
+        if(hayColision(objetoColision)){
             // Agregar logica por colision
         }
     }   
 
+    public Boolean hayColision(Entidad otraEntidad) {
+        
+    double thisX = posicion.getX() + hitBox.getOffSetX();
+    double thisY = posicion.getY() + hitBox.getOffSetY();
+
+    double otraX = otraEntidad.getPosicion().getX() + otraEntidad.getHitBox().getOffSetX();
+    double otraY = otraEntidad.getPosicion().getY() + otraEntidad.getHitBox().getOffSetY();
+
+    return thisX < otraX + otraEntidad.getHitBox().getAncho()
+            && thisX + hitBox.getAncho() > otraX
+            && thisY < otraY + otraEntidad.getHitBox().getAlto()
+            && thisY + hitBox.getAlto() > otraY;
+    }
+       
     public TipoAnimacion getAnimacion() {
         return animacion;
     }

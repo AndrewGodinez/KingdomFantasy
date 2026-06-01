@@ -4,40 +4,53 @@
  */
 package cr.ac.una.kingdomfantasy.model;
 
-import cr.ac.una.kingdomfantasy.util.Vector2D;
 
 /**
  *
  * @author Usuario
  */
 public class HitBox {
-    private Vector2D posicion;
     private Double ancho;
     private Double alto;
+    private Double offSetX;
+    private Double offSetY;
 
-    public HitBox(Vector2D position, Double ancho, Double alto) {
-        this.posicion = position;
+    public HitBox(Double ancho, Double alto, Double offSetX, Double offSetY) {
         this.ancho = ancho;
         this.alto = alto;
+        this.offSetX = offSetX;
+        this.offSetY = offSetY;
     }
 
-    public Vector2D getPosicion() {
-        return posicion;
+    public Double getOffSetX() {
+        return offSetX;
     }
 
-    public double getWidth() {
+    public void setOffSetX(Double offSetX) {
+        this.offSetX = offSetX;
+    }
+
+    public Double getOffSetY() {
+        return offSetY;
+    }
+
+    public void setOffSetY(Double offSetY) {
+        this.offSetY = offSetY;
+    }
+
+    public double getAncho() {
         return ancho;
     }
 
-    public double getHeight() {
-        return alto;
+    public void setAncho(Double ancho) {
+        this.ancho = ancho;
     }
-    
-    public Boolean hayColision(HitBox hitBox) {
 
-    return posicion.getX() < hitBox.posicion.getX() + hitBox.ancho &&
-           posicion.getX() + ancho > hitBox.posicion.getX() &&
-           posicion.getY() < hitBox.posicion.getY() + hitBox.alto &&
-           posicion.getY() + alto > hitBox.posicion.getY();
+    public void setAlto(Double alto) {
+        this.alto = alto;
     }
+
+    public double getAlto() {
+        return alto;
+    }   
 }

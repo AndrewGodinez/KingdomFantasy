@@ -48,17 +48,17 @@ public class Vector2D {
         this.y = y;
     }
 
-    public void sumarVectores(Vector2D vector) {
+    public void sumarVector(Vector2D vector) {
         this.x += vector.x;
         this.y += vector.y;
     }
 
-    public void restarVectores(Vector2D vector) {
+    public void restarVector(Vector2D vector) {
         this.x -= vector.x;
         this.y -= vector.y;
     }
 
-    public void cambiarPosicion(Double nuevoX, Double nuevoY) {
+    public void moverPosicion(Double nuevoX, Double nuevoY) {
         this.x += nuevoX;
         this.y += nuevoY;
     }
@@ -69,7 +69,7 @@ public class Vector2D {
         return Math.sqrt(restaX * restaX + restaY * restaY);
     }
 
-    public Vector2D copy() {
+    public Vector2D copiar() {
         return new Vector2D(x, y);
     }
 
