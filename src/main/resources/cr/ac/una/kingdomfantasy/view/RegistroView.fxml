@@ -42,20 +42,20 @@
                     <Label styleClass="jfx-label-upgrade-title" text="Skin de la Ballesta" />
                     <Label styleClass="jfx-label-upgrade-copy" text="Selecciona la apariencia que tendrá tu ballesta" />
                     <HBox spacing="16.0">
-                        <MFXButton fx:id="btnCrossBowGreen" mnemonicParsing="false" onAction="#onActionBtnCrossBowGreen" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-green jfx-btn-skin" text="Verde">
+                        <MFXButton fx:id="btnCrossBowGreen" mnemonicParsing="false" onAction="#onActionBtnCrossBowGreen" prefHeight="84.0" prefWidth="202.0" styleClass="jfx-btn-skin-green jfx-btn-skin" text="Verde">
                             <graphic>
-                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="71.0" fitWidth="101.0" pickOnBounds="true">
                                     <image>
-                                        <Image url="@../resource/CrossbowGreenClean.png" />
+                                        <Image url="@../resource/ballesta_verde.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </MFXButton>
-                        <MFXButton fx:id="btnCrossBowPurple" mnemonicParsing="false" onAction="#onActionBtnCrossBowPurple" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-purple jfx-btn-skin" text="Morada">
+                        <MFXButton fx:id="btnCrossBowPurple" mnemonicParsing="false" onAction="#onActionBtnCrossBowPurple" prefHeight="84.0" prefWidth="202.0" styleClass="jfx-btn-skin-purple jfx-btn-skin" text="Morada">
                             <graphic>
-                                <ImageView fitHeight="54.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="71.0" fitWidth="101.0" pickOnBounds="true">
                                     <image>
-                                        <Image url="@../resource/CrossbowPurpleClean.png" />
+                                        <Image url="@../resource/ballesta_morada.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
