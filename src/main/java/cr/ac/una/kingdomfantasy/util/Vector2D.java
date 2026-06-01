@@ -73,6 +73,8 @@ public class Vector2D {
         return new Vector2D(x, y);
     }
 
+    //TODO: hacer metodo para normalizar
+    
     @Override
     public String toString() {
         return "(" + x + ", " + y + ")";

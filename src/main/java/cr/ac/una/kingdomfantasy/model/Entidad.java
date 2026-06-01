@@ -17,7 +17,7 @@ public abstract class Entidad {
     private TipoAnimacion animacion;
     private Boolean activo;    
     
-    public abstract void actualizar();  
+    public abstract void actualizar(Double deltaTime);  
     public abstract void manejarEvento(TipoEvento evento);
     public void alHaberColision(Entidad objetoColision){
         if(hayColision(objetoColision)){
@@ -25,7 +25,7 @@ public abstract class Entidad {
         }
     }   
 
-    public Boolean hayColision(Entidad otraEntidad) {
+    private Boolean hayColision(Entidad otraEntidad) {
         
     double thisX = posicion.getX() + hitBox.getOffSetX();
     double thisY = posicion.getY() + hitBox.getOffSetY();

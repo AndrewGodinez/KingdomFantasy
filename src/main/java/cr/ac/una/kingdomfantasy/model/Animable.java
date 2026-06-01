@@ -10,6 +10,5 @@ package cr.ac.una.kingdomfantasy.model;
  */
 public interface Animable {
     public void cambiarAnimación(String nuevaAnimacion);
-    public void actualizarFrame();
     public void reproducirAnimacion(TipoAnimacion tipoAnimacion);
 }

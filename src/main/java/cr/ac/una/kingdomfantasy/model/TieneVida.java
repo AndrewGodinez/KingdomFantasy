@@ -9,8 +9,8 @@ package cr.ac.una.kingdomfantasy.model;
  * @author Usuario
  */
 public interface TieneVida {
-    public void obtenerVidaActual();
-    public void setearVidaMaxima();
-    public void recibirDaño();
+    public Integer obtenerVidaActual();
+    public void setearVidaMaxima(Integer vidaMaxima);
+    public void recibirDaño(Integer danoRecivido);
     public Boolean estaMuerto();
 }

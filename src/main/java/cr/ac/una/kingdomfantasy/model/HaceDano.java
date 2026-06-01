@@ -9,7 +9,6 @@ package cr.ac.una.kingdomfantasy.model;
  * @author Usuario
  */
 public interface HaceDano {
-    public void obtenerDanoActual();
-    public void atacar();
-    public void aplicarDano(Object object);
+    public Integer obtenerDanoActual();
+    public void aplicarDano(Entidad entidad);
 }
