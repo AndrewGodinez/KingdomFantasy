@@ -13,4 +13,5 @@ public interface TieneVida {
     public void setearVidaMaxima(Integer vidaMaxima);
     public void recibirDaño(Integer danoRecivido);
     public Boolean estaMuerto();
+    public void morir();
 }
