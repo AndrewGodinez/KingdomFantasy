@@ -79,11 +79,13 @@ CREATE SEQUENCE def_mejora_SEQ01
     MINVALUE 1 
     NOCACHE ;
  
-CREATE OR REPLACE TRIGGER der_mejora_TGR01 
-BEFORE INSERT ON def_mejora 
-FOR EACH ROW 
-BEGIN 
-    :NEW.mej_id := def_mejora_SEQ01.NEXTVAL; 
+CREATE OR REPLACE TRIGGER der_mejora_TGR01
+BEFORE INSERT ON def_mejora
+FOR EACH ROW
+BEGIN
+    IF :NEW.mej_id IS NULL THEN
+        :NEW.mej_id := def_mejora_SEQ01.NEXTVAL;
+    END IF;
 END;
 /
  
@@ -92,11 +94,13 @@ CREATE SEQUENCE def_partida_SEQ01
     MINVALUE 1 
     NOCACHE ;
  
-CREATE OR REPLACE TRIGGER def_partida_TGR01 
-BEFORE INSERT ON def_partida 
-FOR EACH ROW 
-BEGIN 
-    :NEW.par_id := def_partida_SEQ01.NEXTVAL; 
+CREATE OR REPLACE TRIGGER def_partida_TGR01
+BEFORE INSERT ON def_partida
+FOR EACH ROW
+BEGIN
+    IF :NEW.par_id IS NULL THEN
+        :NEW.par_id := def_partida_SEQ01.NEXTVAL;
+    END IF;
 END;
 /
  
@@ -105,10 +109,12 @@ CREATE SEQUENCE def_player_SEQ01
     MINVALUE 1 
     NOCACHE ;
  
-CREATE OR REPLACE TRIGGER def_player_TGR01 
-BEFORE INSERT ON def_player 
-FOR EACH ROW 
-BEGIN 
-    :NEW.ply_id := def_player_SEQ01.NEXTVAL; 
+CREATE OR REPLACE TRIGGER def_player_TGR01
+BEFORE INSERT ON def_player
+FOR EACH ROW
+BEGIN
+    IF :NEW.ply_id IS NULL THEN
+        :NEW.ply_id := def_player_SEQ01.NEXTVAL;
+    END IF;
 END;
 /
