@@ -18,16 +18,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class LoginController extends Controller implements Initializable {
 
-    @FXML
-    private BorderPane root;
-    @FXML
-    private Label lbLogin;
     @FXML
     private MFXButton btnCancel;
     @FXML
@@ -42,11 +40,17 @@ public class LoginController extends Controller implements Initializable {
     private PlayerService playerService = new PlayerService();
     private PartidaService partidaService = new PartidaService();
     private MejoraService mejoraService = new MejoraService();
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private ImageView imvFondo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txfName.setTextFormatter(Formato.getInstance().letrasFormat(40));
         lblMessage.setText("");
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
     }
 
     @Override
@@ -75,7 +79,6 @@ public class LoginController extends Controller implements Initializable {
         FlowController.getInstance().goViewInStage("RegistroView", getStage());
     }
 
-    @FXML
     private void onKeyPressedTxfName(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER && !txfName.getText().isBlank()){
         String nombre = txfName.getText().trim();   

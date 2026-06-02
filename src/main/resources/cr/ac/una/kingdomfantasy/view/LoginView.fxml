@@ -2,91 +2,48 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="680.0" prefWidth="1100.0" styleClass="jfx-root-login" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.LoginController">
 
-    <top>
-        <HBox alignment="CENTER" styleClass="jfx-bar-top">
-            <padding>
-                <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
-            </padding>
-
-            <Label fx:id="lbLogin" styleClass="jfx-title-badge" text="INICIAR SESIÓN" />
-        </HBox>
-    </top>
-
-    <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: transparent;" vbarPolicy="AS_NEEDED">
-
-            <content>
-                <StackPane>
-                    <padding>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                    </padding>
-
-                    <HBox alignment="CENTER">
-                        <VBox alignment="CENTER" maxWidth="420.0" spacing="18.0" styleClass="jfx-card-login" HBox.hgrow="ALWAYS">
-
-                            <padding>
-                                <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
-                            </padding>
-
-                            <HBox alignment="CENTER">
-                                <VBox alignment="CENTER" styleClass="jfx-icon-avatar">
-                                    <Label styleClass="jfx-label-avatar-icon" text="👤" />
-                                </VBox>
-                            </HBox>
-
-                            <VBox maxWidth="1.7976931348623157E308" spacing="5.0">
-
-                                <Label styleClass="jfx-label-field" text="INGRESA TU NOMBRE DE JUGADOR" />
-
-                                <MFXTextField fx:id="txfName" floatMode="BORDER" floatingText="Nombre" maxWidth="1.7976931348623157E308" onKeyPressed="#onKeyPressedTxfName" styleClass="jfx-field-kingdom" />
-                            </VBox>
-
-                            <Label fx:id="lblMessage" maxWidth="1.7976931348623157E308" styleClass="jfx-label-status" text="" wrapText="true" />
-
-                            <MFXButton fx:id="btnLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionBtnLogin" prefHeight="44.0" styleClass="jfx-btn-primary" text="Entrar a Kingdom Fantasy" />
-
-                            <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="10.0">
-
-                                <Separator HBox.hgrow="ALWAYS" />
-
-                                <Label styleClass="jfx-label-divider" text="○" />
-
-                                <Separator HBox.hgrow="ALWAYS" />
-                            </HBox>
-
-                            <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="8.0">
-
-                                <Label styleClass="jfx-label-register-hint" text="¿Todavía no has creado un Jugador?" wrapText="true" />
-
-                                <MFXButton fx:id="btnCreatePlayer" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionBtnCreatePlayer" prefHeight="44.0" styleClass="jfx-btn-green" text="Nuevo Jugador" />
-                            </VBox>
-
-                        </VBox>
-                    </HBox>
-                </StackPane>
-            </content>
-        </ScrollPane>
-    </center>
-
-    <bottom>
-        <HBox alignment="CENTER" styleClass="jfx-bar-bottom">
-            <padding>
-                <Insets bottom="12.0" left="20.0" right="20.0" top="12.0" />
-            </padding>
-
-            <MFXButton fx:id="btnCancel" mnemonicParsing="false" onAction="#onActionBtnCancel" styleClass="jfx-btn-ghost" text="Volver al Menú" />
-        </HBox>
-    </bottom>
-
-</BorderPane>
+<AnchorPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.LoginController">
+   <children>
+      <ImageView fx:id="imvFondo" fitHeight="543.0" fitWidth="964.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../resource/fondo_menus.png" />
+         </image>
+      </ImageView>
+      <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="75.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="jfx-card-login">
+               <children>
+                  <Label styleClass="jfx-icon-avatar" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label styleClass="jfx-label-field" text="INGRESA TU NOMBRE DE JUGADOR" />
+                        <MFXTextField fx:id="txfName" floatMode="BORDER" floatingText="Nombre" prefHeight="59.0" prefWidth="309.0" styleClass="jfx-field-kingdom" />
+                     </children>
+                  </VBox>
+                  <Label fx:id="lblMessage" styleClass="jfx-label-status" />
+                  <MFXButton fx:id="btnLogin" onAction="#onActionBtnLogin" prefHeight="51.0" prefWidth="307.0" styleClass="jfx-btn-primary" text="Entrar a Kingdom Fantasy" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Separator prefWidth="200.0" />
+                        <Separator prefWidth="200.0" />
+                     </children>
+                  </HBox>
+                  <Label styleClass="jfx-label-register-hint" text="¿Todavía no has creado un Jugador?" />
+                  <MFXButton fx:id="btnCreatePlayer" onAction="#onActionBtnCreatePlayer" prefHeight="51.0" prefWidth="300.0" styleClass="jfx-btn-green" text=" Nuevo Jugador" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+      <MFXButton fx:id="btnCancel" onAction="#onActionBtnCancel" styleClass="jfx-btn-primary" text="Menu" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+   </children>
+</AnchorPane>

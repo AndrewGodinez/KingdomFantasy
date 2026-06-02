@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 
@@ -36,9 +37,7 @@ import javafx.stage.FileChooser;
 public class RegistroController extends Controller implements Initializable {
 
     @FXML
-    private BorderPane root;
-    @FXML
-    private Label lbNewPlayer;
+    private AnchorPane root;
     @FXML
     private Label lblMessage;
     @FXML
@@ -61,6 +60,8 @@ public class RegistroController extends Controller implements Initializable {
     private byte[] imagenPerfilBytes = null;
     
     private PlayerService playerService = new PlayerService();
+    @FXML
+    private ImageView imvFondo;
     
     /**
      * Initializes the controller class.
@@ -69,6 +70,8 @@ public class RegistroController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         txfName.setTextFormatter(Formato.getInstance().letrasFormat(40));
         lblMessage.setText("");
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
     }    
 
     @Override
