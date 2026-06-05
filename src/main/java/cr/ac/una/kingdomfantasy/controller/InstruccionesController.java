@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -21,16 +23,19 @@ import javafx.scene.layout.BorderPane;
 public class InstruccionesController extends Controller implements Initializable {
 
     @FXML
-    private BorderPane root;
+    private AnchorPane root;
     @FXML
     private MFXButton btnBackControls;
+    @FXML
+    private ImageView imvFondo;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());   
     }    
 
     @FXML

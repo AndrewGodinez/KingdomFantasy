@@ -521,13 +521,27 @@
 }
 
 .jfx-instruction-hero {
-    -fx-background-color: linear-gradient(to right, #251c08, #182618);
+/*-fx-background-color: linear-gradient(to right, #251c0866,#18261866);
     -fx-background-insets: 0;
     -fx-background-radius: 10px;
     -fx-border-color: rgba(212, 160, 23, 0.32);
     -fx-border-radius: 10px;
     -fx-border-width: 1px;
+    -fx-padding: 20;*/
+    -fx-background-color:
+        linear-gradient(from 0% 0% to 100% 100%,
+            transparent 47%, #C0C0C033 50%, transparent 53%),
+        linear-gradient(from 100% 0% to 0% 100%,
+            transparent 47%, #C0C0C033 50%, transparent 53%),
+        linear-gradient(to right, #251c0880, #18261880);
+
+    -fx-background-radius: 10;
+    -fx-border-color: #D4A01799;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
     -fx-padding: 20;
+
+    -fx-effect: dropshadow(gaussian, #000000CC, 15, 0.3, 0, 3);
 }
 
 .jfx-label-instruction-title {
@@ -2072,4 +2086,10 @@
 
 .jfx-label-upgrade-icon {
     -fx-font-family: "Segoe UI Emoji", "Kingthings Exeter", "Georgia", serif !important;
+}
+
+.jfx-scroll-transparent,
+.jfx-scroll-transparent > .viewport,
+.jfx-scroll-transparent > .corner {
+    -fx-background-color: transparent;
 }
