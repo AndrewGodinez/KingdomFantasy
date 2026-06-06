@@ -22,18 +22,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class RankingController extends Controller implements Initializable {
 
     @FXML
-    private BorderPane root;
-    @FXML
-    private MFXButton btnPodium2;
-    @FXML
-    private MFXButton btnPodium1;
-    @FXML
-    private MFXButton btnPodium3;
+    private AnchorPane root;
     @FXML
     private MFXButton btnBack;
     @FXML
@@ -62,9 +58,13 @@ public class RankingController extends Controller implements Initializable {
     private PartidaService partidaService = new PartidaService();
     
     private ObservableList<PartidaDto> partidas = FXCollections.observableArrayList();
+    @FXML
+    private ImageView imvFondo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
         configurarTabla();
     }
 
