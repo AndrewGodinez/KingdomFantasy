@@ -1,425 +1,535 @@
 package cr.ac.una.kingdomfantasy.controller;
 
-import cr.ac.una.kingdomfantasy.model.MejoraDto;
-import cr.ac.una.kingdomfantasy.model.PartidaDto;
-import cr.ac.una.kingdomfantasy.model.PlayerDto;
-import cr.ac.una.kingdomfantasy.service.MejoraService;
-import cr.ac.una.kingdomfantasy.service.PartidaService;
+import cr.ac.una.kingdomfantasy.model.CrossbowDesign;
+import cr.ac.una.kingdomfantasy.model.UpgradeProfile;
+import cr.ac.una.kingdomfantasy.model.UpgradeType;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
-import cr.ac.una.kingdomfantasy.util.Respuesta;
-import io.github.palexdev.materialfx.controls.MFXButton;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
+import cr.ac.una.kingdomfantasy.util.PlayerRegistry;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.control.TabPane;
 
-/**
- * FXML Controller class
- *
- * @author Usuario
- */
 public class MejorasController extends Controller implements Initializable {
+
+    private static final String GOLD_KEY = PlayerRegistry.GOLD_KEY;
+    private static final String UPGRADE_PROFILE_KEY = PlayerRegistry.UPGRADE_PROFILE_KEY;
+    private static final String CROSSBOW_DESIGN_KEY = PlayerRegistry.CROSSBOW_DESIGN_KEY;
+    private static final String CURRENT_LEVEL_KEY = PlayerRegistry.CURRENT_LEVEL_KEY;
+    private static final String REVIEW_MODE_KEY = "reviewModeEnabled";
+    private static final String REVIEW_UPGRADE_PROFILE_KEY = "reviewUpgradeProfile";
 
     @FXML
     private BorderPane root;
     @FXML
-    private Label lbCurrentLevel;
-    @FXML
     private Label lbGold;
     @FXML
+    private Label lbCurrentLevel;
+    @FXML
     private Label lbTotalPoints;
-    @FXML
-    private MFXButton btnBackMenu;
-    @FXML
-    private MFXButton btnReviewMaxAll;
-    @FXML
-    private MFXButton btnStartGame;
-    @FXML
-    private TabPane tabPane;
-    @FXML
-    private ProgressBar pgCrossbowDamage;
     @FXML
     private Label lbCrossbowDamageLevel;
     @FXML
     private Label lbCrossbowDamageCost;
     @FXML
-    private MFXButton btnReviewDecreaseCrossbowDamage;
-    @FXML
-    private MFXButton btnReviewIncreaseCrossbowDamage;
-    @FXML
-    private MFXButton btnUpgradeCrossbowDamage;
-    @FXML
-    private ProgressBar pgCrossbowSpeed;
-    @FXML
     private Label lbCrossbowSpeedLevel;
     @FXML
     private Label lbCrossbowSpeedCost;
-    @FXML
-    private MFXButton btnReviewDecreaseCrossbowSpeed;
-    @FXML
-    private MFXButton btnReviewIncreaseCrossbowSpeed;
-    @FXML
-    private MFXButton btnUpgradeCrossbowSpeed;
-    @FXML
-    private MFXButton btnCrossBowGreen;
-    @FXML
-    private MFXButton btnCrossBowPurple;
-    @FXML
-    private Label lbSelectedSkin;
-    @FXML
-    private ProgressBar pgCastleHealth;
     @FXML
     private Label lbCastleHealthLevel;
     @FXML
     private Label lbCastleHealthCost;
     @FXML
-    private MFXButton btnReviewDecreaseCastleHealth;
-    @FXML
-    private MFXButton btnReviewIncreaseCastleHealth;
-    @FXML
-    private MFXButton btnUpgradeCastleHealth;
-    @FXML
-    private ProgressBar pgElixir;
-    @FXML
     private Label lbElixirLevel;
     @FXML
     private Label lbElixirCost;
-    @FXML
-    private MFXButton btnReviewDecreaseElixir;
-    @FXML
-    private MFXButton btnReviewIncreaseElixir;
-    @FXML
-    private MFXButton btnUpgradeElixir;
-    @FXML
-    private ProgressBar pgMeteor;
     @FXML
     private Label lbMeteorLevel;
     @FXML
     private Label lbMeteorCost;
     @FXML
-    private MFXButton btnReviewDecreaseMeteor;
-    @FXML
-    private MFXButton btnReviewIncreaseMeteor;
-    @FXML
-    private MFXButton btnUpgradeMeteor;
-    @FXML
-    private ProgressBar pgMeteorRadius;
-    @FXML
     private Label lblMeteorRadiusLevel;
     @FXML
     private Label lbMeteorRadiusCost;
-    @FXML
-    private MFXButton btnReviewDecreaseMeteorRadius;
-    @FXML
-    private MFXButton btnReviewIncreaseMeteorRadius;
-    @FXML
-    private MFXButton btnUpgradeMeteorRadius;
-    @FXML
-    private ProgressBar pgIce;
     @FXML
     private Label lblIceLevel;
     @FXML
     private Label lbIceCost;
     @FXML
-    private MFXButton btnReviewDecreaseIce;
-    @FXML
-    private MFXButton btnReviewIncreaseIce;
-    @FXML
-    private MFXButton btnUpgradeIce;
-    @FXML
-    private ProgressBar pgIceRadius;
-    @FXML
     private Label lblIceRadiusLevel;
     @FXML
     private Label lbIceRadiusCost;
+    @FXML
+    private Label lbSelectedSkin;
+    @FXML
+    private ProgressBar pgCrossbowDamage;
+    @FXML
+    private ProgressBar pgCrossbowSpeed;
+    @FXML
+    private ProgressBar pgCastleHealth;
+    @FXML
+    private ProgressBar pgElixir;
+    @FXML
+    private ProgressBar pgMeteor;
+    @FXML
+    private ProgressBar pgMeteorRadius;
+    @FXML
+    private ProgressBar pgIce;
+    @FXML
+    private ProgressBar pgIceRadius;
+    @FXML
+    private MFXButton btnUpgradeCrossbowDamage;
+    @FXML
+    private MFXButton btnUpgradeCrossbowSpeed;
+    @FXML
+    private MFXButton btnUpgradeCastleHealth;
+    @FXML
+    private MFXButton btnUpgradeElixir;
+    @FXML
+    private MFXButton btnUpgradeMeteor;
+    @FXML
+    private MFXButton btnUpgradeMeteorRadius;
+    @FXML
+    private MFXButton btnUpgradeIce;
+    @FXML
+    private MFXButton btnUpgradeIceRadius;
+    @FXML
+    private MFXButton btnReviewDecreaseCrossbowDamage;
+    @FXML
+    private MFXButton btnReviewIncreaseCrossbowDamage;
+    @FXML
+    private MFXButton btnReviewDecreaseCrossbowSpeed;
+    @FXML
+    private MFXButton btnReviewIncreaseCrossbowSpeed;
+    @FXML
+    private MFXButton btnReviewDecreaseCastleHealth;
+    @FXML
+    private MFXButton btnReviewIncreaseCastleHealth;
+    @FXML
+    private MFXButton btnReviewDecreaseElixir;
+    @FXML
+    private MFXButton btnReviewIncreaseElixir;
+    @FXML
+    private MFXButton btnReviewDecreaseMeteor;
+    @FXML
+    private MFXButton btnReviewIncreaseMeteor;
+    @FXML
+    private MFXButton btnReviewDecreaseMeteorRadius;
+    @FXML
+    private MFXButton btnReviewIncreaseMeteorRadius;
+    @FXML
+    private MFXButton btnReviewDecreaseIce;
+    @FXML
+    private MFXButton btnReviewIncreaseIce;
     @FXML
     private MFXButton btnReviewDecreaseIceRadius;
     @FXML
     private MFXButton btnReviewIncreaseIceRadius;
     @FXML
-    private MFXButton btnUpgradeIceRadius;
-    
-    private PlayerDto playerDto;
-    
-    private PartidaDto partidaDto;
-    
-    private MejoraDto mejoraDto;
-    
-    private PartidaService partidaService = new PartidaService();
-    
-    private MejoraService mejoraService = new MejoraService();
-    
+    private MFXButton btnReviewMaxAll;
+    @FXML
+    private MFXButton btnCrossBowGreen;
+    @FXML
+    private MFXButton btnCrossBowPurple;
+    @FXML
+    private MFXButton btnStartGame;
+
+    private UpgradeProfile profile;
+    @FXML
+    private MFXButton btnBackMenu;
+    @FXML
+    private TabPane tabPane;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+        setNombreVista("Kingdom Fantasy - Mejoras");
+    }
 
     @Override
     public void initialize() {
-        cargarSesion();
-        if(playerDto==null){
-        FlowController.getInstance().goViewInStage("LoginView",getStage());
-        return;
-        }
-     cargarDatosPantalla();   
-    }
-
-    @FXML
-    private void onActionBtnBackMenu(ActionEvent event) {
-        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
-    }
-
-    @FXML
-    private void onActionBtnReviewMaxAll(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnStartGame(ActionEvent event) {
-        FlowController.getInstance().goViewInStage("JuegoView", getStage());
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseCrossbowDamage(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseCrossbowDamage(ActionEvent event) {
+        MusicManager.getInstance().playTrack(MusicManager.MusicTrack.IMPROVEMENTS);
+        PlayerRegistry.getOrCreateCurrentPlayer();
+        PlayerRegistry.syncCurrentFromContext();
+        profile = getActiveProfile();
+        refresh();
+        
     }
 
     @FXML
     private void onActionBtnUpgradeCrossbowDamage(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelDanoBallesta());
-    int costo = nivel * 18;
-    comprarMejora(nivel, 25, costo, () -> {
-    mejoraDto.setNivelDanoBallesta(nivel + 1);
-    });
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseCrossbowSpeed(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseCrossbowSpeed(ActionEvent event) {
+        upgrade(UpgradeType.CROSSBOW_DAMAGE);
     }
 
     @FXML
     private void onActionBtnUpgradeCrossbowSpeed(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelVelocidadBallesta());
-    int costo = nivel * 16;
-    comprarMejora(nivel, 25, costo, () -> {
-    mejoraDto.setNivelVelocidadBallesta(nivel + 1);
-    });
-    }
-
-    @FXML
-    private void onActionBtnCrossBowGreen(ActionEvent event) {
-    playerDto.setIdBallesta(1);
-    AppContext.getInstance().set("Player", playerDto);
-    cargarBallesta();
-    }
-
-    @FXML
-    private void onActionBtnCrossBowPurple(ActionEvent event) {
-    playerDto.setIdBallesta(2);
-    AppContext.getInstance().set("Player", playerDto);
-    cargarBallesta();
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseCastleHealth(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseCastleHealth(ActionEvent event) {
+        upgrade(UpgradeType.CROSSBOW_SPEED);
     }
 
     @FXML
     private void onActionBtnUpgradeCastleHealth(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelCastillo());
-    int costo = nivel * 10;
-    comprarMejora(nivel, 10, costo, () -> {
-    mejoraDto.setNivelCastillo(nivel + 1);
-    });
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseElixir(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseElixir(ActionEvent event) {
+        upgrade(UpgradeType.CASTLE_HEALTH);
     }
 
     @FXML
     private void onActionBtnUpgradeElixir(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelElixir());
-    int costo = nivel * 8;
-    comprarMejora(nivel, 10, costo, () -> {
-    mejoraDto.setNivelElixir(nivel + 1);
-    });
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseMeteor(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseMeteor(ActionEvent event) {
+        upgrade(UpgradeType.ELIXIR_CAPACITY);
     }
 
     @FXML
     private void onActionBtnUpgradeMeteor(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelEfectoMeteoro());
-    int costo = nivel * 12;
-    comprarMejora(nivel, 10, costo, () -> {
-    mejoraDto.setNivelEfectoMeteoro(nivel + 1);
-    });
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseMeteorRadius(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseMeteorRadius(ActionEvent event) {
+        upgrade(UpgradeType.METEOR_DAMAGE);
     }
 
     @FXML
     private void onActionBtnUpgradeMeteorRadius(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelRangoMeteoro());
-    int costo = nivel * 12;
-    comprarMejora(nivel, 10, costo, () -> {
-    mejoraDto.setNivelRangoMeteoro(nivel + 1);
-    });
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseIce(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseIce(ActionEvent event) {
+        upgrade(UpgradeType.METEOR_RADIUS);
     }
 
     @FXML
     private void onActionBtnUpgradeIce(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelEfectoHielo());
-    int costo = nivel * 12;
-    comprarMejora(nivel, 10, costo, () -> {
-    mejoraDto.setNivelEfectoHielo(nivel + 1);
-    });
-    }
-
-    @FXML
-    private void onActionBtnReviewDecreaseIceRadius(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewIncreaseIceRadius(ActionEvent event) {
+        upgrade(UpgradeType.ICE_DURATION);
     }
 
     @FXML
     private void onActionBtnUpgradeIceRadius(ActionEvent event) {
-    int nivel = numero(mejoraDto.getNivelRangoHielo());
-    int costo = nivel * 12;
-
-    comprarMejora(nivel, 10, costo, () -> {
-    mejoraDto.setNivelRangoHielo(nivel + 1);
-    });
+        upgrade(UpgradeType.ICE_RADIUS);
     }
-    
-    private void cargarSesion(){
-    playerDto = (PlayerDto) AppContext.getInstance().get("Player");
-    partidaDto = (PartidaDto) AppContext.getInstance().get("Partida");
-    mejoraDto = (MejoraDto) AppContext.getInstance().get("Mejora");
-    
-    if(playerDto != null && partidaDto == null){
-    Respuesta respuestaPartida = partidaService.getPartida(playerDto.getId());
-        if (respuestaPartida.getEstado()) {
-            partidaDto = (PartidaDto) respuestaPartida.getResultado("Partida");
-            AppContext.getInstance().set("Partida", partidaDto);
+
+    @FXML
+    private void onActionBtnReviewDecreaseCrossbowDamage(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.CROSSBOW_DAMAGE, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseCrossbowDamage(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.CROSSBOW_DAMAGE, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewDecreaseCrossbowSpeed(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.CROSSBOW_SPEED, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseCrossbowSpeed(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.CROSSBOW_SPEED, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewDecreaseCastleHealth(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.CASTLE_HEALTH, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseCastleHealth(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.CASTLE_HEALTH, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewDecreaseElixir(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.ELIXIR_CAPACITY, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseElixir(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.ELIXIR_CAPACITY, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewDecreaseMeteor(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.METEOR_DAMAGE, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseMeteor(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.METEOR_DAMAGE, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewDecreaseMeteorRadius(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.METEOR_RADIUS, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseMeteorRadius(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.METEOR_RADIUS, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewDecreaseIce(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.ICE_DURATION, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseIce(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.ICE_DURATION, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewDecreaseIceRadius(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.ICE_RADIUS, -1);
+    }
+
+    @FXML
+    private void onActionBtnReviewIncreaseIceRadius(ActionEvent event) {
+        adjustReviewUpgrade(UpgradeType.ICE_RADIUS, 1);
+    }
+
+    @FXML
+    private void onActionBtnReviewMaxAll(ActionEvent event) {
+        if (!isReviewModeEnabled()) {
+            return;
+        }
+        profile = getReviewProfile();
+        for (UpgradeType type : UpgradeType.values()) {
+            profile.setLevel(type, profile.getMaxLevel(type));
+        }
+        AppContext.getInstance().set(REVIEW_UPGRADE_PROFILE_KEY, profile);
+        refresh();
+    }
+
+    @FXML
+    private void onActionBtnCrossBowGreen(ActionEvent event) {
+        setDesign(CrossbowDesign.GREEN);
+    }
+
+    @FXML
+    private void onActionBtnCrossBowPurple(ActionEvent event) {
+        setDesign(CrossbowDesign.PURPLE);
+    }
+
+    @FXML
+    private void onActionBtnStartGame(ActionEvent event) {
+        if (isReviewModeEnabled()) {
+            AppContext.getInstance().set(REVIEW_UPGRADE_PROFILE_KEY, profile);
+        } else {
+            PlayerRegistry.setUpgradeProfile(profile);
+        }
+        FlowController.getInstance().goViewInStage("JuegoView", getStage());
+    }
+
+    @FXML
+    private void onActionBtnBackMenu(ActionEvent event) {
+        PlayerRegistry.syncCurrentFromContext();
+        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
+    }
+
+    private void upgrade(UpgradeType type) {
+        if (isReviewModeEnabled()) {
+            adjustReviewUpgrade(type, 1);
+            return;
+        }
+        int gold = getGold();
+        int cost = profile.getUpgradeCost(type);
+        if (profile.upgrade(type, gold)) {
+            setGold(gold - cost);
+        } 
+        PlayerRegistry.setUpgradeProfile(profile);
+        refresh();
+    }
+
+    private void adjustReviewUpgrade(UpgradeType type, int delta) {
+        if (!isReviewModeEnabled() || type == null) {
+            return;
+        }
+        profile = getReviewProfile();
+        int level = profile.getLevel(type);
+        profile.setLevel(type, level + delta);
+        AppContext.getInstance().set(REVIEW_UPGRADE_PROFILE_KEY, profile);
+        refresh();
+    }
+
+    private boolean areAllUpgradesMaxed() {
+        for (UpgradeType type : UpgradeType.values()) {
+            if (profile.getLevel(type) < profile.getMaxLevel(type)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void setDesign(CrossbowDesign design) {
+        PlayerRegistry.setCrossbowDesign(design);
+        refresh();
+    }
+
+    private void refresh() {
+        profile = getActiveProfile();
+        if (profile == null) {
+            return;
+        }
+        int gold = getGold();
+        boolean reviewMode = isReviewModeEnabled();
+        lbGold.setText(String.valueOf(gold));
+        lbCurrentLevel.setText(reviewMode ? "Modo revision: ajustes libres" : "Nivel actual: " + getCurrentLevel());
+        if (lbTotalPoints != null) {
+            lbTotalPoints.setText(String.valueOf(PlayerRegistry.getHistoricalPoints()));
+        }
+        setVisibleAndManaged(btnReviewMaxAll, reviewMode);
+        if (btnReviewMaxAll != null) {
+            boolean allMaxed = reviewMode && areAllUpgradesMaxed();
+            btnReviewMaxAll.setDisable(allMaxed);
+            btnReviewMaxAll.setText(allMaxed ? "Mejoras al maximo" : "Maxear mejoras");
+        }
+        refreshUpgrade(UpgradeType.CROSSBOW_DAMAGE, lbCrossbowDamageLevel, lbCrossbowDamageCost,
+                pgCrossbowDamage, btnUpgradeCrossbowDamage, btnReviewDecreaseCrossbowDamage,
+                btnReviewIncreaseCrossbowDamage, gold, reviewMode);
+        refreshUpgrade(UpgradeType.CROSSBOW_SPEED, lbCrossbowSpeedLevel, lbCrossbowSpeedCost,
+                pgCrossbowSpeed, btnUpgradeCrossbowSpeed, btnReviewDecreaseCrossbowSpeed,
+                btnReviewIncreaseCrossbowSpeed, gold, reviewMode);
+        refreshUpgrade(UpgradeType.CASTLE_HEALTH, lbCastleHealthLevel, lbCastleHealthCost,
+                pgCastleHealth, btnUpgradeCastleHealth, btnReviewDecreaseCastleHealth,
+                btnReviewIncreaseCastleHealth, gold, reviewMode);
+        refreshUpgrade(UpgradeType.ELIXIR_CAPACITY, lbElixirLevel, lbElixirCost,
+                pgElixir, btnUpgradeElixir, btnReviewDecreaseElixir,
+                btnReviewIncreaseElixir, gold, reviewMode);
+        refreshUpgrade(UpgradeType.METEOR_DAMAGE, lbMeteorLevel, lbMeteorCost,
+                pgMeteor, btnUpgradeMeteor, btnReviewDecreaseMeteor,
+                btnReviewIncreaseMeteor, gold, reviewMode);
+        refreshUpgrade(UpgradeType.METEOR_RADIUS, lblMeteorRadiusLevel, lbMeteorRadiusCost,
+                pgMeteorRadius, btnUpgradeMeteorRadius, btnReviewDecreaseMeteorRadius,
+                btnReviewIncreaseMeteorRadius, gold, reviewMode);
+        refreshUpgrade(UpgradeType.ICE_DURATION, lblIceLevel, lbIceCost,
+                pgIce, btnUpgradeIce, btnReviewDecreaseIce,
+                btnReviewIncreaseIce, gold, reviewMode);
+        refreshUpgrade(UpgradeType.ICE_RADIUS, lblIceRadiusLevel, lbIceRadiusCost,
+                pgIceRadius, btnUpgradeIceRadius, btnReviewDecreaseIceRadius,
+                btnReviewIncreaseIceRadius, gold, reviewMode);
+        CrossbowDesign design = getDesign();
+        lbSelectedSkin.setText("Seleccionada: " + displayName(design));
+        setStyleClassEnabled(btnCrossBowGreen, "selected-skin-green", design == CrossbowDesign.GREEN);
+        setStyleClassEnabled(btnCrossBowPurple, "selected-skin-purple", design == CrossbowDesign.PURPLE);
+        btnStartGame.setDisable(false);
+    }
+
+    private void refreshUpgrade(UpgradeType type, Label levelLabel, Label costLabel,
+            ProgressBar progressBar, MFXButton button, MFXButton decreaseButton,
+            MFXButton increaseButton, int gold, boolean reviewMode) {
+        int level = profile.getLevel(type);
+        int maxLevel = profile.getMaxLevel(type);
+        levelLabel.setText("Nivel " + level + "/" + maxLevel);
+        progressBar.setProgress(level / (double) maxLevel);
+        if (reviewMode) {
+            costLabel.setText("Revision libre");
+            setVisibleAndManaged(button, false);
+            setVisibleAndManaged(decreaseButton, true);
+            setVisibleAndManaged(increaseButton, true);
+            decreaseButton.setDisable(level <= 1);
+            increaseButton.setDisable(level >= maxLevel);
+            return;
+        }
+        setVisibleAndManaged(button, true);
+        setVisibleAndManaged(decreaseButton, false);
+        setVisibleAndManaged(increaseButton, false);
+        if (profile.canUpgrade(type)) {
+            int cost = profile.getUpgradeCost(type);
+            costLabel.setText(cost + " monedas");
+            button.setDisable(gold < cost);
+        } else {
+            costLabel.setText("Maximo");
+            button.setDisable(true);
         }
     }
-    if(partidaDto != null && mejoraDto == null){
-    Respuesta respuestaMejora = mejoraService.getMejora(partidaDto.getIdmej().getId());
-        if (respuestaMejora.getEstado()) {
-            mejoraDto = (MejoraDto) respuestaMejora.getResultado("Mejora");
-            AppContext.getInstance().set("Mejora", mejoraDto);
+
+    private UpgradeProfile getActiveProfile() {
+        return isReviewModeEnabled() ? getReviewProfile() : getProfile();
+    }
+
+    private UpgradeProfile getReviewProfile() {
+        Object value = AppContext.getInstance().get(REVIEW_UPGRADE_PROFILE_KEY);
+        if (value instanceof UpgradeProfile) {
+            return (UpgradeProfile) value;
+        }
+        UpgradeProfile reviewProfile = copyProfile(getProfile());
+        AppContext.getInstance().set(REVIEW_UPGRADE_PROFILE_KEY, reviewProfile);
+        return reviewProfile;
+    }
+
+    private UpgradeProfile copyProfile(UpgradeProfile source) {
+        UpgradeProfile copy = new UpgradeProfile();
+        if (source != null) {
+            for (Map.Entry<UpgradeType, Integer> entry : source.getLevels().entrySet()) {
+                copy.setLevel(entry.getKey(), entry.getValue());
+            }
+        }
+        return copy;
+    }
+
+    private UpgradeProfile getProfile() {
+        Object value = AppContext.getInstance().get(UPGRADE_PROFILE_KEY);
+        if (value instanceof UpgradeProfile) {
+            return (UpgradeProfile) value;
+        }
+        UpgradeProfile newProfile = new UpgradeProfile();
+        PlayerRegistry.setUpgradeProfile(newProfile);
+        return newProfile;
+    }
+
+    private boolean isReviewModeEnabled() {
+        Object value = AppContext.getInstance().get(REVIEW_MODE_KEY);
+        return value instanceof Boolean && (Boolean) value;
+    }
+
+    private CrossbowDesign getDesign() {
+        Object value = AppContext.getInstance().get(CROSSBOW_DESIGN_KEY);
+        if (value instanceof CrossbowDesign) {
+            return (CrossbowDesign) value;
+        }
+        PlayerRegistry.setCrossbowDesign(CrossbowDesign.GREEN);
+        return CrossbowDesign.GREEN;
+    }
+
+    private String displayName(CrossbowDesign design) {
+        if (design == CrossbowDesign.PURPLE) {
+            return "Morada";
+        }
+        return "Verde";
+    }
+
+    private int getGold() {
+        Object value = AppContext.getInstance().get(GOLD_KEY);
+        if (value instanceof Number) {
+            return ((Number) value).intValue();
+        }
+        PlayerRegistry.setGold(0);
+        return 0;
+    }
+
+    private void setGold(int gold) {
+        PlayerRegistry.setGold(gold);
+    }
+
+    private int getCurrentLevel() {
+        Object value = AppContext.getInstance().get(CURRENT_LEVEL_KEY);
+        if (value instanceof Number) {
+            return Math.max(1, Math.min(100, ((Number) value).intValue()));
+        }
+        PlayerRegistry.setCurrentLevel(1);
+        return 1;
+    }
+
+    private void setStyleClassEnabled(MFXButton button, String styleClass, boolean enabled) {
+        button.getStyleClass().remove(styleClass);
+        if (enabled) {
+            button.getStyleClass().add(styleClass);
         }
     }
- }
-    private void cargarDatosPantalla(){
-    if (partidaDto == null || mejoraDto == null) {
-        return;
-    }
-    lbCurrentLevel.setText("Nivel actual: " + numero(partidaDto.getNivelActual()));
-    lbGold.setText(String.valueOf(numero(partidaDto.getPuntosActuales())));
-    lbTotalPoints.setText(String.valueOf(numero(playerDto.getPuntosTotales())));
 
-    cargarMejora(pgCrossbowDamage, lbCrossbowDamageLevel, lbCrossbowDamageCost, mejoraDto.getNivelDanoBallesta(), 25, 18);
-    cargarMejora(pgCrossbowSpeed, lbCrossbowSpeedLevel, lbCrossbowSpeedCost, mejoraDto.getNivelVelocidadBallesta(), 25, 16);
-    cargarMejora(pgMeteor, lbMeteorLevel, lbMeteorCost, mejoraDto.getNivelEfectoMeteoro(), 10, 12);
-    cargarMejora(pgMeteorRadius, lblMeteorRadiusLevel, lbMeteorRadiusCost, mejoraDto.getNivelRangoMeteoro(), 10, 12);
-    cargarMejora(pgIce, lblIceLevel, lbIceCost, mejoraDto.getNivelEfectoHielo(), 10, 12);
-    cargarMejora(pgIceRadius, lblIceRadiusLevel, lbIceRadiusCost, mejoraDto.getNivelRangoHielo(), 10, 12);
-    cargarMejora(pgCastleHealth, lbCastleHealthLevel, lbCastleHealthCost, mejoraDto.getNivelCastillo(), 10, 10);
-    cargarMejora(pgElixir, lbElixirLevel, lbElixirCost, mejoraDto.getNivelElixir(), 10, 8);
-    
-    cargarBallesta();
-    
- } 
-    private void cargarMejora(ProgressBar barra, Label nivelTexto, Label costoTexto, Integer nivel, int maximo, int costo) {
-    int valor = numero(nivel);
-    barra.setProgress(Math.min(1.0, (double) valor / maximo));
-    nivelTexto.setText("Nivel " + valor + "/" + maximo);
-    costoTexto.setText((costo * valor) + " monedas");
- }
-
-    private void cargarBallesta() {
-    if (playerDto.getIdBallesta() != null && playerDto.getIdBallesta() == 2) {
-        lbSelectedSkin.setText("Seleccionada: Morada");
-        btnCrossBowPurple.setStyle("-fx-border-color: purple; -fx-border-width: 3");
-        btnCrossBowGreen.setStyle("");
-    } else {
-        lbSelectedSkin.setText("Seleccionada: Verde");
-        btnCrossBowGreen.setStyle("-fx-border-color: green; -fx-border-width: 3");
-        btnCrossBowPurple.setStyle("");
+    private void setVisibleAndManaged(Node node, boolean visible) {
+        if (node != null) {
+            node.setVisible(visible);
+            node.setManaged(visible);
+        }
     }
- }
-
-    private int numero(Integer valor) {
-    return valor == null ? 1 : valor;
- }
-
-    private Long numero(Long valor) {
-    return valor == null ? 0L : valor;
- }
-    
-    private void comprarMejora(int nivelActual, int nivelMaximo, int costo, Runnable subirNivel) {
-    Long monedas = numero(partidaDto.getPuntosActuales());
-    if (nivelActual >= nivelMaximo) {
-        return;
-    }
-    if (monedas < costo) {
-        return;
-    }
-    subirNivel.run();
-    partidaDto.setPuntosActuales(monedas - costo);
-    Respuesta respuesta = mejoraService.comprarMejora(mejoraDto, partidaDto);
-    if (respuesta.getEstado()) {
-        mejoraDto = (MejoraDto) respuesta.getResultado("Mejora");
-        partidaDto = (PartidaDto) respuesta.getResultado("Partida");
-        AppContext.getInstance().set("Mejora", mejoraDto);
-        AppContext.getInstance().set("Partida", partidaDto);
-        cargarDatosPantalla();
-    }
-  }   
-    
 }
+

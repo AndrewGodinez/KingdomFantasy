@@ -142,16 +142,24 @@ public class RegistroController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCrossBowGreen(ActionEvent event) {
-    idBallestaSeleccionada = 1;
-    btnCrossBowGreen.setStyle("-fx-border-color: green; -fx-border-width: 3");
-    btnCrossBowPurple.setStyle(""); 
+        idBallestaSeleccionada = 1;
+        setSkinSelected(btnCrossBowGreen, "selected-skin-green", btnCrossBowPurple, "selected-skin-purple");
     }
 
     @FXML
     private void onActionBtnCrossBowPurple(ActionEvent event) {
-    idBallestaSeleccionada = 2;
-    btnCrossBowPurple.setStyle("-fx-border-color: purple; -fx-border-width: 3");
-    btnCrossBowGreen.setStyle("");
+        idBallestaSeleccionada = 2;
+        setSkinSelected(btnCrossBowPurple, "selected-skin-purple", btnCrossBowGreen, "selected-skin-green");
+    }
+
+    private void setSkinSelected(MFXButton selected, String selectedClass,
+                                  MFXButton other, String otherClass) {
+        selected.getStyleClass().remove(otherClass);
+        if (!selected.getStyleClass().contains(selectedClass)) {
+            selected.getStyleClass().add(selectedClass);
+        }
+        other.getStyleClass().remove(otherClass);
+        other.getStyleClass().remove(selectedClass);
     }
 
     @FXML

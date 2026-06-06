@@ -57,8 +57,7 @@
             </children>
         </VBox>
     </children>
-   <stylesheets>
-      <URL value="@../style/Styles.css" />
+    <stylesheets>
       <URL value="@../style/MainStyle.css" />
-   </stylesheets>
+    </stylesheets>
 </StackPane>

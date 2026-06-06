@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import cr.ac.una.kingdomfantasy.util.Mensaje;
-import cr.ac.una.kingdomfantasy.util.Respuesta;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
@@ -101,7 +100,10 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
-        getStage().close();
+        cr.ac.una.kingdomfantasy.util.MusicManager.getInstance().shutdown();
+        javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.millis(150));
+        delay.setOnFinished(e -> System.exit(0));
+        delay.play();
     }
     
 }

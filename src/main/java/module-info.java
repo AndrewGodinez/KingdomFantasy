@@ -6,6 +6,7 @@ module cr.ac.una.kingdomfantasy {
     requires java.sql;
     requires jakarta.persistence;
     requires MaterialFX;
+    requires javafx.media;
 
     opens cr.ac.una.kingdomfantasy to javafx.fxml;
     opens cr.ac.una.kingdomfantasy.controller to javafx.fxml;

@@ -1966,10 +1966,18 @@
 }
 
 /* ── selected-skin (usado por controllers dinámicamente) ─────────────────── */
-.selected-skin {
-    -fx-border-color: #f4d46a !important;
-    -fx-border-width: 2.5px !important;
-    -fx-effect: dropshadow(gaussian, rgba(244,212,106,0.55), 10, 0.25, 0, 0) !important;
+.selected-skin-green {
+    -fx-border-color: #3ecf5a !important;
+    -fx-border-width: 3px !important;
+    -fx-border-radius: 8px !important;
+    -fx-effect: dropshadow(gaussian, rgba(62,207,90,0.60), 12, 0.30, 0, 0) !important;
+}
+
+.selected-skin-purple {
+    -fx-border-color: #a855f7 !important;
+    -fx-border-width: 3px !important;
+    -fx-border-radius: 8px !important;
+    -fx-effect: dropshadow(gaussian, rgba(168,85,247,0.60), 12, 0.30, 0, 0) !important;
 }
 
 /* ── selected-control (usado por InputDeviceController) ──────────────────── */

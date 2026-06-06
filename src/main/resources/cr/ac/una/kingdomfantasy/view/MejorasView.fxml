@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="660.0" prefWidth="1100.0" styleClass="jfx-root-improvements" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.MejorasController">
+<BorderPane fx:id="root" prefHeight="660.0" prefWidth="1100.0" styleClass="jfx-root-improvements" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.MejorasController">
 
     <top>
         <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="jfx-bar-top">
