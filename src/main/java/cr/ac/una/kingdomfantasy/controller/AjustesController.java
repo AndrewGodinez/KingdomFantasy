@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class AjustesController extends Controller implements Initializable {
@@ -42,26 +43,19 @@ public class AjustesController extends Controller implements Initializable {
     private VBox cardReview;
     @FXML
     private VBox reviewToolsBox;
-    @FXML
-    private Label lblSelection;
-    @FXML
     private Label lblMessage;
     @FXML
     private Label lblReviewStatus;
     @FXML
     private Label lblReviewUnlockedStatus;
     @FXML
-    private BorderPane root;
+    private AnchorPane root;
     @FXML
     private MFXButton btnBackMenu;
-    @FXML
-    private MFXButton btnConfirm;
     @FXML
     private MFXButton btnMouse;
     @FXML
     private MFXButton btnKeyboard;
-    @FXML
-    private MFXButton btnInstructions;
     @FXML
     private MFXButton btnReviewUnlock;
     @FXML
@@ -82,6 +76,10 @@ public class AjustesController extends Controller implements Initializable {
     private javafx.scene.layout.HBox reviewAccessBox;
     private Image volumeOnImage;
     private Image volumeOffImage;
+    @FXML
+    private ImageView imvFondo;
+    @FXML
+    private ImageView imvReviewIcon;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -121,7 +119,6 @@ public class AjustesController extends Controller implements Initializable {
        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
    }
 
-    @FXML
     private void onActionBtnInstructions(ActionEvent event) {
         FlowController.getInstance().goViewInStage("InstruccionesView", getStage());
     }
