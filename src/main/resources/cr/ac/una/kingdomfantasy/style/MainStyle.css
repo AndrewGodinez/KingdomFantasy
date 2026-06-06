@@ -22,8 +22,9 @@
 .jfx-bar-bottom,
 .jfx-bar-hud,
 .jfx-bar-ability {
-    -fx-background-color: rgba(12, 9, 3, 0.97);
+    -fx-background-color: rgba(42, 30, 10, 0.8);
     -fx-border-color: rgba(212, 162, 28, 0.22);
+    -fx-background-radius: 8px;
 }
 
 .jfx-bar-top {
@@ -77,7 +78,7 @@
 /* ── HUD PILLS ────────────────────────────────────────────────── */
 
 .jfx-hud-pill {
-    -fx-background-color: #2a1e0a;
+    -fx-background-color: rgba(42, 30, 10, 0.8);
     -fx-background-insets: 0;
     -fx-background-radius: 999px;
     -fx-border-color: #6a5020;
@@ -86,6 +87,12 @@
     -fx-text-fill: #f7e9c6;
     -fx-font-weight: 900;
 }
+
+.jfx-hud-strong-font {
+    -fx-text-fill: #f7e9c6;
+    -fx-font-weight: 900;
+}
+
 
 .jfx-hud-pill.secondary {
     -fx-background-color: #2b2630;
@@ -189,9 +196,9 @@
 }
 
 .jfx-btn-primary,
+.jfx-btn-pause,
 .jfx-btn-upgrade,
 .jfx-btn-skin,
-.jfx-btn-pause,
 .jfx-btn-ghost,
 .jfx-btn-green,
 .jfx-btn-menu-corner,
@@ -403,6 +410,31 @@
     -fx-padding: 10 15 8 17;
     -fx-translate-y: 1;
 }
+
+.jfx-ghost-background {
+    -fx-background-color: rgba(238, 231, 211, 0.15);
+    -fx-text-fill: rgba(255,255,255,1);
+    -fx-border-color: rgba(238, 231, 211, 0.28);
+    -fx-background-radius: 14px;
+    -fx-border-radius: 14px;
+}
+
+.jfx-ghost-text-bg {
+    -fx-text-fill: rgba(255,255,255,1);
+     -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.jfx-ghost-text-bg-context {
+    -fx-text-fill: rgba(255,255,255,0.87);
+     -fx-font-size: 10px;
+    -fx-font-weight: 400;
+}
+
+.jfx-circle-image {
+    -fx-background-radius: 50%;
+}
+
 
 /* MENU CORNER */
 .jfx-btn-menu-corner {
@@ -1934,10 +1966,18 @@
 }
 
 /* ── selected-skin (usado por controllers dinámicamente) ─────────────────── */
-.selected-skin {
-    -fx-border-color: #f4d46a !important;
-    -fx-border-width: 2.5px !important;
-    -fx-effect: dropshadow(gaussian, rgba(244,212,106,0.55), 10, 0.25, 0, 0) !important;
+.selected-skin-green {
+    -fx-border-color: #3ecf5a !important;
+    -fx-border-width: 3px !important;
+    -fx-border-radius: 8px !important;
+    -fx-effect: dropshadow(gaussian, rgba(62,207,90,0.60), 12, 0.30, 0, 0) !important;
+}
+
+.selected-skin-purple {
+    -fx-border-color: #a855f7 !important;
+    -fx-border-width: 3px !important;
+    -fx-border-radius: 8px !important;
+    -fx-effect: dropshadow(gaussian, rgba(168,85,247,0.60), 12, 0.30, 0, 0) !important;
 }
 
 /* ── selected-control (usado por InputDeviceController) ──────────────────── */

@@ -21,6 +21,11 @@
             <version>25.0.2</version>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>25.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>io.github.palexdev</groupId>
             <artifactId>materialfx</artifactId>
             <version>11.16.1</version>
@@ -34,41 +39,6 @@
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc11</artifactId>
             <version>21.21.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.core</artifactId>
-            <version>2.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.asm</artifactId>
-            <version>9.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.antlr</artifactId>
-            <version>2.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>2.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
-            <version>2.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.moxy</artifactId>
-            <version>2.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>jakarta.persistence</artifactId>
-            <version>2.2.3</version>
         </dependency>
     </dependencies>
     <build>
@@ -93,6 +63,14 @@
                         <!-- Default configuration for running -->
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
+                        <configuration>
+                            <options>
+                                <option>-Xms256m</option>
+                                <option>-Xmx1024m</option>
+                                <option>-XX:MaxMetaspaceSize=256m</option>
+                                <option>-XX:ReservedCodeCacheSize=128m</option>
+                            </options>
+                        </configuration>
                     </execution>
                     <execution>
                         <!-- Configuration for manual attach debugging -->

@@ -1,20 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.controller;
 
+import cr.ac.una.kingdomfantasy.model.Mejora;
+import cr.ac.una.kingdomfantasy.model.Partida;
+import cr.ac.una.kingdomfantasy.model.PlayerDto;
+import cr.ac.una.kingdomfantasy.service.PlayerService;
+import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
+import cr.ac.una.kingdomfantasy.util.Formato;
+import cr.ac.una.kingdomfantasy.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -24,9 +37,7 @@ import javafx.scene.layout.BorderPane;
 public class RegistroController extends Controller implements Initializable {
 
     @FXML
-    private BorderPane root;
-    @FXML
-    private Label lbNewPlayer;
+    private AnchorPane root;
     @FXML
     private Label lblMessage;
     @FXML
@@ -43,13 +54,24 @@ public class RegistroController extends Controller implements Initializable {
     private ImageView imgAvatar;
     @FXML
     private MFXButton btnLoadImage;
-
+    
+    private Integer idBallestaSeleccionada = 0; 
+    
+    private byte[] imagenPerfilBytes = null;
+    
+    private PlayerService playerService = new PlayerService();
+    @FXML
+    private ImageView imvFondo;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        txfName.setTextFormatter(Formato.getInstance().letrasFormat(40));
+        lblMessage.setText("");
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
     }    
 
     @Override
@@ -63,18 +85,109 @@ public class RegistroController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCreatePlayer(ActionEvent event) {
+        String nombre = txfName.getText().trim();
+        if (nombre.isEmpty()) {
+            lblMessage.setText("Debe ingresar un nombre.");
+            return;
+        }
+        if (idBallestaSeleccionada == 0) {
+            lblMessage.setText("Debe seleccionar un tipo de ballesta.");
+            return;
+        }
+        Respuesta existe = playerService.getPlayerByName(nombre);
+        if (existe.getEstado()) {
+            lblMessage.setText("Ya existe un jugador con ese nombre.");
+            return;
+        }
+        try {
+            Mejora mejora = new Mejora();
+            mejora.setNivelVelocidadBallesta(1);
+            mejora.setNivelDanoBallesta(1);
+            mejora.setNivelEfectoMeteoro(1);
+            mejora.setNivelRangoMeteoro(1);
+            mejora.setNivelEfectoHielo(1);
+            mejora.setNivelRangoHielo(1);
+            mejora.setNivelCastillo(1);
+            mejora.setNivelElixir(1);
+            
+            Partida partida = new Partida();
+            partida.setNivelActual(1);
+            partida.setPuntosActuales(0L);
+            partida.setFechaGuardado(LocalDate.now());
+            partida.setIdmej(mejora);
+
+            List<Partida> partidas = new ArrayList<>();
+            partidas.add(partida);
+
+            PlayerDto nuevoPlayer = new PlayerDto();
+            nuevoPlayer.setNombre(nombre);
+            nuevoPlayer.setFotoPerfil(imagenPerfilBytes);
+            nuevoPlayer.setIdBallesta(idBallestaSeleccionada);
+            nuevoPlayer.setFechaRegistro(LocalDate.now());
+            nuevoPlayer.setPuntosTotales(0L);
+            nuevoPlayer.setPartidaList(partidas);
+
+            Respuesta resPlayer = playerService.guardarPlayer(nuevoPlayer);
+            if (resPlayer.getEstado()) {
+                PlayerDto playerCreado = (PlayerDto) resPlayer.getResultado("Jugador");
+                AppContext.getInstance().set("Player", playerCreado);
+                FlowController.getInstance().goViewInStage("MejorasView", getStage());
+            } else {
+                lblMessage.setText(resPlayer.getMensaje());
+            }
+        } catch (Exception ex) {
+            lblMessage.setText("Error inesperado al crear el jugador.");
+        }
     }
 
     @FXML
     private void onActionBtnCrossBowGreen(ActionEvent event) {
+        idBallestaSeleccionada = 1;
+        setSkinSelected(btnCrossBowGreen, "selected-skin-green", btnCrossBowPurple, "selected-skin-purple");
     }
 
     @FXML
     private void onActionBtnCrossBowPurple(ActionEvent event) {
+        idBallestaSeleccionada = 2;
+        setSkinSelected(btnCrossBowPurple, "selected-skin-purple", btnCrossBowGreen, "selected-skin-green");
+    }
+
+    private void setSkinSelected(MFXButton selected, String selectedClass,
+                                  MFXButton other, String otherClass) {
+        selected.getStyleClass().remove(otherClass);
+        if (!selected.getStyleClass().contains(selectedClass)) {
+            selected.getStyleClass().add(selectedClass);
+        }
+        other.getStyleClass().remove(otherClass);
+        other.getStyleClass().remove(selectedClass);
     }
 
     @FXML
     private void onActionBtnLoadImage(ActionEvent event) {
+         FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Seleccionar foto de perfil");
+    fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
+    );
+    File file = fileChooser.showOpenDialog(getStage());
+    if (file != null) {
+        try {
+            Image image = new Image(file.toURI().toString());
+            imgAvatar.setImage(image);
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buf)) != -1) {
+                bos.write(buf, 0, bytesRead);
+            }
+            fis.close();
+            imagenPerfilBytes = bos.toByteArray();
+            
+        } catch (IOException ex) {
+            lblMessage.setText("Error al cargar la imagen.");
+        }
+    }
     }
     
 }

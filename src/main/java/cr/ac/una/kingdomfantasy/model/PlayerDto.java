@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.model;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -14,31 +12,32 @@ import java.util.Objects;
  */
 public class PlayerDto {
     private Long id;
-    private Byte fotoPerfil;
-    private String Nombre;
+    private byte[] fotoPerfil;
+    private StringProperty nombre;
     private LocalDate fechaRegistro;
     private Long version;
-    private Long puntosTotales;
+    private StringProperty puntosTotales;
     private Integer idBallesta;
     private List<Partida> partidaList;
 
    
     
-    PlayerDto(){
+   public PlayerDto(){
      this.fotoPerfil = null;
-     this.Nombre = "";
+     this.nombre = new SimpleStringProperty("");
      this.fechaRegistro = null;
-     this.puntosTotales = null;
+     this.puntosTotales = new SimpleStringProperty("");
      this.idBallesta = 0;
     }
     
-    PlayerDto(Player player){
+    public PlayerDto(Player player){
+    this();
     this.id = player.getId();
     this.fotoPerfil = player.getFotoPerfil();
-    this.Nombre = player.getNombre();
+    this.nombre.set(player.getNombre());
     this.fechaRegistro = player.getFechaRegistro();
     this.version = player.getVersion();
-    this.puntosTotales = player.getPuntosTotales();
+    this.puntosTotales.set(player.getPuntosTotales().toString());
     this.idBallesta = player.getIdBallesta();
     this.partidaList = player.getPartidaList();
     }
@@ -51,20 +50,22 @@ public class PlayerDto {
         this.id = id;
     }
 
-    public Byte getFotoPerfil() {
+
+
+    public byte[] getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(Byte fotoPerfil) {
+    public void setFotoPerfil(byte[] fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre.get();
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre.set(nombre);
     }
 
     public LocalDate getFechaRegistro() {
@@ -84,11 +85,16 @@ public class PlayerDto {
     }
 
     public Long getPuntosTotales() {
-        return puntosTotales;
+        if(this.puntosTotales.get() != null && !this.puntosTotales.get().isBlank()){
+            return Long.valueOf(this.puntosTotales.get());
+        }
+        else{
+            return null;
+        } 
     }
 
     public void setPuntosTotales(Long puntosTotales) {
-        this.puntosTotales = puntosTotales;
+        this.puntosTotales.set(puntosTotales.toString());
     }
 
     public Integer getIdBallesta() {
@@ -105,6 +111,22 @@ public class PlayerDto {
 
     public void setPartidaList(List<Partida> partidaList) {
         this.partidaList = partidaList;
+    }
+    
+        public StringProperty getNombreProperty() {
+        return nombre;
+    }
+
+    public void setNombreProperty(StringProperty Nombre) {
+        this.nombre = Nombre;
+    }
+
+    public StringProperty getPuntosTotalesProperty() {
+        return puntosTotales;
+    }
+
+    public void setPuntosTotalesProperty(StringProperty puntosTotales) {
+        this.puntosTotales = puntosTotales;
     }
     
     @Override
@@ -131,7 +153,7 @@ public class PlayerDto {
 
     @Override
     public String toString() {
-        return "PlayerDto{" + "id=" + id + ", Nombre=" + Nombre + ", fechaRegistro=" + fechaRegistro + ", puntosTotales=" + puntosTotales + '}';
+        return "PlayerDto{" + "id=" + id + ", Nombre=" + nombre + ", fechaRegistro=" + fechaRegistro + ", puntosTotales=" + puntosTotales + '}';
     }
     
 }

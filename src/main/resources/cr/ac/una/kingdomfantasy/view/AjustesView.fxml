@@ -5,136 +5,125 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" minHeight="600.0" minWidth="860.0" prefHeight="600.0" prefWidth="1100.0" styleClass="jfx-root-inputdevice" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.AjustesController">
-
+<BorderPane fx:id="root" minHeight="560.0" minWidth="780.0" prefHeight="600.0" prefWidth="980.0" styleClass="jfx-root-inputdevice" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.AjustesController">
     <top>
-        <VBox alignment="CENTER" spacing="4.0" styleClass="jfx-bar-top">
+        <VBox alignment="CENTER" spacing="3.0" styleClass="jfx-bar-top">
             <padding>
-                <Insets bottom="18.0" left="24.0" right="24.0" top="18.0" />
+                <Insets bottom="12.0" left="24.0" right="24.0" top="12.0" />
             </padding>
-            <Label styleClass="jfx-title-badge" text="CONTROLES" />
-            <Label styleClass="jfx-label-kicker" text="Configura el control y lee el tutorial" />
+            <Label styleClass="jfx-title-badge" text="Configuración" />
+            <Label styleClass="jfx-label-kicker" text="Selecciona el Control de Juego" />
         </VBox>
     </top>
-
     <center>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="jfx-scroll-transparent">
-            <content>
-                <VBox spacing="18.0">
+        <VBox alignment="TOP_CENTER" spacing="12.0">
+            <padding>
+                <Insets bottom="16.0" left="24.0" right="24.0" top="16.0" />
+            </padding>
+            <HBox spacing="14.0">
+                <VBox fx:id="cardMouse" spacing="10.0" styleClass="jfx-card-control" HBox.hgrow="ALWAYS">
                     <padding>
-                        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                        <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
                     </padding>
-
-                    <GridPane hgap="18.0" vgap="18.0">
-                        <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" percentWidth="50.0" />
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" percentWidth="50.0" />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints vgrow="ALWAYS" />
-                        </rowConstraints>
-                        <children>
-                            <VBox fx:id="cardMouse" maxWidth="1.7976931348623157E308" minHeight="320.0" spacing="16.0" styleClass="jfx-card-control" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                <HBox alignment="CENTER">
-                                    <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                        <Label styleClass="jfx-label-upgrade-icon" text="M" />
-                                    </VBox>
-                                </HBox>
-                                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="jfx-label-upgrade-title" text="Mouse" />
-                                <Label styleClass="jfx-label-upgrade-copy" text="Apunta con el cursor y haz clic para disparar." wrapText="true" />
-                                <VBox spacing="8.0">
-                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                        <Label styleClass="jfx-chip-key" text="Click Izq." />
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Disparar flecha" wrapText="true" HBox.hgrow="ALWAYS" />
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                        <Label styleClass="jfx-chip-key" text="Mover Mouse" />
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Apuntar ballesta" wrapText="true" HBox.hgrow="ALWAYS" />
-                                    </HBox>
-                                </VBox>
-                                <MFXButton fx:id="btnMouse" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionBtnMouse" styleClass="jfx-btn-primary" text="Usar Mouse" />
-                            </VBox>
-
-                            <VBox fx:id="cardKeyboard" maxWidth="1.7976931348623157E308" minHeight="320.0" spacing="16.0" styleClass="jfx-card-control" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                <HBox alignment="CENTER">
-                                    <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                        <Label styleClass="jfx-label-upgrade-icon" text="K" />
-                                    </VBox>
-                                </HBox>
-                                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="jfx-label-upgrade-title" text="Teclado" />
-                                <Label styleClass="jfx-label-upgrade-copy" text="Usa las flechas para apuntar y la barra espaciadora para disparar." wrapText="true" />
-                                <VBox spacing="8.0">
-                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                        <Label styleClass="jfx-chip-key" text="Espacio" />
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Disparar flecha" wrapText="true" HBox.hgrow="ALWAYS" />
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                        <Label styleClass="jfx-chip-key" text="Arriba / Abajo" />
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Apuntar ballesta" wrapText="true" HBox.hgrow="ALWAYS" />
-                                    </HBox>
-                                </VBox>
-                                <MFXButton fx:id="btnKeyboard" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionBtnKeyboard" styleClass="jfx-btn-ghost" text="Usar Teclado" />
-                            </VBox>
-                        </children>
-                    </GridPane>
-
-                    <VBox fx:id="cardReview" maxWidth="1.7976931348623157E308" spacing="14.0" styleClass="jfx-card-settings">
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
-                            <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
-                                <Label styleClass="jfx-label-upgrade-icon" text="*" />
-                            </VBox>
-                            <VBox spacing="3.0" HBox.hgrow="ALWAYS">
-                                <Label styleClass="jfx-label-upgrade-title" text="Acceso avanzado" />
-                                <Label styleClass="jfx-label-upgrade-copy" text="Ingresa la clave para habilitar las herramientas internas de revision." wrapText="true" />
-                            </VBox>
+                    <HBox alignment="CENTER">
+                        <ImageView fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resource/Mouse-Icon.png" />
+                            </image>
+                        </ImageView>
+                    </HBox>
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="jfx-label-upgrade-title" text="Mouse" />
+                    <Label styleClass="jfx-label-upgrade-copy" text="Apunta con el cursor y haz clic para disparar." wrapText="true" />
+                    <VBox spacing="6.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <Label styleClass="jfx-chip-key" text="Click Izq." />
+                            <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Disparar flecha" wrapText="true" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox fx:id="reviewAccessBox" alignment="CENTER_LEFT" spacing="10.0">
-                            <MFXPasswordField fx:id="txfReviewPassword" floatMode="BORDER" floatingText="Clave de acceso" maxWidth="260.0" styleClass="jfx-field-kingdom" HBox.hgrow="ALWAYS" />
-                            <MFXButton fx:id="btnReviewUnlock" mnemonicParsing="false" onAction="#onActionBtnReviewUnlock" styleClass="jfx-btn-green" text="Desbloquear" />
-                            <Region HBox.hgrow="ALWAYS" />
-                            <Label fx:id="lblReviewStatus" styleClass="jfx-label-selection-status" text="" />
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <Label styleClass="jfx-chip-key" text="Mover Mouse" />
+                            <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Apuntar ballesta" wrapText="true" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <VBox fx:id="reviewToolsBox" managed="false" spacing="12.0" visible="false">
-                            <HBox alignment="CENTER_LEFT" spacing="12.0">
-                                <VBox spacing="3.0" HBox.hgrow="ALWAYS">
-                                    <Label styleClass="jfx-label-upgrade-title" text="Modo revision" />
-                                    <Label styleClass="jfx-label-upgrade-copy" text="Salta niveles, carga cualquier nivel entre 1 y 100 y prueba el juego sin guardar recompensas ni progreso real." wrapText="true" />
-                                </VBox>
-                                <MFXButton fx:id="btnReviewToggle" mnemonicParsing="false" onAction="#onActionBtnReviewToggle" styleClass="jfx-btn-ghost" text="Activar" />
-                            </HBox>
-                            <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                <MFXTextField fx:id="txfReviewLevel" floatMode="BORDER" floatingText="Nivel 1-100" maxWidth="220.0" styleClass="jfx-field-kingdom" HBox.hgrow="ALWAYS" />
-                                <MFXButton fx:id="btnReviewApply" mnemonicParsing="false" onAction="#onActionBtnReviewApply" styleClass="jfx-btn-green" text="Ir al nivel" />
-                                <MFXButton fx:id="btnReviewLevel100" mnemonicParsing="false" onAction="#onActionBtnReviewLevel100" styleClass="jfx-btn-ghost" text="Nivel 100" />
-                                <Region HBox.hgrow="ALWAYS" />
-                                <Label fx:id="lblReviewUnlockedStatus" styleClass="jfx-label-selection-status" text="" />
-                            </HBox>
-                        </VBox>
                     </VBox>
+                    <MFXButton fx:id="btnMouse" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionBtnMouse" styleClass="jfx-btn-primary" text="Usar Mouse" />
                 </VBox>
-            </content>
-        </ScrollPane>
-    </center>
+                <VBox fx:id="cardKeyboard" spacing="10.0" styleClass="jfx-card-control" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                    </padding>
+                    <HBox alignment="CENTER">
+                        <ImageView fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resource/KeyBoard-Icon.png" />
+                            </image>
+                        </ImageView>
+                    </HBox>
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="jfx-label-upgrade-title" text="Teclado" />
+                    <Label styleClass="jfx-label-upgrade-copy" text="Usa las flechas para apuntar y la barra espaciadora para disparar." wrapText="true" />
+                    <VBox spacing="6.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <Label styleClass="jfx-chip-key" text="Espacio" />
+                            <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Disparar flecha" wrapText="true" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <Label styleClass="jfx-chip-key" text="Arriba / Abajo" />
+                            <Label maxWidth="1.7976931348623157E308" styleClass="jfx-label-key-action" text="Apuntar ballesta" wrapText="true" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                    </VBox>
+                    <MFXButton fx:id="btnKeyboard" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionBtnKeyboard" styleClass="jfx-btn-ghost" text="Usar Teclado" />
+                </VBox>
 
+            </HBox>
+            <VBox fx:id="cardReview" spacing="10.0" styleClass="jfx-card-settings">
+                <padding>
+                    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                </padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="14.0">
+                    <ImageView fx:id="imvReviewIcon" fitHeight="70.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../resource/Admin-Access-Icon.png" />
+                        </image>
+                    </ImageView>
+                    <VBox alignment="CENTER_LEFT" spacing="3.0" HBox.hgrow="ALWAYS">
+                        <Label styleClass="jfx-label-upgrade-title" text="Acceso avanzado" />
+                        <Label styleClass="jfx-label-upgrade-copy" text="Ingresa la clave para habilitar las herramientas internas de revisión." wrapText="true" />
+                    </VBox>
+                </HBox>
+
+                <HBox fx:id="reviewAccessBox" alignment="CENTER_LEFT" spacing="10.0">
+                    <MFXPasswordField fx:id="txfReviewPassword" floatMode="BORDER" floatingText="Clave de acceso" maxWidth="260.0" styleClass="jfx-field-kingdom" HBox.hgrow="ALWAYS" />
+                    <MFXButton fx:id="btnReviewUnlock" mnemonicParsing="false" onAction="#onActionBtnReviewUnlock" styleClass="jfx-btn-green" text="Desbloquear" />
+                    <Label fx:id="lblReviewStatus" styleClass="jfx-label-selection-status" text="" HBox.hgrow="ALWAYS" />
+                </HBox>
+
+                <VBox fx:id="reviewToolsBox" managed="false" spacing="8.0" visible="false">
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <MFXButton fx:id="btnReviewToggle" mnemonicParsing="false" onAction="#onActionBtnReviewToggle" styleClass="jfx-btn-review primary" text="Activar" />
+                        <MFXTextField fx:id="txfReviewLevel" floatMode="BORDER" floatingText="Nivel 1-100" maxWidth="160.0" styleClass="jfx-field-kingdom" />
+                        <MFXButton fx:id="btnReviewApply" mnemonicParsing="false" onAction="#onActionBtnReviewApply" styleClass="jfx-btn-review" text="Aplicar" />
+                        <MFXButton fx:id="btnReviewLevel100" mnemonicParsing="false" onAction="#onActionBtnReviewLevel100" styleClass="jfx-btn-review" text="Nivel 100" />
+                    </HBox>
+                    <Label fx:id="lblReviewUnlockedStatus" styleClass="jfx-label-selection-status" text="" wrapText="true" />
+                </VBox>
+
+            </VBox>
+
+        </VBox>
+    </center>
     <bottom>
         <HBox alignment="CENTER_RIGHT" spacing="12.0" styleClass="jfx-bar-bottom">
             <padding>
-                <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
+                <Insets bottom="12.0" left="20.0" right="20.0" top="12.0" />
             </padding>
             <MFXButton fx:id="btnToggleAudio" mnemonicParsing="false" onAction="#onActionBtnToggleAudio" styleClass="jfx-btn-audio-toggle">
                 <graphic>
-                    <ImageView fx:id="imvAudioToggle" fitHeight="32.0" fitWidth="32.0" preserveRatio="true">
+                    <ImageView fx:id="imvAudioToggle" fitHeight="28.0" fitWidth="28.0" preserveRatio="true">
                         <image>
                             <Image url="@../resource/VolumeOn.png" />
                         </image>

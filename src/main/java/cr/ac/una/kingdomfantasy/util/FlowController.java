@@ -213,6 +213,9 @@ public class FlowController {
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
+            // Este es el stage principal visible. Si se cierra (con la X), apagamos todo.
+            cr.ac.una.kingdomfantasy.util.MusicManager.getInstance().shutdown();
+            System.exit(0);
         });
         controller.setStage(stage);
         Parent root = loader.getRoot();

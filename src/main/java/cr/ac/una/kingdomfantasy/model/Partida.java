@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.model;
 
 import jakarta.persistence.Basic;
@@ -17,14 +13,9 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  *
@@ -34,12 +25,12 @@ import java.util.Date;
 @Table(name = "DEF_PARTIDA")
 @NamedQueries({
     @NamedQuery(name = "Partida.findAll", query = "SELECT p FROM Partida p"),
-    @NamedQuery(name = "Partida.findByParId", query = "SELECT p FROM Partida p WHERE p.parId = :parId"),
+    @NamedQuery(name = "Partida.findByIdply", query = "SELECT p FROM Partida p WHERE p.idply.id = :idply"),
+    @NamedQuery(name="Partida.findRanking", query = "SELECT p FROM Partida p JOIN FETCH p.idply ORDER BY p.nivelActual DESC, p.idply.puntosTotales DESC")
     })
 public class Partida implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @SequenceGenerator(name = "DEF_PARTIDA_PAR_ID_GENERATOR", sequenceName = "una.DEF_PARTIDA_SEQ01", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEF_PARTIDA_PAR_ID_GENERATOR")
@@ -51,7 +42,6 @@ public class Partida implements Serializable {
     @Column(name = "PAR_PUNTOS_ACTUALES")
     private Long puntosActuales;
     @Column(name = "PAR_FECHA_GUARDADO")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate fechaGuardado;
     @Basic(optional = false)
     @Column(name = "PAR_VERSION")

@@ -1,133 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="400.0" prefWidth="800.0" styleClass="jfx-root-about" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.AcercaDeController">
-    <top>
-        <HBox alignment="CENTER" styleClass="jfx-bar-top">
-            <padding>
-                <Insets bottom="18.0"
-                        left="24.0"
-                        right="24.0"
-                        top="18.0" />
-            </padding>
-            <Label styleClass="jfx-title-badge"
-                   text="ACERCA DE" />
-        </HBox>
-    </top>
-    <center>
-        <ScrollPane fitToWidth="true"
-                    fitToHeight="true"
-                    hbarPolicy="NEVER"
-                    vbarPolicy="AS_NEEDED"
-                    style="-fx-background-color: transparent;">
-            <content>
-                <StackPane>
-                    <HBox alignment="CENTER">
-                        <VBox alignment="CENTER"
-                              maxWidth="500.0"
-                              prefWidth="500.0"
-                              spacing="14.0"
-                              styleClass="jfx-panel-about">
-                            <padding>
-                                <Insets top="18.0"
-                                        right="18.0"
-                                        bottom="18.0"
-                                        left="18.0" />
-                            </padding>
-                            <VBox alignment="CENTER"
-                                  spacing="2.0">
-                                <Label styleClass="jfx-label-about-title"
-                                       text="KINGDOM" />
-                                <Label styleClass="jfx-label-about-subtitle"
-                                       text="Fantasy" />
-                            </VBox>
-                            <Label styleClass="jfx-label-about-divider"
-                                   text="◆" />
-                            <Separator prefHeight="8.0"
-                                       prefWidth="424.0" />
-                            <HBox alignment="CENTER"
-                                  styleClass="jfx-box-about-info">
-                                <VBox alignment="CENTER"
-                                      spacing="2.0"
-                                      HBox.hgrow="ALWAYS">
-                                    <Label styleClass="jfx-label-about-info"
-                                           text="UNIVERSIDAD NACIONAL" />
-                                    <Label styleClass="jfx-label-about-info-value"
-                                           text="Sede Regional Brunca" />
-                                </VBox>
-                            </HBox>
-                            <HBox spacing="12.0">
-                                <VBox alignment="CENTER"
-                                      spacing="2.0"
-                                      styleClass="jfx-box-about-info"
-                                      HBox.hgrow="ALWAYS">
-                                    <Label styleClass="jfx-label-about-info"
-                                           text="CURSO" />
-                                    <Label styleClass="jfx-label-about-info-value"
-                                           text="Programación II" />
-                                </VBox>
-                                <VBox alignment="CENTER"
-                                      spacing="2.0"
-                                      styleClass="jfx-box-about-info"
-                                      HBox.hgrow="ALWAYS">
-                                    <Label styleClass="jfx-label-about-info"
-                                           text="CICLO" />
-                                    <Label styleClass="jfx-label-about-info-value"
-                                           text="I Ciclo 2026" />
-                                </VBox>
-                            </HBox>
-                            <HBox alignment="CENTER"
-                                  styleClass="jfx-box-about-info">
-                                <VBox alignment="CENTER"
-                                      spacing="2.0"
-                                      HBox.hgrow="ALWAYS">
-                                    <Label styleClass="jfx-label-about-info"
-                                           text="PROFESOR" />
-                                    <Label styleClass="jfx-label-about-info-value"
-                                           text="Máster Carlos Carranza Blanco" />
-                                </VBox>
-                            </HBox>
-                            <VBox alignment="CENTER"
-                                  spacing="8.0"
-                                  styleClass="jfx-section-about-dev">
-                                <Label styleClass="jfx-label-about-dev"
-                                       text="DESARROLLADO POR" />
-                                <Label fx:id="lblDeveloper1"
-                                       styleClass="jfx-label-about-dev-name"
-                                       text="[Tu Nombre Aquí]" />
-                                <Label fx:id="lblDeveloper2"
-                                       styleClass="jfx-label-about-dev-sub"
-                                       text="[Nombre del Compañero]" />
-                            </VBox>
+<AnchorPane fx:id="root" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.AcercaDeController">
+   <children>
+      <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../resource/about_menu.png" />
+         </image>
+      </ImageView>
+      <MFXButton fx:id="btnBack" onAction="#onActionBtnBack" prefHeight="40.0" prefWidth="111.0" styleClass="jfx-btn-primary" text="Menu" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="jfx-ghost-background" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/GameLogo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="50.0" prefWidth="439.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="241.0" styleClass="jfx-ghost-text-bg" text="UNIVERSIDAD NACIONAL" />
+                  <Label alignment="CENTER" styleClass="jfx-ghost-text-bg-context" text="Sede Regional Brunca" />
+               </children>
+            </VBox>
+            <HBox prefHeight="36.0" prefWidth="558.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="439.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="48.0" prefWidth="192.0" styleClass="jfx-ghost-text-bg" text="CURSO" />
+                        <Label alignment="CENTER" styleClass="jfx-ghost-text-bg-context" text="Programación II" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="439.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="48.0" prefWidth="192.0" styleClass="jfx-ghost-text-bg" text="CICLO" />
+                        <Label alignment="CENTER" styleClass="jfx-ghost-text-bg-context" text="I Ciclo 2026" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" layoutX="11.0" layoutY="256.0" prefHeight="50.0" prefWidth="439.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="241.0" styleClass="jfx-ghost-text-bg" text="PROFESOR" />
+                  <Label alignment="CENTER" styleClass="jfx-ghost-text-bg-context" text="Máster Carlos Carranza Blanco" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="11.0" layoutY="331.0" prefHeight="50.0" prefWidth="439.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="241.0" styleClass="jfx-ghost-text-bg" text="DESARROLLADO POR" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="439.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="241.0" styleClass="jfx-ghost-text-bg" text="Sem Mora" />
+                              <Label alignment="CENTER" styleClass="jfx-ghost-text-bg-context" text="Desarrollador Principal" />
+                              <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="jfx-circle-image">
+                                 <image>
+                                    <Image url="@../resource/developers/sem.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
                         </VBox>
-                    </HBox>
-                </StackPane>
-            </content>
-        </ScrollPane>
-    </center>
-    <bottom>
-        <HBox alignment="CENTER"
-              styleClass="jfx-bar-bottom">
-            <padding>
-                <Insets bottom="14.0"
-                        left="24.0"
-                        right="24.0"
-                        top="14.0" />
-            </padding>
-            <MFXButton fx:id="btnBack"
-                       mnemonicParsing="false"
-                       onAction="#onActionBack"
-                       styleClass="jfx-btn-ghost"
-                       text="Volver al Menú" />
-        </HBox>
-    </bottom>
-</BorderPane>
+                        <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="439.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="241.0" styleClass="jfx-ghost-text-bg" text="Andres Cortes" />
+                              <Label alignment="CENTER" styleClass="jfx-ghost-text-bg-context" text="Gestor Del Proyecto" />
+                              <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                 <image>
+                                    <Image url="@../resource/developers/andres.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="289.0" layoutY="10.0" prefHeight="50.0" prefWidth="439.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="241.0" styleClass="jfx-ghost-text-bg" text="Andrew Godinez" />
+                              <Label alignment="CENTER" styleClass="jfx-ghost-text-bg-context" text="Apartado Visual/Musica" />
+                              <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                 <image>
+                                    <Image url="@../resource/developers/andrew.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

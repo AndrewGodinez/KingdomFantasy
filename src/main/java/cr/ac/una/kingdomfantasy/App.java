@@ -8,21 +8,31 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import cr.ac.una.kingdomfantasy.util.FlowController;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
+import javafx.scene.text.Font;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setMinHeight(720);
-        stage.setMinWidth(1280);
+        Font.loadFont(App.class.getResourceAsStream("resource/Kingthings_Exeter.ttf"), 14);
+        stage.setMinHeight(600);
+        stage.setMinWidth(800);
+
+        stage.setOnCloseRequest(event -> {
+            MusicManager.getInstance().shutdown();
+        });
+
         FlowController.getInstance().InitializeFlow(stage, null);
         FlowController.getInstance().setFullScreen(true);
         FlowController.getInstance().goViewInWindow("PrincipalView");
+    }
+
+    @Override
+    public void stop() {
+        MusicManager.getInstance().shutdown();
     }
 
     static void setRoot(String fxml) throws IOException {
