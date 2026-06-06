@@ -495,12 +495,9 @@
 
 .jfx-card-control {
     -fx-background-color: #211808;
-    -fx-background-insets: 0;
     -fx-background-radius: 10px;
     -fx-border-color: rgba(212, 160, 23, 0.22);
-    -fx-border-radius: 10px;
-    -fx-padding: 22;
-    -fx-min-height: 320px;
+    -fx-border-radius: 10px;    
 }
 
 .jfx-card-control.jfx-card-control-selected {
@@ -703,9 +700,7 @@
 }
 
 .jfx-bar-hud .progress-bar {
-    -fx-min-height: 16px;
-    -fx-pref-height: 16px;
-    -fx-max-height: 16px;
+
 }
 
 .progress-bar > .track {

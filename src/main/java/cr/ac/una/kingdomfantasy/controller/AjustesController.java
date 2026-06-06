@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,31 +28,17 @@ import javafx.scene.layout.VBox;
 public class AjustesController extends Controller implements Initializable {
 
     @FXML
-    private BorderPane root;
+    private AnchorPane root;
     @FXML
     private MFXButton btnToggleAudio;
     @FXML
     private ImageView imvAudioToggle;
     @FXML
-    private Label lblMessage;
-    @FXML
-    private MFXButton btnInstructions;
-    @FXML
     private MFXButton btnBackMenu;
-    @FXML
-    private MFXButton btnConfirm;
-    @FXML
-    private VBox cardMouse;
     @FXML
     private MFXButton btnMouse;
     @FXML
-    private VBox cardKeyboard;
-    @FXML
     private MFXButton btnKeyboard;
-    @FXML
-    private VBox cardReview;
-    @FXML
-    private HBox reviewAccessBox;
     @FXML
     private MFXPasswordField txfReviewPassword;
     @FXML
@@ -59,23 +46,17 @@ public class AjustesController extends Controller implements Initializable {
     @FXML
     private Label lblReviewStatus;
     @FXML
-    private VBox reviewToolsBox;
+    private ImageView imvReviewIcon;
     @FXML
-    private MFXButton btnReviewToggle;
-    @FXML
-    private MFXTextField txfReviewLevel;
-    @FXML
-    private MFXButton btnReviewApply;
-    @FXML
-    private MFXButton btnReviewLevel100;
-    @FXML
-    private Label lblReviewUnlockedStatus;
+    private ImageView imvFondo;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
         // TODO
     }    
 
@@ -87,7 +68,6 @@ public class AjustesController extends Controller implements Initializable {
     private void onActionBtnToggleAudio(ActionEvent event) {
     }
 
-    @FXML
     private void onActionBtnInstructions(ActionEvent event) {
         FlowController.getInstance().goViewInStage("InstruccionesView", getStage());
     }
@@ -111,16 +91,5 @@ public class AjustesController extends Controller implements Initializable {
     private void onActionBtnReviewUnlock(ActionEvent event) {
     }
 
-    @FXML
-    private void onActionBtnReviewToggle(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewApply(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnReviewLevel100(ActionEvent event) {
-    }
     
 }
