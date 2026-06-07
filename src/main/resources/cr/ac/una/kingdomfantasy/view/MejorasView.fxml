@@ -2,13 +2,14 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,35 +17,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="660.0" prefWidth="1100.0" styleClass="jfx-root-improvements" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.MejorasController">
 
-    <top>
-        <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="jfx-bar-top">
-            <padding>
-                <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
-            </padding>
-            <VBox spacing="2.0">
-                <Label styleClass="jfx-label-screen-title" text="Mejoras y Equipamiento" />
-                <Label fx:id="lbCurrentLevel" styleClass="jfx-label-hud-value" text="Nivel actual: 1" />
-            </VBox>
-            <Region HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER_RIGHT" spacing="2.0">
-                <Label styleClass="jfx-label-hud-caption" text="Monedas" />
-                <Label fx:id="lbGold" styleClass="jfx-label-gold-total" text="0" />
-            </VBox>
-            <VBox alignment="CENTER_RIGHT" spacing="2.0">
-                <Label styleClass="jfx-label-hud-caption" text="Puntos historicos" />
-                <Label fx:id="lbTotalPoints" styleClass="jfx-label-points-total" text="0" />
-            </VBox>
-            <MFXButton fx:id="btnBackMenu" mnemonicParsing="false" onAction="#onActionBtnBackMenu" styleClass="jfx-btn-ghost" text="Volver al Menú" />
-        </HBox>
-    </top>
-
-    <center>
-        <TabPane fx:id="tabPane" styleClass="jfx-tabs-upgrade" tabClosingPolicy="UNAVAILABLE">
+<AnchorPane fx:id="root" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.MejorasController">
+   <children>
+      <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resource/fondo_menus.png" />
+         </image>
+      </ImageView>
+        <TabPane fx:id="tabPane" styleClass="jfx-tabs-upgrade" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="75.0">
             <tabs>
                 <Tab text="Ballesta">
-                    <VBox spacing="18.0">
+                    <VBox alignment="CENTER" spacing="18.0" styleClass="jfx-card-upgrades-tab">
                         <padding>
                             <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
                         </padding>
@@ -83,7 +67,7 @@
                                     </HBox>
                                 </VBox>
 
-                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                      <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
                                  <children>
@@ -109,40 +93,13 @@
                                         <MFXButton fx:id="btnUpgradeCrossbowSpeed" mnemonicParsing="false" onAction="#onActionBtnUpgradeCrossbowSpeed" styleClass="jfx-btn-upgrade" text="Mejorar" />
                                     </HBox>
                                 </VBox>
-
-                                <VBox spacing="13.0" styleClass="jfx-card-upgrade jfx-card-upgrade-wide" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                                    <Label styleClass="jfx-label-upgrade-title" text="Skin de Ballesta" />
-                                    <Label styleClass="jfx-label-upgrade-copy" text="Selecciona la apariencia de la ballesta que se verá durante la partida" />
-                                    <HBox alignment="CENTER_LEFT" spacing="12.0">
-                                        <MFXButton fx:id="btnCrossBowGreen" mnemonicParsing="false" onAction="#onActionBtnCrossBowGreen" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-green jfx-btn-skin" text="Verde">
-                                            <graphic>
-                                                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../resource/ballesta_verde.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MFXButton>
-                                        <MFXButton fx:id="btnCrossBowPurple" mnemonicParsing="false" onAction="#onActionBtnCrossBowPurple" prefHeight="74.0" prefWidth="186.0" styleClass="jfx-btn-skin-purple jfx-btn-skin" text="Morada">
-                                            <graphic>
-                                                <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../resource/ballesta_morada.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MFXButton>
-                                        <Region HBox.hgrow="ALWAYS" />
-                                        <Label fx:id="lbSelectedSkin" styleClass="jfx-label-upgrade-level" text="Seleccionada: Verde" />
-                                    </HBox>
-                                </VBox>
                             </children>
                         </GridPane>
                     </VBox>
                 </Tab>
 
-                <Tab text="Defensa">
-                    <VBox spacing="18.0">
+                      <Tab text="Defensa">
+                    <VBox alignment="CENTER" spacing="18.0" styleClass="jfx-card-upgrades-tab">
                         <padding>
                             <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
                         </padding>
@@ -182,7 +139,7 @@
                                     </HBox>
                                 </VBox>
 
-                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                      <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
                                  <children>
@@ -213,8 +170,8 @@
                     </VBox>
                 </Tab>
 
-                <Tab text="Hechizos">
-                    <VBox spacing="18.0">
+                      <Tab text="Hechizos">
+                    <VBox alignment="CENTER" spacing="18.0" styleClass="jfx-card-upgrades-tab">
                         <padding>
                             <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
                         </padding>
@@ -255,7 +212,7 @@
                                     </HBox>
                                 </VBox>
 
-                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                      <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
                                  <children>
@@ -282,7 +239,7 @@
                                     </HBox>
                                 </VBox>
 
-                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                      <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
                                  <children>
@@ -309,7 +266,7 @@
                                     </HBox>
                                 </VBox>
 
-                                <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <VBox spacing="13.0" styleClass="jfx-card-upgrade" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <HBox alignment="CENTER_LEFT" spacing="12.0">
                                         <VBox alignment="CENTER" styleClass="jfx-icon-upgrade">
                                  <children>
@@ -341,17 +298,23 @@
                 </Tab>
             </tabs>
         </TabPane>
-    </center>
-
-    <bottom>
-        <HBox alignment="CENTER_RIGHT" spacing="12.0" styleClass="jfx-bar-bottom">
-            <padding>
-                <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
-            </padding>
-            <MFXButton fx:id="btnReviewMaxAll" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewMaxAll" styleClass="jfx-btn-review primary" text="Maxear mejoras" visible="false" />
-            <Region HBox.hgrow="ALWAYS" />
-            <MFXButton fx:id="btnStartGame" mnemonicParsing="false" onAction="#onActionBtnStartGame" styleClass="jfx-btn-green" text="Entrar al Juego" />
-        </HBox>
-    </bottom>
-
-</BorderPane>
+      <MFXButton fx:id="btnBackMenu" onAction="#onActionBtnBackMenu" styleClass="jfx-btn-primary" text="Menu" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button fx:id="btnStartGame" mnemonicParsing="false" onAction="#onActionBtnStartGame" styleClass="jfx-btn-green" text="Entrar al Juego" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <HBox alignment="CENTER" prefHeight="51.0" prefWidth="291.0" spacing="22.0" styleClass="jfx-bar-ability" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label styleClass="jfx-label-hud-caption" text="Monedas" />
+                  <Label fx:id="lbGold" styleClass="jfx-label-gold-total" text="0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="51.0" prefWidth="163.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="169.0" styleClass="jfx-label-hud-caption" text="Puntos historicos" />
+                  <Label fx:id="lbTotalPoints" styleClass="jfx-label-points-total" text="0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
