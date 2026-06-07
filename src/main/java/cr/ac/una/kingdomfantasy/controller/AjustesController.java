@@ -1,7 +1,6 @@
 package cr.ac.una.kingdomfantasy.controller;
 
 import cr.ac.una.kingdomfantasy.model.ControlScheme;
-import cr.ac.una.kingdomfantasy.model.CrossbowDesign;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import cr.ac.una.kingdomfantasy.util.MusicManager;
@@ -22,13 +21,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+
 
 public class AjustesController extends Controller implements Initializable {
 
     private static final String CONTROL_SCHEME_KEY = "controlScheme";
-    private static final String CROSSBOW_DESIGN_KEY = "crossbowDesign";
     private static final String REVIEW_MODE_KEY = "reviewModeEnabled";
     private static final String REVIEW_LEVEL_KEY = "reviewLevel";
     private static final String REVIEW_ACCESS_UNLOCKED_KEY = "reviewAccessUnlocked";
@@ -44,11 +45,7 @@ public class AjustesController extends Controller implements Initializable {
     @FXML
     private VBox reviewToolsBox;
     @FXML
-    private Label lblMessage;
-    @FXML
     private Label lblReviewStatus;
-    @FXML
-    private Label lblReviewUnlockedStatus;
     @FXML
     private AnchorPane root;
     @FXML
@@ -74,7 +71,7 @@ public class AjustesController extends Controller implements Initializable {
     @FXML
     private MFXPasswordField txfReviewPassword;
     @FXML
-    private javafx.scene.layout.HBox reviewAccessBox;
+    private HBox reviewAccessBox;
     private Image volumeOnImage;
     private Image volumeOffImage;
     @FXML
@@ -84,7 +81,7 @@ public class AjustesController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setNombreVista("Kingdom Fantasy - Controles");
+        setNombreVista("AjustesView");
         ensureDefaults();
         loadAudioToggleImages();
         applyWindowMinimumSize();
@@ -106,14 +103,12 @@ public class AjustesController extends Controller implements Initializable {
     @FXML
     private void onActionBtnMouse(ActionEvent event) {
         AppContext.getInstance().set(CONTROL_SCHEME_KEY, ControlScheme.MOUSE);
-        lblMessage.setText("Control con mouse seleccionado.");
         refresh();
     }
 
     @FXML
     private void onActionBtnKeyboard(ActionEvent event) {
         AppContext.getInstance().set(CONTROL_SCHEME_KEY, ControlScheme.KEYBOARD);
-        lblMessage.setText("Control con teclado seleccionado.");
         refresh();
     }
 
@@ -131,7 +126,6 @@ public class AjustesController extends Controller implements Initializable {
         MusicManager musicManager = MusicManager.getInstance();
         boolean muted = !musicManager.isMuted();
         musicManager.setMuted(muted);
-        lblMessage.setText(muted ? "Audio desactivado." : "Audio activado.");
         refreshAudioToggle();
     }
 
@@ -142,7 +136,6 @@ public class AjustesController extends Controller implements Initializable {
             AppContext.getInstance().set(REVIEW_ACCESS_UNLOCKED_KEY, false);
             AppContext.getInstance().set(REVIEW_MODE_KEY, false);
             AppContext.getInstance().delete(REVIEW_UPGRADE_PROFILE_KEY);
-            lblMessage.setText("Acceso avanzado bloqueado.");
             refresh();
             lblReviewStatus.setText("Clave incorrecta.");
             return;
@@ -154,7 +147,6 @@ public class AjustesController extends Controller implements Initializable {
             AppContext.getInstance().set(REVIEW_LEVEL_KEY, getRealCurrentLevel());
         }
         PlayerRegistry.getOrCreateCurrentPlayer();
-        lblMessage.setText("Modo revision desbloqueado.");
         refresh();
     }
 
@@ -172,9 +164,6 @@ public class AjustesController extends Controller implements Initializable {
         if (!enabled) {
             AppContext.getInstance().delete(REVIEW_UPGRADE_PROFILE_KEY);
         }
-        lblMessage.setText(enabled
-                ? "Modo revision activado. Puedes saltar niveles para probar."
-                : "Modo revision desactivado.");
         refresh();
     }
 
@@ -186,13 +175,11 @@ public class AjustesController extends Controller implements Initializable {
         }
         Integer level = parseReviewLevel();
         if (level == null) {
-            lblReviewUnlockedStatus.setText("Escribe un nivel entre 1 y 100.");
             return;
         }
         AppContext.getInstance().set(REVIEW_MODE_KEY, true);
         PlayerRegistry.getOrCreateCurrentPlayer();
         AppContext.getInstance().set(REVIEW_LEVEL_KEY, level);
-        lblMessage.setText("Modo revision listo en el nivel " + level + ".");
         refresh();
     }
 
@@ -205,7 +192,6 @@ public class AjustesController extends Controller implements Initializable {
         AppContext.getInstance().set(REVIEW_MODE_KEY, true);
         PlayerRegistry.getOrCreateCurrentPlayer();
         AppContext.getInstance().set(REVIEW_LEVEL_KEY, 100);
-        lblMessage.setText("Modo revision listo en el nivel 100.");
         refresh();
     }
 
@@ -234,9 +220,6 @@ public class AjustesController extends Controller implements Initializable {
         setVisibleAndManaged(reviewToolsBox, reviewUnlocked);
         if (!reviewUnlocked) {
             lblReviewStatus.setText("Acceso bloqueado.");
-            if (lblReviewUnlockedStatus != null) {
-                lblReviewUnlockedStatus.setText("");
-            }
             return;
         }
         boolean reviewMode = isReviewModeEnabled();
@@ -252,9 +235,6 @@ public class AjustesController extends Controller implements Initializable {
         if (txfReviewLevel.getText() == null || txfReviewLevel.getText().isBlank()) {
             txfReviewLevel.setText(String.valueOf(currentLevel));
         }
-        lblReviewUnlockedStatus.setText(reviewMode
-                ? "Activo: los saltos no guardan monedas, puntos ni progreso real."
-                : "Inactivo: progreso normal.");
         lblReviewStatus.setText("Acceso concedido.");
     }
 
@@ -285,7 +265,6 @@ public class AjustesController extends Controller implements Initializable {
 
     private void ensureDefaults() {
         getScheme();
-        getDesign();
         if (!(AppContext.getInstance().get(REVIEW_MODE_KEY) instanceof Boolean)) {
             AppContext.getInstance().set(REVIEW_MODE_KEY, false);
         }
@@ -307,15 +286,6 @@ public class AjustesController extends Controller implements Initializable {
         return ControlScheme.MOUSE;
     }
 
-    private CrossbowDesign getDesign() {
-        Object value = AppContext.getInstance().get(CROSSBOW_DESIGN_KEY);
-        if (value instanceof CrossbowDesign) {
-            return (CrossbowDesign) value;
-        }
-        AppContext.getInstance().set(CROSSBOW_DESIGN_KEY, CrossbowDesign.GREEN);
-        PlayerRegistry.setCrossbowDesign(CrossbowDesign.GREEN);
-        return CrossbowDesign.GREEN;
-    }
 
     private boolean isReviewModeEnabled() {
         Object value = AppContext.getInstance().get(REVIEW_MODE_KEY);
@@ -362,18 +332,34 @@ public class AjustesController extends Controller implements Initializable {
         }
     }
 
-    private String displayName(CrossbowDesign design) {
-        if (design == CrossbowDesign.PURPLE) {
-            return "Morada";
-        }
-        return "Verde";
-    }
-
     private void setVisibleAndManaged(Node node, boolean visible) {
         if (node != null) {
             node.setVisible(visible);
             node.setManaged(visible);
         }
+    }
+
+    @FXML
+    private void onKeyPressedTxfReviewPassword(KeyEvent event) {
+       if(event.getCode() == KeyCode.ENTER && !txfReviewPassword.getText().isBlank()){
+        String password = txfReviewPassword.getText();
+        if (!REVIEW_PASSWORD.equals(password)) {
+            AppContext.getInstance().set(REVIEW_ACCESS_UNLOCKED_KEY, false);
+            AppContext.getInstance().set(REVIEW_MODE_KEY, false);
+            AppContext.getInstance().delete(REVIEW_UPGRADE_PROFILE_KEY);
+            refresh();
+            lblReviewStatus.setText("Clave incorrecta.");
+            return;
+        }
+        txfReviewPassword.setText("");
+        AppContext.getInstance().set(REVIEW_ACCESS_UNLOCKED_KEY, true);
+        AppContext.getInstance().set(REVIEW_MODE_KEY, true);
+        if (!(AppContext.getInstance().get(REVIEW_LEVEL_KEY) instanceof Number)) {
+            AppContext.getInstance().set(REVIEW_LEVEL_KEY, getRealCurrentLevel());
+        }
+        PlayerRegistry.getOrCreateCurrentPlayer();
+        refresh();
+       } 
     }
 }
 

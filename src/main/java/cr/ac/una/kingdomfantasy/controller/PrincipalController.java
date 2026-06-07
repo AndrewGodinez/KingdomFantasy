@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import cr.ac.una.kingdomfantasy.util.Mensaje;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
@@ -56,6 +57,7 @@ public class PrincipalController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        MusicManager.getInstance().playTrack(MusicManager.MusicTrack.MAIN_MENU);
         imvFondo.fitHeightProperty().bind(root.heightProperty());
         imvFondo.fitWidthProperty().bind(root.widthProperty());
        
@@ -79,7 +81,11 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnIniciarSesion(ActionEvent event) {
+        if(AppContext.getInstance().get("Player")== null){
         FlowController.getInstance().goViewInStage("LoginView", getStage());
+        } else {
+        new Mensaje().showModal(Alert.AlertType.WARNING, "Inicio de sesión anteriormente realizado", getStage(), "Debes de cerrar la sesión actual antes de realizar una nueva ");
+        }
     }
 
     @FXML
@@ -130,10 +136,13 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCerrarSesion(ActionEvent event) {
+      if(new Mensaje ().showConfirmation("Cerrar Sesión", getStage(), "¿Desea Cerrar Sesión?")){
       AppContext.getInstance().set("Player", null);
       AppContext.getInstance().set("Partida", null);
       AppContext.getInstance().set("Mejora", null);
       initialize();
+    }
+      
     }
     
 }

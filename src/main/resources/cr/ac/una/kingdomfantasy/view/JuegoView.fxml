@@ -187,8 +187,6 @@
             <VBox alignment="CENTER" maxWidth="440.0" spacing="14.0" styleClass="jfx-panel-pause">
                <children>
                   <ImageView fx:id="imvOverlayAnimation" fitHeight="200.0" fitWidth="300.0" managed="false" preserveRatio="true" smooth="true" visible="false" />
-                  <Label fx:id="lblOverlayTitle" styleClass="jfx-label-overlay-title" text="Pausa" />
-                  <Label fx:id="lblOverlayMessage" maxWidth="380.0" styleClass="jfx-label-overlay-message" text="" wrapText="true" />
                   <MFXButton fx:id="btnResumeOverlay" maxWidth="220.0" onAction="#onActionResume" styleClass="jfx-btn-primary" text="Continuar" />
                   <MFXButton fx:id="btnBackToImprovements" maxWidth="220.0" onAction="#onActionBackToImprovements" styleClass="jfx-btn-primary" text="Ir a Mejoras" />
                   <MFXButton fx:id="btnBackToMenu" maxWidth="220.0" onAction="#onActionBackToMenu" styleClass="jfx-btn-primary" text="Menú Principal" />

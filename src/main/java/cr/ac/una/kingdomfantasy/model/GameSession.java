@@ -61,7 +61,7 @@ public class GameSession {
         this.levelDefinition = levelDefinition == null ? LevelFactory.createLevel(1) : levelDefinition;
         this.hero = hero == null ? new Hero(CASTLE_WIDTH + 28, WORLD_HEIGHT / 2.0 - 64) : hero;
         UpgradeProfile profile = upgradeProfile == null ? new UpgradeProfile() : upgradeProfile;
-        double castleHp = this.levelDefinition.getCastleHealth()* Math.pow(1.06, profile.getLevel(UpgradeType.CASTLE_HEALTH) - 1);
+        double castleHp = this.levelDefinition.getCastleHealth() + (profile.getLevel(UpgradeType.CASTLE_HEALTH) - 1) * 250.0;
         this.castle = new Castle(0, 0, CASTLE_WIDTH, WORLD_HEIGHT, castleHp);
         this.crossbow = crossbow == null ? new Crossbow() : crossbow;
         this.elixir = this.levelDefinition.getMaxElixir();

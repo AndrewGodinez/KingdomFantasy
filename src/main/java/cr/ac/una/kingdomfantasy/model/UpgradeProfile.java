@@ -63,11 +63,11 @@ public class UpgradeProfile {
     }
 
     public double getCastleHealthBonus() {
-        return 1500.0 * (Math.pow(1.06, getLevel(UpgradeType.CASTLE_HEALTH) - 1) - 1);
+        return 1500.0 + (getLevel(UpgradeType.ELIXIR_CAPACITY) - 1) * 500;
     }
 
     public double getElixirCapacityBonus() {
-        return (getLevel(UpgradeType.ELIXIR_CAPACITY) - 1) * 8;
+        return (getLevel(UpgradeType.ELIXIR_CAPACITY) - 1) * 10;
     }
 
     public Crossbow createCrossbow(CrossbowDesign design) {

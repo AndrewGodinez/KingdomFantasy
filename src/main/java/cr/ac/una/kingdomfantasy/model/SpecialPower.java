@@ -89,7 +89,7 @@ public class SpecialPower {
     }
 
     public double getManaCost(double maxMana) {
-        return Math.max(1, maxMana * 0.25);
+        return 25;
     }
 
     public double getCooldown() {

@@ -25,7 +25,7 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label styleClass="jfx-label-field" text="INGRESA TU NOMBRE DE JUGADOR" />
-                        <MFXTextField fx:id="txfName" floatMode="BORDER" floatingText="Nombre" prefHeight="59.0" prefWidth="309.0" styleClass="jfx-field-kingdom" />
+                        <MFXTextField fx:id="txfName" floatMode="BORDER" floatingText="Nombre" onKeyPressed="#onKeyPressedTxfName" prefHeight="59.0" prefWidth="309.0" styleClass="jfx-field-kingdom" />
                      </children>
                   </VBox>
                   <Label fx:id="lblMessage" styleClass="jfx-label-status" />

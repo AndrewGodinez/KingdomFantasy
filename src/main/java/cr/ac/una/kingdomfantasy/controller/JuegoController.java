@@ -19,8 +19,8 @@ import cr.ac.una.kingdomfantasy.model.UpgradeType;
 import cr.ac.una.kingdomfantasy.model.Vector2D;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
+import cr.ac.una.kingdomfantasy.util.Mensaje;
 import cr.ac.una.kingdomfantasy.util.MusicManager;
-import cr.ac.una.kingdomfantasy.util.PlayerRegistry;
 import cr.ac.una.kingdomfantasy.util.SpriteAnimationId;
 import cr.ac.una.kingdomfantasy.util.SpriteAnimationSpec;
 import cr.ac.una.kingdomfantasy.util.SpriteAnimator;
@@ -58,12 +58,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.transform.Scale;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -85,9 +83,8 @@ public class JuegoController extends Controller implements Initializable {
     private static final double MANA_REGEN_PER_SECOND = 2.0;
     private static final double CROSSBOW_X = 220;
     private static final double CROSSBOW_Y = 275;
-    // Arrow origin = crossbow barrel tip: image at (CROSSBOW_X, CROSSBOW_Y), rendered ~113x110
-    private static final double CROSSBOW_SOURCE_X = 320; // ~88% across image = barrel tip
-    private static final double CROSSBOW_SOURCE_Y = 328; // ~50% image height = barrel center
+    private static final double CROSSBOW_SOURCE_X = 320; 
+    private static final double CROSSBOW_SOURCE_Y = 328; 
     private static final double CROSSBOW_FIT_WIDTH = 130;
     private static final double CROSSBOW_FIT_HEIGHT = 110;
     private static final double CROSSBOW_KEYBOARD_AIM_SPEED = 860;
@@ -160,10 +157,6 @@ public class JuegoController extends Controller implements Initializable {
     private Label lblManaValue;
     @FXML
     private Label lblWaveValue;
-    @FXML
-    private Label lblOverlayTitle;
-    @FXML
-    private Label lblOverlayMessage;
     @FXML
     private Label lblReviewMode;
     @FXML
@@ -311,14 +304,28 @@ public class JuegoController extends Controller implements Initializable {
 
     @FXML
     private void onActionBackToImprovements(ActionEvent event) {
+        if (session != null && session.isPaused()) {
+             if(new Mensaje().showConfirmation("Volver a Mejoras", getStage(), "¿Estás seguro de querer volver a el apartado de mejoras? "
+                + "¡Aviso perderás todo tu progreso del nivel si vuelves a las mejoras!")){
         stopCurrentLevelRuntime();
         FlowController.getInstance().goViewInStage("MejorasView", getStage());
+        }
+      } else {
+        FlowController.getInstance().goViewInStage("MejorasView", getStage());    
+    }
     }
 
     @FXML
     private void onActionBackToMenu(ActionEvent event) {
+         if (session != null && session.isPaused()) {
+             if(new Mensaje().showConfirmation("Volver al menú", getStage(), "¿Estás seguro de querer volver al menú? "
+                + "¡Aviso perderás todo tu progreso del nivel si vuelves al menú!")){
         stopCurrentLevelRuntime();
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
+        }
+      } else {
+        FlowController.getInstance().goViewInStage("PrincipalView", getStage());    
+    }
     }
 
     @FXML
@@ -363,18 +370,12 @@ public class JuegoController extends Controller implements Initializable {
         worldConfigured = true;
         castleZone.setWidth(GameSession.CASTLE_WIDTH);
         castleZone.setHeight(WORLD_HEIGHT);
-
-        // gameWorld fills the entire battlefieldFrame via StackPane fill behavior
         gameWorld.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         gameWorld.setPrefSize(WORLD_WIDTH, WORLD_HEIGHT);
-
-        // Background stretches to fill whatever size gameWorld becomes
         imvBattlefield.setPreserveRatio(false);
         imvBattlefield.setSmooth(true);
         imvBattlefield.fitWidthProperty().bind(gameWorld.widthProperty());
         imvBattlefield.fitHeightProperty().bind(gameWorld.heightProperty());
-
-        // Game entities live in worldPane with fixed world coordinates (0..960 x 0..540)
         worldPane.setPrefSize(WORLD_WIDTH, WORLD_HEIGHT);
         worldPane.setMinSize(WORLD_WIDTH, WORLD_HEIGHT);
         worldPane.setMaxSize(WORLD_WIDTH, WORLD_HEIGHT);
@@ -389,8 +390,6 @@ public class JuegoController extends Controller implements Initializable {
         aimOverlay.setManaged(false);
         aimOverlay.setPreserveRatio(true);
         aimOverlay.setVisible(false);
-
-        // Scale worldPane whenever gameWorld changes size (gameWorld == full frame area)
         gameWorld.widthProperty().addListener((obs, oldValue, newValue) -> resizeWorld());
         gameWorld.heightProperty().addListener((obs, oldValue, newValue) -> resizeWorld());
 
@@ -806,7 +805,6 @@ public class JuegoController extends Controller implements Initializable {
     }
 
     private Vector2D worldPointFromMouseEvent(MouseEvent event) {
-        // worldPane has a Scale transform applied; sceneToLocal inverts it automatically
         Point2D point = worldPane.sceneToLocal(event.getSceneX(), event.getSceneY());
         return new Vector2D(clamp(point.getX(), 0, WORLD_WIDTH), clamp(point.getY(), 0, WORLD_HEIGHT));
     }
@@ -986,7 +984,6 @@ public class JuegoController extends Controller implements Initializable {
             resumeGame();
             event.consume();
         } else if (code == KeyCode.F1) {
-            // Toggle hitbox debug overlay (developer tool)
             debugHitboxes = !debugHitboxes;
             if (!debugHitboxes) clearDebugHitboxes();
             event.consume();
@@ -1023,8 +1020,6 @@ public class JuegoController extends Controller implements Initializable {
             pauseOverlay.setVisible(true);
             pauseOverlay.setManaged(true);
         }
-        setLabelText(lblOverlayTitle, "Pausa");
-        setLabelText(lblOverlayMessage, "Partida detenida");
         if (btnResumeOverlay != null) {
             btnResumeOverlay.setVisible(true);
             btnResumeOverlay.setManaged(true);
@@ -1118,14 +1113,12 @@ public class JuegoController extends Controller implements Initializable {
         }
         if (projectile.getImageAsset() != null) {
             imageView.setImage(loadResourceImage("enemy/" + projectile.getImageAsset()));
-            // Crop to exact content bbox (measured from alpha analysis) so the rendered
-            // image matches the logical width/height and centers correctly on projX/projY
             if ("cat_bullet.png".equals(projectile.getImageAsset())) {
                 imageView.setViewport(new Rectangle2D(492, 328, 437, 110));
                 imageView.setFitWidth(160);
                 imageView.setFitHeight(40);
                 imageView.setPreserveRatio(false);
-                imageView.setScaleX(-1); // original faces left; flip to face right
+                imageView.setScaleX(-1); 
             } else {
                 imageView.setViewport(new Rectangle2D(1029, 2, 331, 54));
                 imageView.setFitWidth(140);
@@ -1158,11 +1151,9 @@ public class JuegoController extends Controller implements Initializable {
 
     private void updateProjectileNode(Projectile projectile, ImageView imageView) {
         if (projectile.getImageAsset() != null) {
-            // Monster projectiles: image cropped to content → center on projectile position
             imageView.setLayoutX(projectile.getX() - imageView.getFitWidth() * 0.5);
             imageView.setLayoutY(projectile.getY() - imageView.getFitHeight() * 0.5);
         } else {
-            // Crossbow arrows: left edge at spawn x, vertically centered at spawn y
             imageView.setLayoutX(projectile.getX());
             imageView.setLayoutY(projectile.getY() - imageView.getFitHeight() * 0.5);
         }
@@ -1170,11 +1161,8 @@ public class JuegoController extends Controller implements Initializable {
         imageView.setRotate(Math.toDegrees(Math.atan2(velocity.getY(), velocity.getX())));
     }
 
-    // ── Debug hitbox overlay ──────────────────────────────────────────────────
-
     private void updateDebugHitboxes() {
         java.util.Set<Object> seen = new java.util.HashSet<>();
-        // Arrow hitboxes (green)
         for (Map.Entry<Projectile, ImageView> e : projectileNodes.entrySet()) {
             Projectile p = e.getKey();
             javafx.geometry.Rectangle2D hb = p.getHitBox().getBounds();
@@ -1184,7 +1172,6 @@ public class JuegoController extends Controller implements Initializable {
             if (!effectsPane.getChildren().contains(r)) effectsPane.getChildren().add(r);
             seen.add(p);
         }
-        // Monster hitboxes (red)
         for (Map.Entry<Monster, MonsterNode> e : monsterNodes.entrySet()) {
             Monster m = e.getKey();
             javafx.geometry.Rectangle2D hb = m.getHitBox().getBounds();
@@ -1194,7 +1181,6 @@ public class JuegoController extends Controller implements Initializable {
             if (!effectsPane.getChildren().contains(r)) effectsPane.getChildren().add(r);
             seen.add(m);
         }
-        // Remove rects for dead/removed entities
         java.util.Iterator<Map.Entry<Object, Rectangle>> it = debugRectMap.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<Object, Rectangle> entry = it.next();
@@ -1473,21 +1459,11 @@ public class JuegoController extends Controller implements Initializable {
             double multiplier = levelScoreMultiplier(session.getCastle().getHealthPercent());
             playOverlayAnimation(OverlayAnimationType.VICTORY);
             advanceLevelAfterWin();
-            setLabelText(lblOverlayTitle, "Nivel completado");
-            if (reviewMode) {
-                setLabelText(lblOverlayMessage, "Modo revision: avanzaste al nivel " + getCurrentLevel()
-                        + " sin guardar monedas, puntos ni progreso real.");
-            } else {
-                setLabelText(lblOverlayMessage, "Ganaste " + earnedCoins + " monedas y " + lastAwardedLevelPoints
-                        + " puntos (" + formatMultiplier(multiplier) + "). Siguiente nivel: " + getCurrentLevel() + ".");
-            }
             MusicManager.getInstance().playEffect(currentLevel >= 100
                     ? MusicManager.SoundEffect.GAME_COMPLETE
                     : MusicManager.SoundEffect.VICTORY);
         } else {
             playOverlayAnimation(OverlayAnimationType.DEFEAT);
-            setLabelText(lblOverlayTitle, "Derrota");
-            setLabelText(lblOverlayMessage, "Perdiste las monedas recolectadas en este intento.");
             MusicManager.getInstance().playEffect(MusicManager.SoundEffect.DEFEAT);
         }
     }
@@ -1523,7 +1499,6 @@ public class JuegoController extends Controller implements Initializable {
         if (w <= 0 || h <= 0) {
             return;
         }
-        // Scale worldPane so world coordinates (0..960 x 0..540) map to the full frame
         double scaleX = w / WORLD_WIDTH;
         double scaleY = h / WORLD_HEIGHT;
         worldPane.getTransforms().setAll(new Scale(scaleX, scaleY, 0, 0));
@@ -1540,10 +1515,6 @@ public class JuegoController extends Controller implements Initializable {
         }
         imvOverlayAnimation.setVisible(true);
         imvOverlayAnimation.setManaged(true);
-        if (lblOverlayTitle != null) {
-            lblOverlayTitle.setVisible(false);
-            lblOverlayTitle.setManaged(false);
-        }
         overlayAnimator.setSequence(sequence);
         resizeOverlayAnimation();
         overlayAnimator.play(sequence.loop, null);

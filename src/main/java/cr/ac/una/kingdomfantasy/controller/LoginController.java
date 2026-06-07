@@ -78,7 +78,8 @@ public class LoginController extends Controller implements Initializable {
     private void onActionBtnCreatePlayer(ActionEvent event) {
         FlowController.getInstance().goViewInStage("RegistroView", getStage());
     }
-
+    
+    @FXML
     private void onKeyPressedTxfName(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER && !txfName.getText().isBlank()){
         String nombre = txfName.getText().trim();   
