@@ -4,7 +4,7 @@ import java.util.List;
 
 public class SpecialPower {
 
-    public static final int MAX_LEVEL = 10;
+    public static final int MAX_LEVEL = 20;
 
     private final SpecialPowerType type;
     private int primaryLevel;
@@ -77,15 +77,15 @@ public class SpecialPower {
         if (type.getBaseDamage() <= 0) {
             return 0;
         }
-        return type.getBaseDamage() * (1.0 + (primaryLevel - 1) * 0.20);
+        return type.getBaseDamage() * (1.0 + (primaryLevel - 1) * 0.10);
     }
 
     public double getRadius() {
-        return type.getBaseRadius() + (radiusLevel - 1) * 8;
+        return type.getBaseRadius() + (radiusLevel - 1) * 4;
     }
 
     public double getFreezeSeconds() {
-        return type.getBaseFreezeSeconds() <= 0 ? 0 : type.getBaseFreezeSeconds() + (primaryLevel - 1) * 0.50;
+        return type.getBaseFreezeSeconds() <= 0 ? 0 : type.getBaseFreezeSeconds() + (primaryLevel - 1) * 0.24;
     }
 
     public double getManaCost(double maxMana) {

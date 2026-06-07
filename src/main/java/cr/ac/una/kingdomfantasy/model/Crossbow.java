@@ -2,11 +2,11 @@ package cr.ac.una.kingdomfantasy.model;
 
 public class Crossbow {
 
-    public static final int MAX_LEVEL = 25;
+    public static final int MAX_LEVEL = 20;
     private static final double MIN_DAMAGE = 18;
     private static final double MAX_DAMAGE = 72;
     private static final double MAX_COOLDOWN = 0.72;
-    private static final double MIN_COOLDOWN = 0.225;
+    private static final double MIN_COOLDOWN = 0.34;
     private static final double MIN_PROJECTILE_SPEED = 350;
     private static final double MAX_PROJECTILE_SPEED = 564;
     private static final double MIN_KNOCKBACK = 26;

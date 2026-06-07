@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class UpgradeProfile {
 
-    public static final int MAX_LEVEL = 10;
+    public static final int MAX_LEVEL = 20;
     public static final int CROSSBOW_MAX_LEVEL = Crossbow.MAX_LEVEL;
 
     private final EnumMap<UpgradeType, Integer> levels = new EnumMap<>(UpgradeType.class);
@@ -33,47 +33,41 @@ public class UpgradeProfile {
         return true;
     }
 
+    private static final double COST_EXPONENT = 1.7;
+
     public int getUpgradeCost(UpgradeType type) {
         int level = getLevel(type);
-        if (type == UpgradeType.CROSSBOW_DAMAGE || type == UpgradeType.CROSSBOW_SPEED) {
-            double base = type == UpgradeType.CROSSBOW_DAMAGE ? 18 : 16;
-            double linear = (level - 1) * (type == UpgradeType.CROSSBOW_DAMAGE ? 10.0 : 9.0);
-            double curve = Math.pow(level - 1, 1.65) * (type == UpgradeType.CROSSBOW_DAMAGE ? 3.2 : 3.0);
-            return (int) Math.round(base + linear + curve);
-        }
-        int baseCost;
+        double base;
+        double k;
         switch (type) {
             case CROSSBOW_DAMAGE:
-                baseCost = 9;
-                break;
+                base = 18; k = 2.62; break;
             case CROSSBOW_SPEED:
-                baseCost = 8;
-                break;
-            case METEOR_DAMAGE:
-            case METEOR_RADIUS:
-            case ICE_DURATION:
-            case ICE_RADIUS:
-                baseCost = 12;
-                break;
+                base = 16; k = 2.35; break;
             case CASTLE_HEALTH:
-                baseCost = 10;
-                break;
+                base = 16; k = 2.25; break;
             case ELIXIR_CAPACITY:
-                baseCost = 8;
-                break;
+                base = 12; k = 1.51; break;
+            case METEOR_DAMAGE:
+                base = 12; k = 1.56; break;
+            case METEOR_RADIUS:
+                base = 11; k = 1.37; break;
+            case ICE_DURATION:
+                base = 12; k = 1.56; break;
+            case ICE_RADIUS:
+                base = 11; k = 1.37; break;
             default:
-                baseCost = 10;
-                break;
+                base = 12; k = 1.50; break;
         }
-        return baseCost + (level - 1) * 5;
+        return (int) Math.round(base + k * Math.pow(level - 1, COST_EXPONENT));
     }
 
     public double getCastleHealthBonus() {
-        return 1500.0 * (Math.pow(1.10, getLevel(UpgradeType.CASTLE_HEALTH) - 1) - 1);
+        return 1500.0 * (Math.pow(1.06, getLevel(UpgradeType.CASTLE_HEALTH) - 1) - 1);
     }
 
     public double getElixirCapacityBonus() {
-        return (getLevel(UpgradeType.ELIXIR_CAPACITY) - 1) * 12;
+        return (getLevel(UpgradeType.ELIXIR_CAPACITY) - 1) * 8;
     }
 
     public Crossbow createCrossbow(CrossbowDesign design) {
