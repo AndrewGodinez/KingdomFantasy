@@ -48,6 +48,8 @@ public class PrincipalController extends Controller implements Initializable {
     PlayerDto playerDto= new PlayerDto();
     @FXML
     private MFXButton btnPerfil;
+    @FXML
+    private MFXButton btnCerrarSesion;
     
     /**
      * Initializes the controller class.
@@ -64,6 +66,16 @@ public class PrincipalController extends Controller implements Initializable {
      playerDto= (PlayerDto) AppContext.getInstance().get("Player");
      if(playerDto!=null){
      lblOnline.setText("Online");
+     }
+     else{
+     lblOnline.setText("OffLine");
+     }
+     
+     if(playerDto!=null){
+     btnCerrarSesion.setVisible(true);
+     }
+     else{
+     btnCerrarSesion.setVisible(false); 
      }
     }
 
@@ -112,6 +124,12 @@ public class PrincipalController extends Controller implements Initializable {
     @FXML
     private void onActionBtnPerfil(ActionEvent event) {
         FlowController.getInstance().goViewInStage("UsuarioView", getStage());
+    }
+
+    @FXML
+    private void onActionBtnCerrarSesion(ActionEvent event) {
+      AppContext.getInstance().set("Player", null);
+      initialize();
     }
     
 }
