@@ -65,18 +65,16 @@ public class PrincipalController extends Controller implements Initializable {
     public void initialize() {
      playerDto= (PlayerDto) AppContext.getInstance().get("Player");
      if(playerDto!=null){
-     lblOnline.setText("Online");
+        lblOnline.setText("Online");
+        btnCerrarSesion.setVisible(true);
+        btnPerfil.setVisible(true);
      }
      else{
-     lblOnline.setText("OffLine");
+        lblOnline.setText("OffLine");
+        btnCerrarSesion.setVisible(false);
+        btnPerfil.setVisible(false);
      }
      
-     if(playerDto!=null){
-     btnCerrarSesion.setVisible(true);
-     }
-     else{
-     btnCerrarSesion.setVisible(false); 
-     }
     }
 
     @FXML
@@ -123,7 +121,11 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnPerfil(ActionEvent event) {
-        FlowController.getInstance().goViewInStage("UsuarioView", getStage());
+        if(playerDto!=null){
+            FlowController.getInstance().goViewInStage("UsuarioView", getStage());
+        } else {
+            new Mensaje().showModal(Alert.AlertType.WARNING, "Jugador Sin Registrar", getStage(), "Por Favor Inicie Sesión Antes de Comenzar");
+        }
     }
 
     @FXML

@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class MejorasController extends Controller implements Initializable {
 
@@ -36,6 +37,7 @@ public class MejorasController extends Controller implements Initializable {
     private AnchorPane root;
     @FXML
     private Label lbGold;
+    @FXML
     private Label lbCurrentLevel;
     @FXML
     private Label lbTotalPoints;
@@ -405,9 +407,6 @@ public class MejorasController extends Controller implements Initializable {
                 pgIceRadius, btnUpgradeIceRadius, btnReviewDecreaseIceRadius,
                 btnReviewIncreaseIceRadius, gold, reviewMode);
         CrossbowDesign design = getDesign();
-        lbSelectedSkin.setText("Seleccionada: " + displayName(design));
-        //setStyleClassEnabled(btnCrossBowGreen, "selected-skin-green", design == CrossbowDesign.GREEN);
-        //setStyleClassEnabled(btnCrossBowPurple, "selected-skin-purple", design == CrossbowDesign.PURPLE);
         btnStartGame.setDisable(false);
     }
 
