@@ -59,6 +59,18 @@ public final class MusicManager {
         registerTrack(MusicTrack.MAIN_MENU,    "/cr/ac/una/kingdomfantasy/resource/audio/Menu.wav");
         registerTrack(MusicTrack.GAME,         "/cr/ac/una/kingdomfantasy/resource/audio/PlayTime.wav");
         registerTrack(MusicTrack.IMPROVEMENTS, "/cr/ac/una/kingdomfantasy/resource/audio/AcercaDe.wav");
+        registerEffect(SoundEffect.CROSSBOW_SHOT, "/cr/ac/una/kingdomfantasy/resource/audio/CrossbowShot.wav");
+        registerEffect(SoundEffect.PROJECTILE_HIT, "/cr/ac/una/kingdomfantasy/resource/audio/ProjectileHit.wav");
+        registerEffect(SoundEffect.MONSTER_DEFEATED, "/cr/ac/una/kingdomfantasy/resource/audio/MonsterDefeated.wav");
+        registerEffect(SoundEffect.NEW_WAVE, "/cr/ac/una/kingdomfantasy/resource/audio/NewWave.wav");
+        registerEffect(SoundEffect.METEOR_CAST, "/cr/ac/una/kingdomfantasy/resource/audio/MeteorCast.wav");
+        registerEffect(SoundEffect.ICE_CAST, "/cr/ac/una/kingdomfantasy/resource/audio/IceCast.wav");
+        registerEffect(SoundEffect.SPELL_IMPACT, "/cr/ac/una/kingdomfantasy/resource/audio/SpellImpact.wav");
+        registerEffect(SoundEffect.HERO_ATTACK, "/cr/ac/una/kingdomfantasy/resource/audio/HeroAttack.wav");
+        registerEffect(SoundEffect.VICTORY, "/cr/ac/una/kingdomfantasy/resource/audio/LevelWin.wav");
+        registerEffect(SoundEffect.DEFEAT, "/cr/ac/una/kingdomfantasy/resource/audio/LevelLose.wav");
+        registerEffect(SoundEffect.GAME_COMPLETE, "/cr/ac/una/kingdomfantasy/resource/audio/GameWin.wav");
+        registerEffect(SoundEffect.BUTTON_CLICK, "/cr/ac/una/kingdomfantasy/resource/audio/ButtonClick.wav");
     }
 
     public void registerTrack(MusicTrack track, String source) {
