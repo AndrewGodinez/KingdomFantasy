@@ -1,5 +1,6 @@
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/LoginController.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/CrossbowDesign.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/UsuarioController.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Vector2D.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/SpriteAnimator.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/ControlScheme.java
@@ -42,8 +43,8 @@
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/AttackStyle.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/util/SpriteCatalog.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/controller/PrincipalController.java
-/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Partida.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Crossbow.java
+/home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Partida.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/PartidaDto.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/model/Direction.java
 /home/andrew/Documentos/GitHub/KingdomFantasy/src/main/java/cr/ac/una/kingdomfantasy/service/PlayerService.java

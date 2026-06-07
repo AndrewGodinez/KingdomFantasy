@@ -46,6 +46,8 @@ public class PrincipalController extends Controller implements Initializable {
     private Label lblOnline;
     
     PlayerDto playerDto= new PlayerDto();
+    @FXML
+    private MFXButton btnPerfil;
     
     /**
      * Initializes the controller class.
@@ -105,6 +107,11 @@ public class PrincipalController extends Controller implements Initializable {
         javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.millis(150));
         delay.setOnFinished(e -> System.exit(0));
         delay.play();
+    }
+
+    @FXML
+    private void onActionBtnPerfil(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("UsuarioView", getStage());
     }
     
 }

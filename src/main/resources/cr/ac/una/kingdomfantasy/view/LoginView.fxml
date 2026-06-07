@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.LoginController">
    <children>
       <ImageView fx:id="imvFondo" fitHeight="543.0" fitWidth="964.0" pickOnBounds="true" smooth="false">
@@ -23,7 +22,6 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="jfx-card-login">
                <children>
-                  <Label styleClass="jfx-icon-avatar" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label styleClass="jfx-label-field" text="INGRESA TU NOMBRE DE JUGADOR" />
