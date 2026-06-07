@@ -234,183 +234,6 @@
     -fx-translate-y: 1;
 }
 
-/* PRIMARY (dorado) */
-.jfx-btn-primary {
-    -fx-background-color: linear-gradient(to bottom, #e8b840, #c48c18);
-    -fx-text-fill: #17120a;
-    -fx-border-color: #f4d46a;
-    -fx-border-width: 1px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.15, 0, 2);
-}
-.jfx-btn-primary:hover {
-    -fx-background-color: linear-gradient(to bottom, #f0cc58, #d4a030);
-    -fx-effect: dropshadow(gaussian, rgba(232,184,64,0.4), 10, 0.25, 0, 0);
-}
-.jfx-btn-primary:focused {
-    -fx-border-color: #ffffff;
-    -fx-effect: dropshadow(gaussian, rgba(255,212,92,0.55), 10, 0.25, 0, 0);
-}
-.jfx-btn-primary:pressed {
-    -fx-background-color: linear-gradient(to bottom, #c48c18, #a06c08);
-    -fx-padding: 10 15 8 17;
-    -fx-translate-y: 1;
-}
-.jfx-btn-primary:disabled {
-    -fx-opacity: 0.45;
-}
-
-/* GREEN ACTION */
-.jfx-btn-green {
-    -fx-background-color: linear-gradient(to bottom, #228a4a, #1a6b3c);
-    -fx-text-fill: #f5e8c8;
-    -fx-border-color: #3a9a5c;
-    -fx-border-width: 1px;
-}
-.jfx-btn-green:hover {
-    -fx-background-color: linear-gradient(to bottom, #2ea058, #228a4a);
-    -fx-effect: dropshadow(gaussian, rgba(58,154,92,0.35), 8, 0.2, 0, 0);
-}
-.jfx-btn-green:focused {
-    -fx-border-color: #5ade88;
-    -fx-effect: dropshadow(gaussian, rgba(58,154,92,0.45), 8, 0.2, 0, 0);
-}
-.jfx-btn-green:pressed {
-    -fx-background-color: linear-gradient(to bottom, #1a6b3c, #145430);
-    -fx-padding: 10 15 8 17;
-    -fx-translate-y: 1;
-}
-
-/* UPGRADE */
-.jfx-btn-upgrade {
-    -fx-background-color: linear-gradient(to bottom, #e8b840, #c48c18);
-    -fx-text-fill: #17120a;
-    -fx-border-color: #f4d46a;
-    -fx-border-width: 1px;
-}
-.jfx-btn-upgrade:hover {
-    -fx-background-color: linear-gradient(to bottom, #f0cc58, #d4a030);
-    -fx-effect: dropshadow(gaussian, rgba(232,184,64,0.35), 8, 0.2, 0, 0);
-}
-.jfx-btn-upgrade:focused {
-    -fx-border-color: #ffffff;
-}
-.jfx-btn-upgrade:pressed {
-    -fx-background-color: linear-gradient(to bottom, #c48c18, #a06c08);
-    -fx-padding: 10 15 8 17;
-    -fx-translate-y: 1;
-}
-.jfx-btn-upgrade:disabled {
-    -fx-opacity: 0.45;
-}
-
-/* SKIN */
-.jfx-btn-skin {
-    -fx-background-color: rgba(238, 231, 211, 0.07);
-    -fx-text-fill: #f3ead7;
-    -fx-border-color: rgba(238, 231, 211, 0.22);
-}
-.jfx-btn-skin:hover {
-    -fx-background-color: rgba(212, 160, 23, 0.15);
-    -fx-border-color: rgba(212, 160, 23, 0.5);
-}
-.jfx-btn-skin.jfx-btn-skin-selected {
-    -fx-background-color: #31533f;
-    -fx-border-color: #d3a234;
-    -fx-border-width: 2px;
-    -fx-effect: dropshadow(gaussian, rgba(211,162,52,0.3), 6, 0.15, 0, 0);
-}
-.jfx-btn-skin:focused {
-    -fx-border-color: #d3a234;
-}
-
-/* Skin con color propio */
-.jfx-btn-skin-green {
-    -fx-background-color: #1a6b3c;
-    -fx-border-color: #3a9a5c;
-    -fx-border-width: 1.5px;
-    -fx-text-fill: #f5e8c8;
-    -fx-font-weight: 900;
-    -fx-background-radius: 7px;
-    -fx-border-radius: 7px;
-    -fx-background-insets: 0;
-    -fx-min-height: 74px;
-    -fx-pref-height: 74px;
-    -fx-alignment: CENTER;
-    -mfx-button-background-radius: 7;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-.jfx-btn-skin-purple {
-    -fx-background-color: #5a2888;
-    -fx-border-color: #8a58b8;
-    -fx-border-width: 1.5px;
-    -fx-text-fill: #f5e8c8;
-    -fx-font-weight: 900;
-    -fx-background-radius: 7px;
-    -fx-border-radius: 7px;
-    -fx-background-insets: 0;
-    -fx-min-height: 74px;
-    -fx-pref-height: 74px;
-    -fx-alignment: CENTER;
-    -mfx-button-background-radius: 7;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-.jfx-btn-skin-green:hover   {
-    -fx-background-color: #2a8a50;
-    -fx-effect: dropshadow(gaussian, rgba(42,138,80,0.4), 8, 0.2, 0, 0);
-}
-.jfx-btn-skin-purple:hover  {
-    -fx-background-color: #6a38a0;
-    -fx-effect: dropshadow(gaussian, rgba(106,56,160,0.4), 8, 0.2, 0, 0);
-}
-.jfx-btn-skin-green:pressed {
-    -fx-background-color: #145430;
-    -fx-padding: 10 15 8 17;
-    -fx-translate-y: 1;
-}
-.jfx-btn-skin-purple:pressed {
-    -fx-background-color: #481e70;
-    -fx-padding: 10 15 8 17;
-    -fx-translate-y: 1;
-}
-.jfx-btn-skin-green.jfx-btn-skin-selected,
-.jfx-btn-skin-purple.jfx-btn-skin-selected {
-    -fx-border-color: #f4d46a;
-    -fx-border-width: 2.5px;
-    -fx-effect: dropshadow(gaussian, rgba(244,212,106,0.55), 10, 0.25, 0, 0);
-}
-.jfx-btn-skin-green:focused,
-.jfx-btn-skin-purple:focused {
-    -fx-border-color: #f4d46a;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-
-/* GHOST */
-.jfx-btn-pause,
-.jfx-btn-ghost {
-    -fx-background-color: rgba(238, 231, 211, 0.07);
-    -fx-text-fill: #f3ead7;
-    -fx-border-color: rgba(238, 231, 211, 0.28);
-}
-.jfx-btn-pause:hover,
-.jfx-btn-ghost:hover {
-    -fx-background-color: rgba(238, 231, 211, 0.15);
-    -fx-border-color: rgba(238, 231, 211, 0.5);
-}
-.jfx-btn-pause:focused,
-.jfx-btn-ghost:focused {
-    -fx-border-color: rgba(255, 255, 255, 0.5);
-    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.15), 6, 0.1, 0, 0);
-}
-.jfx-btn-pause:pressed,
-.jfx-btn-ghost:pressed {
-    -fx-background-color: rgba(238, 231, 211, 0.05);
-    -fx-padding: 10 15 8 17;
-    -fx-translate-y: 1;
-}
-
 .jfx-ghost-background {
     -fx-background-color: rgba(238, 231, 211, 0.15);
     -fx-text-fill: rgba(255,255,255,1);
@@ -435,28 +258,6 @@
     -fx-background-radius: 50%;
 }
 
-
-/* MENU CORNER */
-.jfx-btn-menu-corner {
-    -fx-background-color: rgba(18, 13, 5, 0.82);
-    -fx-text-fill: #f3ead7;
-    -fx-border-color: rgba(212, 162, 28, 0.38);
-    -fx-font-weight: 800;
-    -fx-padding: 12 24;
-}
-.jfx-btn-menu-corner:hover {
-    -fx-background-color: rgba(74, 54, 18, 0.9);
-    -fx-border-color: rgba(212, 160, 23, 0.65);
-    -fx-effect: dropshadow(gaussian, rgba(212,160,23,0.2), 8, 0.15, 0, 0);
-}
-.jfx-btn-menu-corner:focused {
-    -fx-border-color: #d3a234;
-}
-.jfx-btn-menu-corner:pressed {
-    -fx-background-color: rgba(50, 36, 12, 0.95);
-    -fx-padding: 11 19 9 21;
-    -fx-translate-y: 1;
-}
 
 /* ── TARJETAS Y PANELES ───────────────────────────────────────── */
 
@@ -891,6 +692,32 @@
     -fx-font-weight: 700;
 }
 
+/* Scrollbar de la tabla ranking: integrada al tema oscuro-dorado */
+.jfx-table-ranking .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+.jfx-table-ranking .scroll-bar:vertical .track {
+    -fx-background-color: rgba(212, 160, 23, 0.08);
+    -fx-background-radius: 999px;
+    -fx-background-insets: 0;
+}
+.jfx-table-ranking .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(212, 160, 23, 0.32);
+    -fx-background-radius: 999px;
+    -fx-background-insets: 0;
+}
+.jfx-table-ranking .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(212, 160, 23, 0.55);
+}
+.jfx-table-ranking .scroll-bar .increment-button,
+.jfx-table-ranking .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+}
+
 .jfx-table-header {
     -fx-padding: 12 22;
 }
@@ -898,33 +725,6 @@
 .jfx-label-table-col {
     -fx-text-fill: #9aa890;
     -fx-font-weight: 700;
-}
-
-.jfx-table-row {
-    -fx-padding: 12 22;
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-border-color: transparent transparent rgba(212, 160, 23, 0.10) transparent;
-    -fx-border-width: 0 0 1 0;
-}
-.jfx-table-row:hover {
-    -fx-background-color: rgba(212, 160, 23, 0.06);
-}
-
-.jfx-table-row-gold {
-    -fx-border-color: transparent transparent rgba(212, 160, 23, 0.10) #d3a234;
-    -fx-border-width: 0 0 1 3;
-    -fx-background-color: rgba(211, 162, 52, 0.05);
-}
-.jfx-table-row-silver {
-    -fx-border-color: transparent transparent rgba(212, 160, 23, 0.10) #9aa4b0;
-    -fx-border-width: 0 0 1 3;
-    -fx-background-color: rgba(154, 164, 176, 0.04);
-}
-.jfx-table-row-bronze {
-    -fx-border-color: transparent transparent rgba(212, 160, 23, 0.10) #c07828;
-    -fx-border-width: 0 0 1 3;
-    -fx-background-color: rgba(192, 120, 40, 0.04);
 }
 
 .jfx-label-rank-number {
@@ -1118,7 +918,7 @@
     -fx-background-color: transparent;
 }
 
-/* Floating label en reposo: negro/oscuro legible */
+/* Floating label en reposo: visible sobre fondo oscuro */
 .mfx-text-field .floating-text,
 .mfx-text-field .mfx-floating-text,
 .mfx-text-field .float-label,
@@ -1126,8 +926,8 @@
 .mfx-password-field .mfx-floating-text,
 .mfx-password-field .float-label {
     -fx-background-color: transparent;
-    -fx-text-fill: #17120a;
-    -fx-fill: #17120a;
+    -fx-text-fill: rgba(200, 180, 140, 0.72);
+    -fx-fill: rgba(200, 180, 140, 0.72);
     -fx-font-size: 14px;
     -fx-font-weight: 700;
 }
@@ -1189,8 +989,8 @@
 .jfx-field-kingdom .mfx-floating-text,
 .jfx-field-kingdom .float-label {
     -fx-background-color: transparent;
-    -fx-text-fill: #17120a;
-    -fx-fill: #17120a;
+    -fx-text-fill: rgba(200, 180, 140, 0.72);
+    -fx-fill: rgba(200, 180, 140, 0.72);
     -fx-font-weight: 800;
     -fx-font-size: 14px;
 }
@@ -1587,22 +1387,9 @@
     -fx-background-radius: 6px;
     -fx-text-fill: #f5e8c8;
     -fx-padding: 10 16;
-}/* ═══════════════════════════════════════════════════════════════════════════
-   KINGDOM FANTASY — PARCHE BOTONES MFX + TAMAÑO VENTANA
-   Añadir al FINAL de Styles.css (o reemplazar el bloque de botones base)
-   ═══════════════════════════════════════════════════════════════════════════
+}
 
-   PROBLEMA RAÍZ:
-   MFXButton.css (del tema MaterialFX DEFAULT/LEGACY) define:
-     .mfx-button, .mfx-button:armed, .mfx-button:focused { -fx-background-color: white; }
-   Esto tiene mayor especificidad que las reglas de nuestro CSS porque se aplica
-   DESPUÉS con MFXThemeManager.addOn().
-   La solución es añadir !important en JavaFX CSS usando lookups de variables,
-   o sobreescribir con combinadores más específicos en cada clase propia.
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── RESET GLOBAL MFX: Eliminar el fondo blanco en TODOS los estados ─────── */
-/* Este bloque tiene la máxima especificidad posible para ganarle a MFXButton.css */
+/* ── RESET GLOBAL MFX: fondo blanco de MFXButton.css anulado con !important ── */
 
 .mfx-button {
     -fx-background-color: transparent;
@@ -1807,14 +1594,22 @@
 .jfx-btn-skin-green {
     -fx-background-color: #1a6b3c !important;
     -fx-border-color: #3a9a5c;
-    -fx-text-fill: #f5e8c8;
+    -fx-border-width: 1.5px;
+    -fx-text-fill: #f5e8c8 !important;
     -fx-font-weight: 900;
+    -fx-min-height: 74px;
+    -fx-pref-height: 74px;
+    -fx-alignment: CENTER;
 }
 .jfx-btn-skin-purple {
     -fx-background-color: #5a2888 !important;
     -fx-border-color: #8a58b8;
-    -fx-text-fill: #f5e8c8;
+    -fx-border-width: 1.5px;
+    -fx-text-fill: #f5e8c8 !important;
     -fx-font-weight: 900;
+    -fx-min-height: 74px;
+    -fx-pref-height: 74px;
+    -fx-alignment: CENTER;
 }
 .jfx-btn-skin-green:hover   { -fx-background-color: #2a8a50 !important; }
 .jfx-btn-skin-purple:hover  { -fx-background-color: #6a38a0 !important; }
@@ -1916,8 +1711,8 @@
     -fx-background-color: rgba(212, 160, 23, 0.22) !important;
 }
 
-/* ── primary-action / ghost-action (usados por InputDeviceController) ─────── */
-.primary-action {
+/* ── jfx-primary-action / jfx-ghost-action (usados por InputDeviceController) ─────── */
+.jfx-primary-action {
     -fx-background-color: linear-gradient(to bottom, #e8b840, #c48c18) !important;
     -fx-text-fill: #17120a;
     -fx-border-color: #f4d46a;
@@ -1929,25 +1724,25 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
-.primary-action:hover {
+.jfx-primary-action:hover {
     -fx-background-color: linear-gradient(to bottom, #f0cc58, #d4a030) !important;
 }
-.primary-action:focused {
+.jfx-primary-action:focused {
     -fx-background-color: linear-gradient(to bottom, #e8b840, #c48c18) !important;
     -fx-border-color: #ffffff;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
-.primary-action:armed,
-.primary-action:pressed {
+.jfx-primary-action:armed,
+.jfx-primary-action:pressed {
     -fx-background-color: linear-gradient(to bottom, #c48c18, #a06c08) !important;
 }
-.primary-action:focused:armed,
-.primary-action:hover:armed {
+.jfx-primary-action:focused:armed,
+.jfx-primary-action:hover:armed {
     -fx-background-color: linear-gradient(to bottom, #c48c18, #a06c08) !important;
 }
 
-.ghost-action {
+.jfx-ghost-action {
     -fx-background-color: rgba(238, 231, 211, 0.07) !important;
     -fx-text-fill: #f3ead7;
     -fx-border-color: rgba(238, 231, 211, 0.28);
@@ -1958,41 +1753,41 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
-.ghost-action:hover {
+.jfx-ghost-action:hover {
     -fx-background-color: rgba(238, 231, 211, 0.15) !important;
 }
-.ghost-action:focused {
+.jfx-ghost-action:focused {
     -fx-background-color: rgba(238, 231, 211, 0.07) !important;
     -fx-border-color: rgba(255, 255, 255, 0.5);
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
-.ghost-action:armed,
-.ghost-action:pressed {
+.jfx-ghost-action:armed,
+.jfx-ghost-action:pressed {
     -fx-background-color: rgba(238, 231, 211, 0.05) !important;
 }
-.ghost-action:focused:armed,
-.ghost-action:hover:armed {
+.jfx-ghost-action:focused:armed,
+.jfx-ghost-action:hover:armed {
     -fx-background-color: rgba(238, 231, 211, 0.05) !important;
 }
 
 /* ── selected-skin (usado por controllers dinámicamente) ─────────────────── */
-.selected-skin-green {
+.jfx-selected-skin-green {
     -fx-border-color: #3ecf5a !important;
     -fx-border-width: 3px !important;
     -fx-border-radius: 8px !important;
     -fx-effect: dropshadow(gaussian, rgba(62,207,90,0.60), 12, 0.30, 0, 0) !important;
 }
 
-.selected-skin-purple {
+.jfx-selected-skin-purple {
     -fx-border-color: #a855f7 !important;
     -fx-border-width: 3px !important;
     -fx-border-radius: 8px !important;
     -fx-effect: dropshadow(gaussian, rgba(168,85,247,0.60), 12, 0.30, 0, 0) !important;
 }
 
-/* ── selected-control (usado por InputDeviceController) ──────────────────── */
-.selected-control {
+/* ── jfx-selected-control (usado por InputDeviceController) ──────────────────── */
+.jfx-selected-control {
     -fx-border-color: #d3a234 !important;
     -fx-border-width: 2px !important;
     -fx-background-color: #251c08 !important;

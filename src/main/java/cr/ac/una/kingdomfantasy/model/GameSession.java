@@ -13,7 +13,7 @@ public class GameSession {
     public static final double WORLD_WIDTH = 1584;
     public static final double WORLD_HEIGHT = 672;
     public static final double CASTLE_WIDTH = 260;
-    public static final double LEVEL_DURATION_SECONDS = 90;
+    public static final double LEVEL_DURATION_SECONDS = 150;
     public static final double HERO_RESPAWN_SECONDS = 15;
     private static final double SPAWN_START_SECONDS = 1.15;
     private static final double SPAWN_MIN_WINDOW_SECONDS = 32;

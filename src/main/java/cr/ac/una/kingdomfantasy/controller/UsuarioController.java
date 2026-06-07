@@ -158,8 +158,8 @@ public class UsuarioController extends Controller implements Initializable {
     }
 
     private void actualizarSeleccionBallesta() {
-        setStyleClassEnabled(btnCrossBowGreen, "selected-skin-green", selectedDesign == CrossbowDesign.GREEN);
-        setStyleClassEnabled(btnCrossBowPurple, "selected-skin-purple", selectedDesign == CrossbowDesign.PURPLE);
+        setStyleClassEnabled(btnCrossBowGreen, "jfx-selected-skin-green", selectedDesign == CrossbowDesign.GREEN);
+        setStyleClassEnabled(btnCrossBowPurple, "jfx-selected-skin-purple", selectedDesign == CrossbowDesign.PURPLE);
     }
 
     private void limpiarVista() {

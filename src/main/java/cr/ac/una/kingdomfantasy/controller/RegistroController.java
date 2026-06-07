@@ -143,13 +143,13 @@ public class RegistroController extends Controller implements Initializable {
     @FXML
     private void onActionBtnCrossBowGreen(ActionEvent event) {
         idBallestaSeleccionada = 1;
-        setSkinSelected(btnCrossBowGreen, "selected-skin-green", btnCrossBowPurple, "selected-skin-purple");
+        setSkinSelected(btnCrossBowGreen, "jfx-selected-skin-green", btnCrossBowPurple, "jfx-selected-skin-purple");
     }
 
     @FXML
     private void onActionBtnCrossBowPurple(ActionEvent event) {
         idBallestaSeleccionada = 2;
-        setSkinSelected(btnCrossBowPurple, "selected-skin-purple", btnCrossBowGreen, "selected-skin-green");
+        setSkinSelected(btnCrossBowPurple, "jfx-selected-skin-purple", btnCrossBowGreen, "jfx-selected-skin-green");
     }
 
     private void setSkinSelected(MFXButton selected, String selectedClass,

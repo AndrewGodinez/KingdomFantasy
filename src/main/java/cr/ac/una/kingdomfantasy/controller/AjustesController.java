@@ -197,23 +197,23 @@ public class AjustesController extends Controller implements Initializable {
 
     private void refresh() {
         ControlScheme scheme = getScheme();
-        cardMouse.getStyleClass().remove("selected-control");
-        cardKeyboard.getStyleClass().remove("selected-control");
-        btnMouse.getStyleClass().remove("primary-action");
-        btnMouse.getStyleClass().remove("ghost-action");
-        btnKeyboard.getStyleClass().remove("primary-action");
-        btnKeyboard.getStyleClass().remove("ghost-action");
-        cardReview.getStyleClass().remove("selected-control");
-        btnReviewToggle.getStyleClass().remove("primary-action");
-        btnReviewToggle.getStyleClass().remove("ghost-action");
+        cardMouse.getStyleClass().remove("jfx-selected-control");
+        cardKeyboard.getStyleClass().remove("jfx-selected-control");
+        btnMouse.getStyleClass().remove("jfx-primary-action");
+        btnMouse.getStyleClass().remove("jfx-ghost-action");
+        btnKeyboard.getStyleClass().remove("jfx-primary-action");
+        btnKeyboard.getStyleClass().remove("jfx-ghost-action");
+        cardReview.getStyleClass().remove("jfx-selected-control");
+        btnReviewToggle.getStyleClass().remove("jfx-primary-action");
+        btnReviewToggle.getStyleClass().remove("jfx-ghost-action");
         if (scheme == ControlScheme.KEYBOARD) {
-            cardKeyboard.getStyleClass().add("selected-control");
-            btnKeyboard.getStyleClass().add("primary-action");
-            btnMouse.getStyleClass().add("ghost-action");
+            cardKeyboard.getStyleClass().add("jfx-selected-control");
+            btnKeyboard.getStyleClass().add("jfx-primary-action");
+            btnMouse.getStyleClass().add("jfx-ghost-action");
         } else {
-            cardMouse.getStyleClass().add("selected-control");
-            btnMouse.getStyleClass().add("primary-action");
-            btnKeyboard.getStyleClass().add("ghost-action");
+            cardMouse.getStyleClass().add("jfx-selected-control");
+            btnMouse.getStyleClass().add("jfx-primary-action");
+            btnKeyboard.getStyleClass().add("jfx-ghost-action");
         }
         boolean reviewUnlocked = isReviewAccessUnlocked();
         setVisibleAndManaged(reviewAccessBox, !reviewUnlocked);
@@ -224,11 +224,11 @@ public class AjustesController extends Controller implements Initializable {
         }
         boolean reviewMode = isReviewModeEnabled();
         if (reviewMode) {
-            cardReview.getStyleClass().add("selected-control");
-            btnReviewToggle.getStyleClass().add("primary-action");
+            cardReview.getStyleClass().add("jfx-selected-control");
+            btnReviewToggle.getStyleClass().add("jfx-primary-action");
             btnReviewToggle.setText("Desactivar");
         } else {
-            btnReviewToggle.getStyleClass().add("ghost-action");
+            btnReviewToggle.getStyleClass().add("jfx-ghost-action");
             btnReviewToggle.setText("Activar");
         }
         int currentLevel = getCurrentLevel();

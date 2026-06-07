@@ -81,22 +81,20 @@
                         </children>
                         <padding><Insets bottom="4.0" left="8.0" right="8.0" top="4.0" /></padding>
                      </VBox>
-                     <VBox styleClass="jfx-bar-ability">
+                     <VBox alignment="TOP_CENTER" styleClass="jfx-score-hud-card">
                         <children>
                            <HBox alignment="CENTER" prefWidth="180.0">
                               <children>
-                                 <Label styleClass="jfx-hud-strong-font" text="Pts " />
-                                 <Label fx:id="lblLevelPoints" styleClass="jfx-hud-strong-font" text="0 pts" />
+                                 <Label fx:id="lblLevelPoints" styleClass="jfx-label-score-caption" text="0 pts" />
                               </children>
                            </HBox>
                            <HBox alignment="CENTER" prefWidth="180.0">
                               <children>
-                                 <Label styleClass="jfx-hud-strong-font" text="x" />
-                                 <Label fx:id="lblScoreMultiplier" styleClass="jfx-hud-strong-font" text="1.00" />
+                                 <Label styleClass="jfx-label-score-caption" text="Multiplicador " />
+                                 <Label fx:id="lblScoreMultiplier" styleClass="jfx-label-score-caption" text="1.00" />
                               </children>
                            </HBox>
                         </children>
-                        <padding><Insets bottom="4.0" left="8.0" right="8.0" top="4.0" /></padding>
                      </VBox>
                   </children>
                   <padding><Insets bottom="2.0" left="2.0" right="2.0" top="2.0" /></padding>
