@@ -27,10 +27,12 @@ public final class MusicManager {
         ICE_CAST,
         SPELL_IMPACT,
         HERO_ATTACK,
+        ENEMY_ATTACK,
         VICTORY,
         DEFEAT,
         GAME_COMPLETE,
         BUTTON_CLICK
+        
     }
 
     private static final Logger LOGGER = Logger.getLogger(MusicManager.class.getName());
@@ -67,6 +69,7 @@ public final class MusicManager {
         registerEffect(SoundEffect.ICE_CAST, "/cr/ac/una/kingdomfantasy/resource/audio/IceCast.wav");
         registerEffect(SoundEffect.SPELL_IMPACT, "/cr/ac/una/kingdomfantasy/resource/audio/SpellImpact.wav");
         registerEffect(SoundEffect.HERO_ATTACK, "/cr/ac/una/kingdomfantasy/resource/audio/HeroAttack.wav");
+        registerEffect(SoundEffect.ENEMY_ATTACK, "/cr/ac/una/kingdomfantasy/resource/audio/EnemyAttack.wav");
         registerEffect(SoundEffect.VICTORY, "/cr/ac/una/kingdomfantasy/resource/audio/LevelWin.wav");
         registerEffect(SoundEffect.DEFEAT, "/cr/ac/una/kingdomfantasy/resource/audio/LevelLose.wav");
         registerEffect(SoundEffect.GAME_COMPLETE, "/cr/ac/una/kingdomfantasy/resource/audio/GameWin.wav");
