@@ -153,6 +153,8 @@ public class MejorasController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setNombreVista("Kingdom Fantasy - Mejoras");
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
     }
 
     @Override
