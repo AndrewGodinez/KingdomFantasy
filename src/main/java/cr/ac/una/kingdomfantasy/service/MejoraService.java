@@ -57,9 +57,9 @@ public class MejoraService {
   mejora= new Mejora (mejoraDto);
   em.persist(mejora);
   }
+  et.commit();
   Respuesta respuesta = new Respuesta(true, "", "", "Mejora", new MejoraDto(mejora));
-  respuesta.setResultado("MejoraEntity", mejora);
-  et.commit(); 
+  respuesta.setResultado("MejoraEntity", mejora); 
   return respuesta;
   } catch (Exception ex) {
             if (et.isActive()) { et.rollback(); }

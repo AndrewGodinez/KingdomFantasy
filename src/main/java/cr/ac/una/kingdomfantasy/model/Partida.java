@@ -66,7 +66,6 @@ public class Partida implements Serializable {
         this.nivelActual = partidaDto.getNivelActual();
         this.puntosActuales = partidaDto.getPuntosActuales();
         this.fechaGuardado = partidaDto.getFechaGuardado();
-        this.version = partidaDto.getVersion();
         this.idmej = partidaDto.getIdmej();
         this.idply = partidaDto.getIdply();
     }

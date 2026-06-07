@@ -77,7 +77,6 @@ public class Mejora implements Serializable {
        this.nivelRangoHielo = mejoraDto.getNivelRangoHielo();
        this.nivelCastillo = mejoraDto.getNivelCastillo();
        this.nivelElixir = mejoraDto.getNivelElixir();
-       this.version = mejoraDto.getVersion();
        this.partidaList = mejoraDto.getPartidaList();
     }
 
