@@ -1,12 +1,13 @@
 module cr.ac.una.kingdomfantasy {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.base;
-    requires java.instrument;
     requires java.sql;
     requires jakarta.persistence;
     requires MaterialFX;
     requires javafx.media;
+
+    uses jakarta.persistence.spi.PersistenceProvider;
+    uses java.sql.Driver;
 
     opens cr.ac.una.kingdomfantasy to javafx.fxml;
     opens cr.ac.una.kingdomfantasy.controller to javafx.fxml;

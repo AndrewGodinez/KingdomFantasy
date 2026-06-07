@@ -70,6 +70,10 @@
                                 <option>-XX:MaxMetaspaceSize=256m</option>
                                 <option>-XX:ReservedCodeCacheSize=128m</option>
                             </options>
+                            <jlinkBindServices>true</jlinkBindServices>
+                            <jlinkCompression>2</jlinkCompression>
+                            <jlinkVerbose>true</jlinkVerbose>
+                            <launcherName>kingdomfantasy</launcherName>
                         </configuration>
                     </execution>
                     <execution>
