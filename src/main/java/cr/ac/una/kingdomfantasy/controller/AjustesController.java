@@ -43,6 +43,7 @@ public class AjustesController extends Controller implements Initializable {
     private VBox cardReview;
     @FXML
     private VBox reviewToolsBox;
+    @FXML
     private Label lblMessage;
     @FXML
     private Label lblReviewStatus;
@@ -89,6 +90,8 @@ public class AjustesController extends Controller implements Initializable {
         applyWindowMinimumSize();
         refresh();
         refreshAudioToggle();
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
     }
 
     @Override

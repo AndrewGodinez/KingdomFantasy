@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.AjustesController">
+<AnchorPane fx:id="root" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.AjustesController">
    <children>
       <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" smooth="false">
          <image>
@@ -47,7 +47,8 @@
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding></VBox>
+                     </padding>
+                  </VBox>
                   <VBox fx:id="cardKeyboard" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="376.0" prefWidth="368.0" spacing="10.0" styleClass="jfx-card-control" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="66.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
@@ -80,7 +81,7 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox fx:id="cardReview" alignment="CENTER" spacing="10.0" styleClass="jfx-card-control" VBox.vgrow="ALWAYS">
+            <VBox fx:id="cardReview" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
                   <HBox spacing="10.0">
                      <children>
@@ -97,7 +98,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox fx:id="reviewAccessBox" layoutX="33.0" layoutY="8.0" prefHeight="43.0" prefWidth="686.0" spacing="10.0">
+                  <HBox fx:id="reviewAccessBox" prefHeight="43.0" prefWidth="686.0" spacing="10.0">
                      <children>
                         <MFXPasswordField fx:id="txfReviewPassword" floatMode="BORDER" floatingText="Clave de acceso" prefHeight="60.0" prefWidth="156.0" styleClass="jfx-field-kingdom" />
                         <MFXButton fx:id="btnReviewUnlock" onAction="#onActionBtnReviewUnlock" prefHeight="61.0" prefWidth="156.0" styleClass="jfx-btn-green" text="Desbloquear" />
@@ -120,10 +121,8 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
+                  <Label fx:id="lblMessage" />
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
             </VBox>
          </children>
          <padding>
