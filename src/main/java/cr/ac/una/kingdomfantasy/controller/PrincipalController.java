@@ -51,13 +51,15 @@ public class PrincipalController extends Controller implements Initializable {
     private MFXButton btnPerfil;
     @FXML
     private MFXButton btnCerrarSesion;
+    @FXML
+    private MFXButton btnComoJugar;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MusicManager.getInstance().playTrack(MusicManager.MusicTrack.MAIN_MENU);
+       
         imvFondo.fitHeightProperty().bind(root.heightProperty());
         imvFondo.fitWidthProperty().bind(root.widthProperty());
        
@@ -65,16 +67,21 @@ public class PrincipalController extends Controller implements Initializable {
     
     @Override
     public void initialize() {
+     MusicManager.getInstance().playTrack(MusicManager.MusicTrack.MAIN_MENU);
      playerDto= (PlayerDto) AppContext.getInstance().get("Player");
      if(playerDto!=null){
         lblOnline.setText("Online");
         btnCerrarSesion.setVisible(true);
         btnPerfil.setVisible(true);
+        btnIniciarSesion.setDisable(true);
+        btnNuevoJugador.setDisable(true);
      }
      else{
         lblOnline.setText("OffLine");
         btnCerrarSesion.setVisible(false);
         btnPerfil.setVisible(false);
+        btnIniciarSesion.setDisable(false);
+        btnNuevoJugador.setDisable(false);
      }
      
     }
@@ -143,6 +150,11 @@ public class PrincipalController extends Controller implements Initializable {
       initialize();
     }
       
+    }
+
+    @FXML
+    private void onActionBtnComoJugar(ActionEvent event) {
+        FlowController.getInstance().goViewInStage("InstruccionesView", getStage());
     }
     
 }

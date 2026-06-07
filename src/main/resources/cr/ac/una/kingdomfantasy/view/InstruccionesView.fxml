@@ -4,38 +4,35 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" minHeight="520.0" minWidth="760.0" prefHeight="640.0" prefWidth="1100.0" styleClass="jfx-root-instructions" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.InstruccionesController">
-    <top>
-        <VBox alignment="CENTER" spacing="4.0" styleClass="jfx-bar-top">
-            <padding>
-                <Insets bottom="18.0" left="24.0" right="24.0" top="18.0" />
-            </padding>
-            <Label styleClass="jfx-title-badge" text="INSTRUCCIONES" />
-            <Label styleClass="jfx-label-kicker" text="Guia rapida para defender el reino, mejorar tu equipo y revisar niveles" />
-        </VBox>
-    </top>
 
-    <center>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="jfx-scroll-transparent">
+<AnchorPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.InstruccionesController">
+   <children>
+      <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../resource/fondo_menus.png" />
+         </image>
+      </ImageView>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="123.0" prefHeight="417.0" prefWidth="960.0" styleClass="jfx-scroll-transparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
             <content>
                 <VBox spacing="18.0">
                     <padding>
                         <Insets bottom="28.0" left="28.0" right="28.0" top="28.0" />
                     </padding>
 
-                    <VBox spacing="10.0" styleClass="jfx-instruction-hero">
+                          <VBox spacing="10.0" styleClass="jfx-instruction-hero">
                         <Label styleClass="jfx-label-instruction-title" text="Objetivo principal" />
                         <Label styleClass="jfx-label-instruction-copy" text="Defiende el castillo hasta terminar la oleada. Si el castillo llega a cero vida o el tiempo termina con monstruos pendientes, pierdes el intento." wrapText="true" />
                     </VBox>
 
-                    <GridPane hgap="16.0" vgap="16.0">
+                          <GridPane hgap="16.0" vgap="16.0">
                         <columnConstraints>
                             <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
                             <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
@@ -47,19 +44,19 @@
                                 <Label styleClass="jfx-label-instruction-copy" text="Puedes tocar el retrato del heroe, seleccionar al heroe y luego marcar un punto del campo para moverlo." wrapText="true" />
                             </VBox>
 
-                            <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                  <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                 <Label styleClass="jfx-label-instruction-title" text="Hechizos" />
                                 <Label styleClass="jfx-label-instruction-copy" text="Meteoro causa dano en area. Si deja a un monstruo sin vida, el monstruo muere y reproduce su animacion de derrota." wrapText="true" />
                                 <Label styleClass="jfx-label-instruction-copy" text="Hielo congela a los enemigos dentro del radio. Ambos hechizos consumen mana y tienen tiempo de recarga." wrapText="true" />
                             </VBox>
 
-                            <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                  <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                 <Label styleClass="jfx-label-instruction-title" text="Puntos, monedas y multiplicador" />
                                 <Label styleClass="jfx-label-instruction-copy" text="Los monstruos derrotados dan monedas durante el nivel. Al ganar, esos puntos se convierten en puntos historicos y reciben un multiplicador segun la vida restante del castillo." wrapText="true" />
                                 <Label styleClass="jfx-label-instruction-copy" text="Mientras mas sano quede el castillo, mayor sera el multiplicador. La vista de juego muestra puntos del nivel y multiplicador por separado." wrapText="true" />
                             </VBox>
 
-                            <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                  <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                 <Label styleClass="jfx-label-instruction-title" text="Arbol de habilidades" />
                                 <Label styleClass="jfx-label-instruction-copy" text="Despues de cada victoria puedes gastar monedas en Mejoras. Sube dano y velocidad de la ballesta, vida del castillo, capacidad de mana, dano/radio del meteoro y duracion/radio del hielo." wrapText="true" />
                                 <Label styleClass="jfx-label-instruction-copy" text="Tambien puedes cambiar la skin de la ballesta. Las mejoras se guardan en el progreso del jugador actual." wrapText="true" />
@@ -71,7 +68,7 @@
                   </rowConstraints>
                     </GridPane>
 
-                    <VBox spacing="10.0" styleClass="jfx-card-settings">
+                          <VBox spacing="10.0" styleClass="jfx-card-settings">
                         <Label styleClass="jfx-label-instruction-title" text="Modo revision" />
                         <Label styleClass="jfx-label-instruction-copy" text="En Controles puedes activar el modo revision y cargar cualquier nivel del 1 al 100. En la partida aparecera una barra para ir al nivel anterior, completar rapido, avanzar al siguiente nivel o saltar al nivel 100." wrapText="true" />
                         <Label styleClass="jfx-label-instruction-copy" text="Este modo sirve para probar mapas, oleadas y dificultad sin guardar monedas, puntos historicos ni progreso real. Desactivalo para volver a jugar con progreso normal." wrapText="true" />
@@ -79,14 +76,13 @@
                 </VBox>
             </content>
         </ScrollPane>
-    </center>
-
-    <bottom>
-        <HBox alignment="CENTER_RIGHT" spacing="12.0" styleClass="jfx-bar-bottom">
+        <VBox alignment="CENTER" spacing="4.0" styleClass="jfx-card-settings" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <padding>
-                <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
+                <Insets bottom="18.0" left="24.0" right="24.0" top="18.0" />
             </padding>
-            <MFXButton fx:id="btnBackControls" mnemonicParsing="false" onAction="#onActionBackControls" styleClass="jfx-btn-green" text="Volver a controles" />
-        </HBox>
-    </bottom>
-</BorderPane>
+            <Label styleClass="jfx-title-badge" text="INSTRUCCIONES" />
+            <Label styleClass="jfx-label-kicker" text="Guia rapida para defender el reino, mejorar tu equipo y revisar niveles" />
+        </VBox>
+         <MFXButton fx:id="btnBackControls" mnemonicParsing="false" onAction="#onActionBackControls" styleClass="jfx-btn-green" text="Menu" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+   </children>
+</AnchorPane>

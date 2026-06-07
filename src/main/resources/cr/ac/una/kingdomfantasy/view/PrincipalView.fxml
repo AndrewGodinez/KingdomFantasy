@@ -44,6 +44,7 @@
                     <MFXButton fx:id="btnComenzar" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnComenzar" prefHeight="52.0" prefWidth="210.0" styleClass="jfx-btn-primary" text="Jugar" />
                        <MFXButton fx:id="btnIniciarSesion" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnIniciarSesion" prefHeight="52.0" prefWidth="170.0" styleClass="jfx-btn-primary" text="Iniciar Sesión" />
                        <MFXButton fx:id="btnControles" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnControles" prefHeight="52.0" prefWidth="140.0" styleClass="jfx-btn-primary" text="Opciones" />
+               <MFXButton fx:id="btnComoJugar" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnComoJugar" prefHeight="51.0" prefWidth="169.0" styleClass="jfx-btn-primary" text="¿Como Jugar?" />
                <MFXButton fx:id="btnCerrarSesion" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnCerrarSesion" prefHeight="52.0" prefWidth="167.0" styleClass="jfx-btn-primary" text="Cerrar Sesión" visible="false" />
                 </VBox>
                 <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
