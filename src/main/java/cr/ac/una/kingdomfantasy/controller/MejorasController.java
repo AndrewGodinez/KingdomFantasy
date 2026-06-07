@@ -73,7 +73,6 @@ public class MejorasController extends Controller implements Initializable {
     private Label lblIceRadiusLevel;
     @FXML
     private Label lbIceRadiusCost;
-    private Label lbSelectedSkin;
     @FXML
     private ProgressBar pgCrossbowDamage;
     @FXML
@@ -138,9 +137,8 @@ public class MejorasController extends Controller implements Initializable {
     private MFXButton btnReviewDecreaseIceRadius;
     @FXML
     private MFXButton btnReviewIncreaseIceRadius;
+    @FXML
     private MFXButton btnReviewMaxAll;
-    //private MFXButton btnCrossBowGreen;
-    //private MFXButton btnCrossBowPurple;
     @FXML
     private Button btnStartGame;
 
@@ -289,6 +287,7 @@ public class MejorasController extends Controller implements Initializable {
         adjustReviewUpgrade(UpgradeType.ICE_RADIUS, 1);
     }
 
+    @FXML
     private void onActionBtnReviewMaxAll(ActionEvent event) {
         if (!isReviewModeEnabled()) {
             return;

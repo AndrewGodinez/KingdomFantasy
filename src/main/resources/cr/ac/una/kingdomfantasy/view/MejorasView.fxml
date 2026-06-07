@@ -320,5 +320,6 @@
             </VBox>
          </children>
       </HBox>
+      <MFXButton fx:id="btnReviewMaxAll" onAction="#onActionBtnReviewMaxAll" styleClass="jfx-btn-ghost" text="MEJORAR AL MAXIMO" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
    </children>
 </AnchorPane>
