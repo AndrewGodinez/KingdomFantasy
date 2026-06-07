@@ -18,7 +18,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class MejorasController extends Controller implements Initializable {
 
@@ -30,10 +33,9 @@ public class MejorasController extends Controller implements Initializable {
     private static final String REVIEW_UPGRADE_PROFILE_KEY = "reviewUpgradeProfile";
 
     @FXML
-    private BorderPane root;
+    private AnchorPane root;
     @FXML
     private Label lbGold;
-    @FXML
     private Label lbCurrentLevel;
     @FXML
     private Label lbTotalPoints;
@@ -69,7 +71,6 @@ public class MejorasController extends Controller implements Initializable {
     private Label lblIceRadiusLevel;
     @FXML
     private Label lbIceRadiusCost;
-    @FXML
     private Label lbSelectedSkin;
     @FXML
     private ProgressBar pgCrossbowDamage;
@@ -135,20 +136,19 @@ public class MejorasController extends Controller implements Initializable {
     private MFXButton btnReviewDecreaseIceRadius;
     @FXML
     private MFXButton btnReviewIncreaseIceRadius;
-    @FXML
     private MFXButton btnReviewMaxAll;
+    //private MFXButton btnCrossBowGreen;
+    //private MFXButton btnCrossBowPurple;
     @FXML
-    private MFXButton btnCrossBowGreen;
-    @FXML
-    private MFXButton btnCrossBowPurple;
-    @FXML
-    private MFXButton btnStartGame;
+    private Button btnStartGame;
 
     private UpgradeProfile profile;
     @FXML
     private MFXButton btnBackMenu;
     @FXML
     private TabPane tabPane;
+    @FXML
+    private ImageView imvFondo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -285,7 +285,6 @@ public class MejorasController extends Controller implements Initializable {
         adjustReviewUpgrade(UpgradeType.ICE_RADIUS, 1);
     }
 
-    @FXML
     private void onActionBtnReviewMaxAll(ActionEvent event) {
         if (!isReviewModeEnabled()) {
             return;
@@ -298,12 +297,10 @@ public class MejorasController extends Controller implements Initializable {
         refresh();
     }
 
-    @FXML
     private void onActionBtnCrossBowGreen(ActionEvent event) {
         setDesign(CrossbowDesign.GREEN);
     }
 
-    @FXML
     private void onActionBtnCrossBowPurple(ActionEvent event) {
         setDesign(CrossbowDesign.PURPLE);
     }
@@ -407,8 +404,8 @@ public class MejorasController extends Controller implements Initializable {
                 btnReviewIncreaseIceRadius, gold, reviewMode);
         CrossbowDesign design = getDesign();
         lbSelectedSkin.setText("Seleccionada: " + displayName(design));
-        setStyleClassEnabled(btnCrossBowGreen, "selected-skin-green", design == CrossbowDesign.GREEN);
-        setStyleClassEnabled(btnCrossBowPurple, "selected-skin-purple", design == CrossbowDesign.PURPLE);
+        //setStyleClassEnabled(btnCrossBowGreen, "selected-skin-green", design == CrossbowDesign.GREEN);
+        //setStyleClassEnabled(btnCrossBowPurple, "selected-skin-purple", design == CrossbowDesign.PURPLE);
         btnStartGame.setDisable(false);
     }
 

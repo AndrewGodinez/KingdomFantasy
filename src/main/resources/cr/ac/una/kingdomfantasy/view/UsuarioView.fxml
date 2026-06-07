@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="cr.ac.una.kingdomfantasy.controller.UsuarioController">
+   <children>
+      <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resource/fondo_menus.png" />
+         </image>
+      </ImageView>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="jfx-card-login" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="75.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label styleClass="jfx-hud-strong-font" text="Apariencia de la ballesta" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnCrossBowGreen" onAction="#onActionBtnCrossBowGreen" styleClass="jfx-btn-skin-green jfx-btn-skin" text=" ">
+                           <graphic>
+                              <ImageView fitHeight="121.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resource/ballesta_verde.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <VBox prefHeight="102.0" prefWidth="218.0" spacing="10.0">
+                           <children>
+                              <Label styleClass="jfx-label-gold-total" text="Ballesta Verde" wrapText="true" />
+                              <Label prefHeight="88.0" prefWidth="214.0" styleClass="jfx-label-instruction-copy" text="Creada por Enanos. Fiable, facil de reparar y con mucho estilo" textAlignment="CENTER" wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="131.0" prefWidth="347.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnCrossBowPurple" onAction="#onActionBtnCrossBowPurple" styleClass="jfx-btn-skin-purple jfx-btn-skin" text=" ">
+                           <graphic>
+                              <ImageView fitHeight="89.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resource/ballesta_morada.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <VBox prefHeight="101.0" prefWidth="207.0" spacing="10.0">
+                           <children>
+                              <Label styleClass="jfx-label-gold-total" text="Ballesta Morada" />
+                              <Label styleClass="jfx-label-instruction-copy" text="Creada por gnomos de las cuevas. lo ultimo en moda balistica" textAlignment="CENTER" wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="lbJugador" styleClass="jfx-label-section-title" text="Jugador" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="jfx-icon-avatar">
+                     <children>
+                        <ImageView fx:id="imvImagenJugador" fitHeight="96.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <MFXButton fx:id="btnCambiarImagen" onAction="#onActionBtnCambiarImagen" styleClass="jfx-btn-ghost" text="Cambiar Imagen" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <MFXButton fx:id="btnBackMenu" onAction="#onActionBtnBackMenu" styleClass="jfx-btn-primary" text="Menu" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="jfx-btn-green" text="Guardar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+   </children>
+</AnchorPane>
