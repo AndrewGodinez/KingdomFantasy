@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.controller;
 
-import cr.ac.una.kingdomfantasy.model.PartidaDto;
+import cr.ac.una.kingdomfantasy.model.CrossbowDesign;
 import cr.ac.una.kingdomfantasy.model.PlayerDto;
-import cr.ac.una.kingdomfantasy.service.PartidaService;
+import cr.ac.una.kingdomfantasy.service.PlayerService;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
+import cr.ac.una.kingdomfantasy.util.Mensaje;
+import cr.ac.una.kingdomfantasy.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,22 +15,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
-/**
- * FXML Controller class
- *
- * @author andrew
- */
 public class UsuarioController extends Controller implements Initializable {
 
     @FXML
@@ -53,101 +47,60 @@ public class UsuarioController extends Controller implements Initializable {
     private MFXButton btnBackMenu;
     @FXML
     private MFXButton btnGuardar;
-    @FXML
-    private MFXButton btnCerrarSesion;
-    private byte[] imagenPerfilBytes = null;
-    private PartidaService partidaService = new PartidaService();
-    private ObservableList<PartidaDto> partidas = FXCollections.observableArrayList();
 
-    /**
-     * Initializes the controller class.
-     */
+    private PlayerService playerService = new PlayerService();
+
+    private CrossbowDesign selectedDesign = CrossbowDesign.GREEN;
+    private byte[] imagenPerfilBytes = null;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imvFondo.fitHeightProperty().bind(root.heightProperty());
         imvFondo.fitWidthProperty().bind(root.widthProperty());
-    }   
-    
+    }
+
     @Override
     public void initialize() {
+        limpiarVista();
         cargarJugadorActual();
     }
 
     @FXML
     private void onActionBtnCrossBowGreen(ActionEvent event) {
+        selectedDesign = CrossbowDesign.GREEN;
+        actualizarSeleccionBallesta();
     }
 
     @FXML
     private void onActionBtnCrossBowPurple(ActionEvent event) {
+        selectedDesign = CrossbowDesign.PURPLE;
+        actualizarSeleccionBallesta();
     }
 
     @FXML
     private void onActionBtnCambiarImagen(ActionEvent event) {
-         FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Seleccionar foto de perfil");
-    fileChooser.getExtensionFilters().addAll(
-        new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
-    );
-    File file = fileChooser.showOpenDialog(getStage());
-    if (file != null) {
-        try {
-            Image image = new Image(file.toURI().toString());
-            imvImagenJugador.setImage(image);
-            FileInputStream fis = new FileInputStream(file);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = fis.read(buf)) != -1) {
-                bos.write(buf, 0, bytesRead);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar foto de perfil");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+        File file = fileChooser.showOpenDialog(getStage());
+        if (file != null) {
+            try {
+                imvImagenJugador.setImage(new Image(file.toURI().toString()));
+                FileInputStream fis = new FileInputStream(file);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = fis.read(buf)) != -1) {
+                    bos.write(buf, 0, bytesRead);
+                }
+                fis.close();
+                imagenPerfilBytes = bos.toByteArray();
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, "Error leyendo imagen", ex);
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", getStage(), "No se pudo cargar la imagen seleccionada.");
             }
-            fis.close();
-            imagenPerfilBytes = bos.toByteArray();
-            
-        } catch (IOException ex) {
-           
-        }
-    }
-    }
-    
-     private void cargarJugadorActual() {
-        PlayerDto playerDto = (PlayerDto) AppContext.getInstance().get("Player");
-        if (playerDto == null) {
-            limpiarJugadorActual();
-            return;
-        }
-
-        PartidaDto partidaActual = buscarPartidaJugador(playerDto.getId());
-        if (partidaActual == null) {
-            limpiarJugadorActual();
-            return;
-        }
-        lbJugador.setText(partidaActual.getIdply().getNombre());
-
-            cargarImagenActual(partidaActual.getIdply().getFotoPerfil());
- 
-    }
-     
-     private void cargarImagenActual(byte[] foto) {
-        if (foto == null || foto.length == 0) {
-            imvImagenJugador.setImage(null);
-            return;
-        }
-        imvImagenJugador.setImage(new Image(new ByteArrayInputStream(foto)));
-    }
-     
-    private PartidaDto buscarPartidaJugador(Long idPlayer) {
-        for (PartidaDto partida : partidas) {
-            if (partida.getIdply().getId().equals(idPlayer)) {
-                return partida;
-            }
-        }
-        return null;
-    }
-     
-    private void limpiarJugadorActual() {
-        lbJugador.setText("Jugador Actual");
-        if (imvImagenJugador != null) {
-            imvImagenJugador.setImage(null);
         }
     }
 
@@ -158,11 +111,72 @@ public class UsuarioController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-    }
+        PlayerDto playerDto = (PlayerDto) AppContext.getInstance().get("Player");
+        if (playerDto == null) {
+            new Mensaje().showModal(Alert.AlertType.WARNING, "Sin sesión", getStage(), "No hay un jugador con sesión activa.");
+            return;
+        }
 
-    @FXML
-    private void onActionBtnCerrarSesion(ActionEvent event) {
+        if (imagenPerfilBytes != null) {
+            playerDto.setFotoPerfil(imagenPerfilBytes);
+        }
+        playerDto.setIdBallesta(selectedDesign == CrossbowDesign.PURPLE ? 2 : 1);
+
+        Respuesta respuesta = playerService.guardarPlayer(playerDto);
+        if (respuesta.getEstado()) {
+            PlayerDto actualizado = (PlayerDto) respuesta.getResultado("Jugador");
+            AppContext.getInstance().set("Player", actualizado);
+            imagenPerfilBytes = null;
+            new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardado", getStage(), "Perfil actualizado correctamente.");
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", getStage(), "No se pudieron guardar los cambios.");
+        }
     }
 
     
+    private void cargarJugadorActual() {
+        PlayerDto playerDto = (PlayerDto) AppContext.getInstance().get("Player");
+        if (playerDto == null) {
+            limpiarVista();
+            return;
+        }
+
+        lbJugador.setText(playerDto.getNombre());
+        cargarImagenActual(playerDto.getFotoPerfil());
+        selectedDesign = playerDto.getIdBallesta() != null && playerDto.getIdBallesta() == 2
+                ? CrossbowDesign.PURPLE
+                : CrossbowDesign.GREEN;
+        actualizarSeleccionBallesta();
+    }
+
+    private void cargarImagenActual(byte[] foto) {
+        if (foto == null || foto.length == 0) {
+            imvImagenJugador.setImage(null);
+            return;
+        }
+        imvImagenJugador.setImage(new Image(new ByteArrayInputStream(foto)));
+    }
+
+    private void actualizarSeleccionBallesta() {
+        setStyleClassEnabled(btnCrossBowGreen, "selected-skin-green", selectedDesign == CrossbowDesign.GREEN);
+        setStyleClassEnabled(btnCrossBowPurple, "selected-skin-purple", selectedDesign == CrossbowDesign.PURPLE);
+    }
+
+    private void limpiarVista() {
+        lbJugador.setText("Jugador");
+        if (imvImagenJugador != null) {
+            imvImagenJugador.setImage(null);
+        }
+        imagenPerfilBytes = null;
+        selectedDesign = CrossbowDesign.GREEN;
+        actualizarSeleccionBallesta();
+    }
+
+    private void setStyleClassEnabled(MFXButton button, String styleClass, boolean enabled) {
+        button.getStyleClass().remove(styleClass);
+        if (enabled) {
+            button.getStyleClass().add(styleClass);
+        }
+    }
+
 }

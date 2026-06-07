@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.UsuarioController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.UsuarioController">
    <children>
       <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" smooth="false">
          <image>
@@ -81,6 +81,5 @@
       </HBox>
       <MFXButton fx:id="btnBackMenu" onAction="#onActionBtnBackMenu" styleClass="jfx-btn-primary" text="Menu" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="jfx-btn-green" text="Guardar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <MFXButton fx:id="btnCerrarSesion" layoutX="708.0" layoutY="479.0" onAction="#onActionBtnCerrarSesion" styleClass="jfx-btn-ghost" text="Cerrar Sesion" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
    </children>
 </AnchorPane>

@@ -131,6 +131,8 @@ public class PrincipalController extends Controller implements Initializable {
     @FXML
     private void onActionBtnCerrarSesion(ActionEvent event) {
       AppContext.getInstance().set("Player", null);
+      AppContext.getInstance().set("Partida", null);
+      AppContext.getInstance().set("Mejora", null);
       initialize();
     }
     

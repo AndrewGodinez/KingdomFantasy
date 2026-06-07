@@ -24,7 +24,7 @@ public class App extends Application {
         stage.setOnCloseRequest(event -> {
             MusicManager.getInstance().shutdown();
         });
-
+        
         FlowController.getInstance().InitializeFlow(stage, null);
         FlowController.getInstance().setFullScreen(true);
         FlowController.getInstance().goViewInWindow("PrincipalView");

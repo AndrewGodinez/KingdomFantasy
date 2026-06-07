@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -213,7 +215,6 @@ public class FlowController {
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
-            // Este es el stage principal visible. Si se cierra (con la X), apagamos todo.
             cr.ac.una.kingdomfantasy.util.MusicManager.getInstance().shutdown();
             System.exit(0);
         });
@@ -227,8 +228,8 @@ public class FlowController {
         Scene scene = new Scene(rootContainer);
         MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
         stage.setScene(scene);
-        // Usar prefSize del FXML como tamaño inicial de la ventana
-        if (root instanceof Region region && !fullScr) {
+
+        if (root instanceof Region region) {
             double pw = region.getPrefWidth();
             double ph = region.getPrefHeight();
             if (pw > 0 && ph > 0) {
@@ -236,9 +237,22 @@ public class FlowController {
                 stage.setHeight(ph);
             }
         }
+
         stage.setResizable(true);
         stage.centerOnScreen();
         stage.show();
+
+        if (fullScr != null && fullScr) {
+            stage.setFullScreenExitHint("");
+            stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+            stage.setFullScreen(true);
+        }
+
+        scene.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.F11) {
+                stage.setFullScreen(!stage.isFullScreen());
+            }
+        });
     }
 
     public void goViewInWindowModal(String viewName, Stage parentStage, Boolean resizable) {
@@ -294,10 +308,8 @@ public class FlowController {
         this.mainStage.close();
     }
     
-    public void setFullScreen(Boolean full){
+    public void setFullScreen(Boolean full) {
         this.fullScr = full;
-        mainStage.setFullScreen(full);
-
     }
     
 }
