@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.util;
 
 import cr.ac.una.kingdomfantasy.App;
@@ -23,16 +19,13 @@ import javafx.stage.WindowEvent;
 import cr.ac.una.kingdomfantasy.controller.Controller;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 
-/**
- *
- * @author andrew
- */
+
 public class FlowController {
     
     private static FlowController INSTANCE = null;
@@ -71,20 +64,18 @@ public class FlowController {
         getInstance();
         this.mainStage = stage;
         this.idioma = idioma;
-        // Precarga en background las vistas más usadas para que el primer cambio sea instantáneo
-        javafx.application.Platform.runLater(() -> warmUpViews(
+        Platform.runLater(() -> warmUpViews(
             "PrincipalView", "AcercaDeView", "LoginView",
             "JuegoView", "RankingView", "MejorasView", "AjustesView", "RegistroView"
         ));
     }
 
-    /** Carga silenciosamente los FXMLs sin mostrarlos, para que el loader los cachee. */
+ 
     private void warmUpViews(String... viewNames) {
         for (String name : viewNames) {
             try {
                 getLoader(name);
             } catch (Exception ex) {
-                // Silencioso — si falla el warmup no es bloqueante
             }
         }
     }
@@ -181,7 +172,6 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.setStage(stage);
         Parent root = loader.getRoot();
-        // Guardar dimensiones actuales para no alterar el tamaño de la ventana al cambiar vista
         double currentW = stage.getWidth();
         double currentH = stage.getHeight();
         Parent sceneRoot = stage.getScene().getRoot();
@@ -194,7 +184,6 @@ public class FlowController {
       } else {
     stage.getScene().setRoot(root);
 }
-        // Aplicar tamaño minimo si la ventana es mas pequena que el minimo soportado
         if (root instanceof Region region) {
             double minW = region.getMinWidth();
             double minH = region.getMinHeight();
@@ -239,6 +228,8 @@ public class FlowController {
         }
 
         stage.setResizable(true);
+        stage.setMinWidth(800);
+        stage.setMinHeight(540);
         stage.centerOnScreen();
         stage.show();
 
@@ -248,11 +239,18 @@ public class FlowController {
             stage.setFullScreen(true);
         }
 
-        scene.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.F11) {
-                stage.setFullScreen(!stage.isFullScreen());
-            }
-        });
+    scene.setOnKeyPressed(e -> {
+    if (e.getCode() == KeyCode.F11) {
+        if (stage.isFullScreen()) {
+            stage.setFullScreen(false);
+            stage.setWidth(950);
+            stage.setHeight(800);
+            stage.centerOnScreen();
+        } else {
+            stage.setFullScreen(true);
+        }
+    }
+});
     }
 
     public void goViewInWindowModal(String viewName, Stage parentStage, Boolean resizable) {

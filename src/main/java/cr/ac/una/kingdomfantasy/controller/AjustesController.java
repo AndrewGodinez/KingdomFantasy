@@ -102,27 +102,32 @@ public class AjustesController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnMouse(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         AppContext.getInstance().set(CONTROL_SCHEME_KEY, ControlScheme.MOUSE);
         refresh();
     }
 
     @FXML
     private void onActionBtnKeyboard(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         AppContext.getInstance().set(CONTROL_SCHEME_KEY, ControlScheme.KEYBOARD);
         refresh();
     }
 
     @FXML
     private void onActionBtnBackMenu(ActionEvent event) {
+       MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
    }
 
     private void onActionBtnInstructions(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("InstruccionesView", getStage());
     }
 
     @FXML
     private void onActionBtnToggleAudio(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         MusicManager musicManager = MusicManager.getInstance();
         boolean muted = !musicManager.isMuted();
         musicManager.setMuted(muted);
@@ -131,6 +136,7 @@ public class AjustesController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnReviewUnlock(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         String password = txfReviewPassword.getText() == null ? "" : txfReviewPassword.getText().trim();
         if (!REVIEW_PASSWORD.equals(password)) {
             AppContext.getInstance().set(REVIEW_ACCESS_UNLOCKED_KEY, false);
@@ -152,6 +158,7 @@ public class AjustesController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnReviewToggle(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (!isReviewAccessUnlocked()) {
             lblReviewStatus.setText("Ingresa la clave para desbloquear.");
             return;
@@ -169,6 +176,7 @@ public class AjustesController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnReviewApply(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (!isReviewAccessUnlocked()) {
             lblReviewStatus.setText("Ingresa la clave para desbloquear.");
             return;
@@ -185,6 +193,7 @@ public class AjustesController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnReviewLevel100(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (!isReviewAccessUnlocked()) {
             lblReviewStatus.setText("Ingresa la clave para desbloquear.");
             return;

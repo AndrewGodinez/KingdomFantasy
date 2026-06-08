@@ -13,14 +13,11 @@ import javafx.scene.layout.StackPane;
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import cr.ac.una.kingdomfantasy.util.Mensaje;
 import cr.ac.una.kingdomfantasy.util.MusicManager;
+import javafx.animation.PauseTransition;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author Usuario
- */
+
 public class PrincipalController extends Controller implements Initializable {
 
     @FXML
@@ -88,20 +85,19 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnIniciarSesion(ActionEvent event) {
-        if(AppContext.getInstance().get("Player")== null){
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("LoginView", getStage());
-        } else {
-        new Mensaje().showModal(Alert.AlertType.WARNING, "Inicio de sesión anteriormente realizado", getStage(), "Debes de cerrar la sesión actual antes de realizar una nueva ");
-        }
     }
 
     @FXML
     private void onActionBtnRanking(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("RankingView", getStage());
     }
 
     @FXML
     private void onActionBtnComenzar(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if(playerDto!=null){
         FlowController.getInstance().goViewInStage("MejorasView", getStage());
         } else {
@@ -111,38 +107,41 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnAcercaDe(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("AcercaDeView", getStage());
     }
 
     @FXML
     private void onActionBtnNuevoJugador(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("RegistroView", getStage());
     }
 
     @FXML
     private void onActionBtnControles(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("AjustesView", getStage());
     }
 
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
-        cr.ac.una.kingdomfantasy.util.MusicManager.getInstance().shutdown();
-        javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.millis(150));
+        if(new Mensaje ().showConfirmation("Salir Del Juego", getStage(), "¿Desea Salir por completo del Juego?")){
+        MusicManager.getInstance().shutdown();
+        PauseTransition delay = new PauseTransition(javafx.util.Duration.millis(150));
         delay.setOnFinished(e -> System.exit(0));
         delay.play();
     }
+  }
 
     @FXML
     private void onActionBtnPerfil(ActionEvent event) {
-        if(playerDto!=null){
-            FlowController.getInstance().goViewInStage("UsuarioView", getStage());
-        } else {
-            new Mensaje().showModal(Alert.AlertType.WARNING, "Jugador Sin Registrar", getStage(), "Por Favor Inicie Sesión Antes de Comenzar");
-        }
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
+        FlowController.getInstance().goViewInStage("UsuarioView", getStage());
     }
 
     @FXML
     private void onActionBtnCerrarSesion(ActionEvent event) {
+      MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);  
       if(new Mensaje ().showConfirmation("Cerrar Sesión", getStage(), "¿Desea Cerrar Sesión?")){
       AppContext.getInstance().set("Player", null);
       AppContext.getInstance().set("Partida", null);
@@ -154,6 +153,7 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnComoJugar(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("InstruccionesView", getStage());
     }
     

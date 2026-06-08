@@ -6,6 +6,7 @@ import cr.ac.una.kingdomfantasy.service.PlayerService;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import cr.ac.una.kingdomfantasy.util.Mensaje;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
 import cr.ac.una.kingdomfantasy.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.ByteArrayInputStream;
@@ -67,18 +68,21 @@ public class UsuarioController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCrossBowGreen(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         selectedDesign = CrossbowDesign.GREEN;
         actualizarSeleccionBallesta();
     }
 
     @FXML
     private void onActionBtnCrossBowPurple(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         selectedDesign = CrossbowDesign.PURPLE;
         actualizarSeleccionBallesta();
     }
 
     @FXML
     private void onActionBtnCambiarImagen(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar foto de perfil");
         fileChooser.getExtensionFilters().addAll(
@@ -106,11 +110,13 @@ public class UsuarioController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnBackMenu(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         PlayerDto playerDto = (PlayerDto) AppContext.getInstance().get("Player");
         if (playerDto == null) {
             new Mensaje().showModal(Alert.AlertType.WARNING, "Sin sesión", getStage(), "No hay un jugador con sesión activa.");

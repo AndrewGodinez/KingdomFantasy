@@ -9,6 +9,7 @@ import cr.ac.una.kingdomfantasy.service.PlayerService;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import cr.ac.una.kingdomfantasy.util.Formato;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
 import cr.ac.una.kingdomfantasy.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -22,7 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+
 
 public class LoginController extends Controller implements Initializable {
 
@@ -61,11 +62,13 @@ public class LoginController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCancel(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }
 
     @FXML
     private void onActionBtnLogin(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         String nombre = txfName.getText().trim();
         if (nombre.isEmpty()) {
             lblMessage.setText("Debe ingresar el nombre del jugador.");
@@ -76,6 +79,7 @@ public class LoginController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCreatePlayer(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("RegistroView", getStage());
     }
     

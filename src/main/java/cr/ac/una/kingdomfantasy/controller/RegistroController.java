@@ -7,6 +7,7 @@ import cr.ac.una.kingdomfantasy.service.PlayerService;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
 import cr.ac.una.kingdomfantasy.util.Formato;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
 import cr.ac.una.kingdomfantasy.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -26,14 +27,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 
-/**
- * FXML Controller class
- *
- * @author Usuario
- */
+
 public class RegistroController extends Controller implements Initializable {
 
     @FXML
@@ -80,11 +76,13 @@ public class RegistroController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCancel(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }
 
     @FXML
     private void onActionBtnCreatePlayer(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         String nombre = txfName.getText().trim();
         if (nombre.isEmpty()) {
             lblMessage.setText("Debe ingresar un nombre.");
@@ -142,12 +140,14 @@ public class RegistroController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCrossBowGreen(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         idBallestaSeleccionada = 1;
         setSkinSelected(btnCrossBowGreen, "jfx-selected-skin-green", btnCrossBowPurple, "jfx-selected-skin-purple");
     }
 
     @FXML
     private void onActionBtnCrossBowPurple(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         idBallestaSeleccionada = 2;
         setSkinSelected(btnCrossBowPurple, "jfx-selected-skin-purple", btnCrossBowGreen, "jfx-selected-skin-green");
     }
@@ -164,7 +164,8 @@ public class RegistroController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnLoadImage(ActionEvent event) {
-         FileChooser fileChooser = new FileChooser();
+    MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
+    FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Seleccionar foto de perfil");
     fileChooser.getExtensionFilters().addAll(
         new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")

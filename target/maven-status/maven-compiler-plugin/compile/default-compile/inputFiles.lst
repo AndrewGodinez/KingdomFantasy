@@ -1,64 +1,64 @@
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\Respuesta.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\PlayerDto.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\PlayerRegistry.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\MejorasController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\SpecialPowerType.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\service\PartidaService.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\LevelFactory.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Hero.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\service\MejoraService.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\SpecialPowerCast.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteAnimationId.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Mejora.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteAnimator.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\ProjectileOwner.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\UpgradeProfile.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\PlayerProgress.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Crossbow.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\HitBox.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Player.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\service\PlayerService.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Vector2D.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Projectile.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\LoginController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Monster.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\PartidaDto.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\Mensaje.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\PrincipalController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\HeroAccessory.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\module-info.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\AjustesController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Partida.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\EntityManagerHelper.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\EntityState.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\FlowController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\UpgradeType.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Castle.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\WaveDefinition.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\CrossbowDesign.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\App.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\Formato.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\GameEntity.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\BindingUtils.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\Controller.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteAnimationSpec.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\MonsterType.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\AttackStyle.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\RegistroController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\HeroLoadout.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\GameSession.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\AcercaDeController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\LivingEntity.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\MejoraDto.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\InstruccionesController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\SpecialPower.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Direction.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteCatalog.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\MusicManager.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\RankingController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\CombatStats.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\UsuarioController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\JuegoController.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\ControlScheme.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\LevelDefinition.java
-C:\Users\Usuario\Documents\GitHub\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\AppContext.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\MejoraDto.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\Formato.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\ControlScheme.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Monster.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\LevelFactory.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\module-info.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\AttackStyle.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\ProjectileOwner.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\App.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\service\MejoraService.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\HitBox.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\HeroAccessory.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Castle.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\LoginController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Hero.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\EntityState.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\SpecialPower.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteCatalog.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\AcercaDeController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\service\PlayerService.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\RankingController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\PlayerProgress.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Player.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\UpgradeProfile.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\BindingUtils.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\InstruccionesController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\PrincipalController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\SpecialPowerType.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\service\PartidaService.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\UsuarioController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\LivingEntity.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\Mensaje.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteAnimationId.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Crossbow.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Projectile.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteAnimator.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\PartidaDto.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Partida.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\AppContext.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Vector2D.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Mejora.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\JuegoController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\Controller.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\UpgradeType.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\Direction.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\GameEntity.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\FlowController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\MonsterType.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\RegistroController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\SpriteAnimationSpec.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\CrossbowDesign.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\GameSession.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\CombatStats.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\AjustesController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\MusicManager.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\Respuesta.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\PlayerDto.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\controller\MejorasController.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\SpecialPowerCast.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\HeroLoadout.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\PlayerRegistry.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\LevelDefinition.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\model\WaveDefinition.java
+C:\Users\semmo\Downloads\Programación 2 2026\ProyectoProgra\KingdomFantasy\src\main\java\cr\ac\una\kingdomfantasy\util\EntityManagerHelper.java

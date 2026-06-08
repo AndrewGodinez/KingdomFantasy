@@ -6,13 +6,13 @@ import java.util.List;
 
 public enum MonsterType {
     DINO_REX("Dinorex", "dino_rex", AttackStyle.MELEE, 1,
-            new CombatStats(60, 50, 100, 34, 1.55, 0, 5, 0.18),
+            new CombatStats(60, 50, 100, 74, 1.55, 0, 5, 0.18),
             72, 82, 28, 44),
     BADGER("Badger", "badger", AttackStyle.MELEE, 20,
-            new CombatStats(40, 70, 250, 30, 1.05, 0, 10, 0.08),
+            new CombatStats(40, 70, 250, 70, 1.05, 0, 10, 0.08),
             90, 46, 18, 80),
     GOLLUX("Gollux", "gollux", AttackStyle.MELEE, 40,
-            new CombatStats(250, 80, 40, 38, 1.85, 0, 15, 0.45),
+            new CombatStats(250, 80, 40, 78, 1.85, 0, 15, 0.45),
             66, 60, 34, 68),
     PENGU("Pengu", "pengu", AttackStyle.RANGED, 60,
             new CombatStats(60, 50, 100, 300, 2.35, 550, 20, 0.15),

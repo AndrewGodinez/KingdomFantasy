@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.kingdomfantasy.controller;
 
 import cr.ac.una.kingdomfantasy.util.FlowController;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,13 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
-/**
- * FXML Controller class
- *
- * @author Usuario
- */
+
 public class InstruccionesController extends Controller implements Initializable {
 
     @FXML
@@ -44,6 +36,7 @@ public class InstruccionesController extends Controller implements Initializable
 
     @FXML
     private void onActionBackControls(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }
 

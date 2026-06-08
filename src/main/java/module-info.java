@@ -5,6 +5,7 @@ module cr.ac.una.kingdomfantasy {
     requires jakarta.persistence;
     requires MaterialFX;
     requires javafx.media;
+    requires java.instrument;
 
     uses jakarta.persistence.spi.PersistenceProvider;
     uses java.sql.Driver;

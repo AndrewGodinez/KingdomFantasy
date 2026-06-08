@@ -5,6 +5,7 @@ import cr.ac.una.kingdomfantasy.model.PlayerDto;
 import cr.ac.una.kingdomfantasy.service.PartidaService;
 import cr.ac.una.kingdomfantasy.util.AppContext;
 import cr.ac.una.kingdomfantasy.util.FlowController;
+import cr.ac.una.kingdomfantasy.util.MusicManager;
 import cr.ac.una.kingdomfantasy.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.ByteArrayInputStream;
@@ -76,6 +77,7 @@ public class RankingController extends Controller implements Initializable {
 
     @FXML
     private void onActionBack(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }
     

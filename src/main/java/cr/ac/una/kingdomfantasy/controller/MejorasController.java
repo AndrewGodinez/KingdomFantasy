@@ -16,13 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.BorderPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 public class MejorasController extends Controller implements Initializable {
 
@@ -169,126 +167,151 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnUpgradeCrossbowDamage(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.CROSSBOW_DAMAGE);
     }
 
     @FXML
     private void onActionBtnUpgradeCrossbowSpeed(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.CROSSBOW_SPEED);
     }
 
     @FXML
     private void onActionBtnUpgradeCastleHealth(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.CASTLE_HEALTH);
     }
 
     @FXML
     private void onActionBtnUpgradeElixir(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.ELIXIR_CAPACITY);
     }
 
     @FXML
     private void onActionBtnUpgradeMeteor(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.METEOR_DAMAGE);
     }
 
     @FXML
     private void onActionBtnUpgradeMeteorRadius(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.METEOR_RADIUS);
     }
 
     @FXML
     private void onActionBtnUpgradeIce(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.ICE_DURATION);
     }
 
     @FXML
     private void onActionBtnUpgradeIceRadius(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         upgrade(UpgradeType.ICE_RADIUS);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseCrossbowDamage(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.CROSSBOW_DAMAGE, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseCrossbowDamage(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.CROSSBOW_DAMAGE, 1);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseCrossbowSpeed(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.CROSSBOW_SPEED, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseCrossbowSpeed(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.CROSSBOW_SPEED, 1);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseCastleHealth(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.CASTLE_HEALTH, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseCastleHealth(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.CASTLE_HEALTH, 1);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseElixir(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.ELIXIR_CAPACITY, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseElixir(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.ELIXIR_CAPACITY, 1);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseMeteor(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.METEOR_DAMAGE, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseMeteor(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.METEOR_DAMAGE, 1);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseMeteorRadius(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.METEOR_RADIUS, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseMeteorRadius(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.METEOR_RADIUS, 1);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseIce(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.ICE_DURATION, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseIce(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.ICE_DURATION, 1);
     }
 
     @FXML
     private void onActionBtnReviewDecreaseIceRadius(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.ICE_RADIUS, -1);
     }
 
     @FXML
     private void onActionBtnReviewIncreaseIceRadius(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         adjustReviewUpgrade(UpgradeType.ICE_RADIUS, 1);
     }
 
     @FXML
     private void onActionBtnReviewMaxAll(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (!isReviewModeEnabled()) {
             return;
         }
@@ -300,16 +323,10 @@ public class MejorasController extends Controller implements Initializable {
         refresh();
     }
 
-    private void onActionBtnCrossBowGreen(ActionEvent event) {
-        setDesign(CrossbowDesign.GREEN);
-    }
-
-    private void onActionBtnCrossBowPurple(ActionEvent event) {
-        setDesign(CrossbowDesign.PURPLE);
-    }
 
     @FXML
     private void onActionBtnStartGame(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (isReviewModeEnabled()) {
             AppContext.getInstance().set(REVIEW_UPGRADE_PROFILE_KEY, profile);
         } else {
@@ -320,6 +337,7 @@ public class MejorasController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnBackMenu(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         PlayerRegistry.syncCurrentFromContext();
         FlowController.getInstance().goViewInStage("PrincipalView", getStage());
     }

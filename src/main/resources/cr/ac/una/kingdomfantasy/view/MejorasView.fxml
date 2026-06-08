@@ -197,7 +197,7 @@
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Daño del Meteoro" />
-                                            <Label styleClass="jfx-label-upgrade-copy" text="Aumenta el daño que recibe cada monstruo al ser impactado." />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Aumenta el daño que recibe cada monstruo." />
                                         </VBox>
                                     </HBox>
                                     <ProgressBar fx:id="pgMeteor" maxWidth="1.7976931348623157E308" progress="0.1" />
@@ -251,7 +251,7 @@
                                         </VBox>
                                         <VBox spacing="3.0">
                                             <Label styleClass="jfx-label-upgrade-title" text="Duración del Hechizo de Hielo" />
-                                            <Label styleClass="jfx-label-upgrade-copy" text="Cada nivel añade 0.5 segundos al hechizo de congelación." />
+                                            <Label styleClass="jfx-label-upgrade-copy" text="Cada nivel añade 0.5 segundos al hechizo." />
                                         </VBox>
                                     </HBox>
                                     <ProgressBar fx:id="pgIce" maxWidth="1.7976931348623157E308" progress="0.1" />
@@ -301,13 +301,13 @@
       <Button fx:id="btnStartGame" mnemonicParsing="false" onAction="#onActionBtnStartGame" styleClass="jfx-btn-green" text="Entrar al Juego" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="558.0" spacing="22.0" styleClass="jfx-bar-ability" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label styleClass="jfx-label-hud-caption" text="Monedas" />
                   <Label fx:id="lbGold" styleClass="jfx-label-gold-total" text="0" />
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="51.0" prefWidth="163.0">
+            <VBox alignment="TOP_CENTER" prefHeight="51.0" prefWidth="163.0">
                <children>
                   <Label prefHeight="25.0" prefWidth="169.0" styleClass="jfx-label-hud-caption" text="Puntos historicos" />
                   <Label fx:id="lbTotalPoints" styleClass="jfx-label-points-total" text="0" />

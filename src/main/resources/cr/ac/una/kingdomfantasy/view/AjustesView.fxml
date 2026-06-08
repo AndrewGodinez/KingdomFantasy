@@ -114,8 +114,8 @@
                            <children>
                               <MFXButton fx:id="btnReviewToggle" onAction="#onActionBtnReviewToggle" prefHeight="57.0" prefWidth="110.0" styleClass="jfx-btn-review primary" text="Activar" />
                               <MFXTextField fx:id="txfReviewLevel" floatMode="BORDER" floatingText="Nivel 1-100" minHeight="45.0" prefHeight="45.0" prefWidth="130.0" styleClass="jfx-field-kingdom" />
-                              <MFXButton fx:id="btnReviewApply" onAction="#onActionBtnReviewApply" prefHeight="57.0" prefWidth="80.0" styleClass="jfx-btn-review" text="Aplicar" />
-                              <MFXButton fx:id="btnReviewLevel100" onAction="#onActionBtnReviewLevel100" prefHeight="57.0" prefWidth="100.0" styleClass="jfx-btn-review" text="Nivel 100" />
+                              <MFXButton fx:id="btnReviewApply" onAction="#onActionBtnReviewApply" prefHeight="45.0" prefWidth="130.0" styleClass="jfx-btn-review" text="Aplicar" />
+                              <MFXButton fx:id="btnReviewLevel100" onAction="#onActionBtnReviewLevel100" prefHeight="45.0" prefWidth="130.0" styleClass="jfx-btn-review" text="Nivel 100" />
                            </children>
                         </HBox>
                      </children>

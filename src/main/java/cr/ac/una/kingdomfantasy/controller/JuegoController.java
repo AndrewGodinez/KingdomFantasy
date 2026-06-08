@@ -87,7 +87,7 @@ public class JuegoController extends Controller implements Initializable {
     private static final double CROSSBOW_SOURCE_Y = 328; 
     private static final double CROSSBOW_FIT_WIDTH = 130;
     private static final double CROSSBOW_FIT_HEIGHT = 110;
-    private static final double CROSSBOW_KEYBOARD_AIM_SPEED = 860;
+    private static final double CROSSBOW_KEYBOARD_AIM_SPEED = 1100;
     private static final double HEALTH_BAR_WIDTH = 86;
     private static final double HEALTH_BAR_HEIGHT = 8;
     private static final double HERO_REGEN_DELAY_SECONDS = 3.0;
@@ -294,16 +294,19 @@ public class JuegoController extends Controller implements Initializable {
 
     @FXML
     private void onActionPause(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         pauseGame();
     }
 
     @FXML
     private void onActionResume(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         resumeGame();
     }
 
     @FXML
     private void onActionBackToImprovements(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (session != null && session.isPaused()) {
              if(new Mensaje().showConfirmation("Volver a Mejoras", getStage(), "¿Estás seguro de querer volver a el apartado de mejoras? "
                 + "¡Aviso perderás todo tu progreso del nivel si vuelves a las mejoras!")){
@@ -317,6 +320,7 @@ public class JuegoController extends Controller implements Initializable {
 
     @FXML
     private void onActionBackToMenu(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
          if (session != null && session.isPaused()) {
              if(new Mensaje().showConfirmation("Volver al menú", getStage(), "¿Estás seguro de querer volver al menú? "
                 + "¡Aviso perderás todo tu progreso del nivel si vuelves al menú!")){
@@ -330,36 +334,43 @@ public class JuegoController extends Controller implements Initializable {
 
     @FXML
     private void onActionHeroPortrait(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         selectHeroForMovement();
     }
 
     @FXML
     private void onActionMeteorSpell(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         selectPower(SpecialPowerType.METEOR);
     }
 
     @FXML
     private void onActionIceSpell(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         selectPower(SpecialPowerType.ICE);
     }
 
     @FXML
     private void onActionReviewPreviousLevel(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         jumpToReviewLevel(currentLevel - 1, "Nivel anterior cargado para revision.");
     }
 
     @FXML
     private void onActionReviewCompleteLevel(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         jumpToReviewLevel(Math.min(100, currentLevel + 1), "Nivel marcado como completado en modo revision.");
     }
 
     @FXML
     private void onActionReviewNextLevel(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         jumpToReviewLevel(currentLevel + 1, "Siguiente nivel cargado para revision.");
     }
 
     @FXML
     private void onActionReviewLevel100(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         jumpToReviewLevel(100, "Nivel 100 cargado para revision.");
     }
 
@@ -584,7 +595,7 @@ public class JuegoController extends Controller implements Initializable {
             aimY += speed;
         }
         aimY = clamp(aimY, 36, WORLD_HEIGHT - 36);
-        lastAim = new Vector2D(WORLD_WIDTH - 80, aimY);
+        lastAim = new Vector2D(CROSSBOW_SOURCE_X + 200, aimY);
     }
 
     private void handleContinuousCrossbowFire() {
@@ -679,6 +690,10 @@ public class JuegoController extends Controller implements Initializable {
         int newWaves = session.consumeMonsterSpawnEvents();
         if (newWaves > 0) {
             MusicManager.getInstance().playEffect(MusicManager.SoundEffect.NEW_WAVE);
+        }
+        int enemyAttacks = session.consumeEnemyAttackEvents();
+        if (enemyAttacks > 0) {
+            MusicManager.getInstance().playEffect(MusicManager.SoundEffect.ENEMY_ATTACK);
         }
     }
 

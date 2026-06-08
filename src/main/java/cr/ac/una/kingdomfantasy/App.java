@@ -18,9 +18,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Font.loadFont(App.class.getResourceAsStream("resource/Kingthings_Exeter.ttf"), 14);
-        stage.setMinHeight(600);
-        stage.setMinWidth(800);
-
         stage.setOnCloseRequest(event -> {
             MusicManager.getInstance().shutdown();
         });

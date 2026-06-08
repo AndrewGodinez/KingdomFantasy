@@ -48,6 +48,7 @@ public class GameSession {
     private double heroRespawnRemaining;
     private int projectileHitEvents;
     private int monsterSpawnEvents;
+    private int enemyAttackEvents;
 
     public GameSession(LevelDefinition levelDefinition) {
         this(levelDefinition, new Hero(CASTLE_WIDTH + 28, WORLD_HEIGHT / 2.0 - 64), new Crossbow());
@@ -183,12 +184,17 @@ public class GameSession {
                 Projectile projectile = monster.createRangedProjectile(target);
                 if (projectile != null) {
                     spawnedProjectiles.add(projectile);
+                    enemyAttackEvents++;
                 }
             } else if (target == hero) {
-                monster.attackLiving(hero);
-            } else {
-                monster.attackCastle(castle);
-            }
+             if (monster.attackLiving(hero)) {
+            enemyAttackEvents++;
+        }
+         } else {
+          if (monster.attackCastle(castle)) {
+          enemyAttackEvents++;
+         }
+       }
         }
         projectiles.addAll(spawnedProjectiles);
     }
@@ -234,13 +240,16 @@ public class GameSession {
     }
 
     private void applyProjectileToMonsters(Projectile projectile) {
-        for (Monster monster : monsters) {
-            if (projectile.applyTo(monster)) {
-                projectileHitEvents++;
-                break;
+    for (Monster monster : monsters) {
+        if (projectile.applyTo(monster)) {
+            if (monster.getX() < CASTLE_WIDTH) {
+                monster.setPosition(CASTLE_WIDTH, monster.getY());
             }
+            projectileHitEvents++;
+            break;
         }
     }
+}
 
     private void collectDeadMonsterScores() {
         Iterator<Monster> iterator = monsters.iterator();
@@ -498,4 +507,11 @@ public class GameSession {
         monsterSpawnEvents = 0;
         return events;
     }
+    
+    public int consumeEnemyAttackEvents() {
+    int events = enemyAttackEvents;
+    enemyAttackEvents = 0;
+    return events;
+}
+    
 }

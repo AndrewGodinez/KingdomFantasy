@@ -31,7 +31,7 @@
                   </ImageView>
                   <Pane fx:id="worldPane" prefHeight="540.0" prefWidth="960.0">
                      <children>
-                        <Rectangle fx:id="castleZone" height="540.0" opacity="0.22" stroke="TRANSPARENT" styleClass="jfx-zone-castle" width="215.0" />
+                        <Rectangle fx:id="castleZone" height="542.0" layoutX="-1.0" layoutY="-1.0" opacity="0.22" stroke="TRANSPARENT" styleClass="jfx-zone-castle" width="262.0" />
                         <ImageView fx:id="imvCrossbow" fitHeight="105.0" fitWidth="135.0" layoutX="110.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
                               <Image url="@../resource/ballesta_morada.png" />
