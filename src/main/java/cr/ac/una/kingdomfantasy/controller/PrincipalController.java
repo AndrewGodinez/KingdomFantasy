@@ -125,6 +125,7 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
+        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if(new Mensaje ().showConfirmation("Salir Del Juego", getStage(), "¿Desea Salir por completo del Juego?")){
         MusicManager.getInstance().shutdown();
         PauseTransition delay = new PauseTransition(javafx.util.Duration.millis(150));

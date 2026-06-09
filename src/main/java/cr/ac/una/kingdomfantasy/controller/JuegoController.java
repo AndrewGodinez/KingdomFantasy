@@ -9,7 +9,6 @@ import cr.ac.una.kingdomfantasy.model.Hero;
 import cr.ac.una.kingdomfantasy.model.LevelDefinition;
 import cr.ac.una.kingdomfantasy.model.LevelFactory;
 import cr.ac.una.kingdomfantasy.model.Monster;
-import cr.ac.una.kingdomfantasy.model.MonsterType;
 import cr.ac.una.kingdomfantasy.model.Projectile;
 import cr.ac.una.kingdomfantasy.model.SpecialPower;
 import cr.ac.una.kingdomfantasy.model.SpecialPowerCast;
@@ -56,7 +55,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -64,7 +62,13 @@ import javafx.util.Duration;
 import javafx.scene.transform.Scale;
 import io.github.palexdev.materialfx.controls.MFXButton;
 
+import cr.ac.una.kingdomfantasy.util.HeroNode;
+import cr.ac.una.kingdomfantasy.util.MonsterNode;
+import cr.ac.una.kingdomfantasy.util.OverlayAnimationSequence;
+import cr.ac.una.kingdomfantasy.util.OverlayAnimationType;
+import cr.ac.una.kingdomfantasy.util.OverlaySpriteAnimator;
 import cr.ac.una.kingdomfantasy.util.PlayerRegistry;
+import cr.ac.una.kingdomfantasy.util.SpellButtonVisualState;
 
 public class JuegoController extends Controller implements Initializable {
 
@@ -86,8 +90,6 @@ public class JuegoController extends Controller implements Initializable {
     private static final double CROSSBOW_FIT_WIDTH = 130;
     private static final double CROSSBOW_FIT_HEIGHT = 110;
     private static final double CROSSBOW_KEYBOARD_AIM_SPEED = 1100;
-    private static final double HEALTH_BAR_WIDTH = 86;
-    private static final double HEALTH_BAR_HEIGHT = 8;
     private static final double HERO_REGEN_DELAY_SECONDS = 3.0;
     private static final double HERO_REGEN_PER_SECOND = 0.045;
     private static final double HERO_ATTACK_PROXIMITY_PADDING = 14;
@@ -105,18 +107,6 @@ public class JuegoController extends Controller implements Initializable {
     private MFXButton btnBackToMenu;
     @FXML
     private ImageView imvHeroPortrait;
-
-    private enum SpellButtonVisualState {
-        READY,
-        SELECTED,
-        COOLDOWN
-    }
-
-    private enum OverlayAnimationType {
-        PAUSE,
-        VICTORY,
-        DEFEAT
-    }
 
     @FXML
     private AnchorPane root;
@@ -1533,7 +1523,7 @@ public class JuegoController extends Controller implements Initializable {
         imvOverlayAnimation.setManaged(true);
         overlayAnimator.setSequence(sequence);
         resizeOverlayAnimation();
-        overlayAnimator.play(sequence.loop, null);
+        overlayAnimator.play(sequence.isLoop(), null);
     }
 
     private void stopOverlayAnimation() {
@@ -1766,367 +1756,5 @@ public class JuegoController extends Controller implements Initializable {
         return Math.max(min, Math.min(max, value));
     }
 
-    private SpriteAnimationId monsterAnimationFor(Monster monster) {
-        EntityState state = monster.getState();
-        if (monster.isDead() && SpriteCatalog.getMonsterAnimation(monster.getType(), SpriteAnimationId.HURT) != null) {
-            return SpriteAnimationId.HURT;
-        }
-        if (state == EntityState.HURT && SpriteCatalog.getMonsterAnimation(monster.getType(), SpriteAnimationId.HURT) != null) {
-            return SpriteAnimationId.HURT;
-        }
-        if (state == EntityState.ATTACKING) {
-            return attackAnimationFor(monster.getType());
-        }
-        if (state == EntityState.MOVING) {
-            return SpriteAnimationId.MOVE;
-        }
-        return SpriteAnimationId.IDLE;
-    }
-
-    private SpriteAnimationId attackAnimationFor(MonsterType type) {
-        switch (type) {
-            case DINO_REX:
-                return SpriteAnimationId.ATTACK_A;
-            case BADGER:
-                return SpriteAnimationId.ATTACK_B;
-            case GOLLUX:
-                return SpriteAnimationId.ATTACK_B;
-            case PENGU:
-                return SpriteAnimationId.ATTACK_RAY;
-            case CAT:
-                return SpriteAnimationId.SHOOTING;
-            default:
-                return SpriteAnimationId.IDLE;
-        }
-    }
-
-    private Pane createLifeBar(String fillClass) {
-        Pane track = new Pane();
-        Region fill = new Region();
-        track.getStyleClass().add("jfx-track-life");
-        fill.getStyleClass().add(fillClass);
-        track.setPrefSize(HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
-        track.setMinSize(HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
-        track.setMaxSize(HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
-        fill.setPrefSize(HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
-        fill.resize(HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
-        track.getChildren().add(fill);
-        return track;
-    }
-
-    private void setLifeBarProgress(Pane bar, double progress) {
-        if (bar.getChildren().isEmpty()) {
-            return;
-        }
-        double width = HEALTH_BAR_WIDTH * clamp(progress, 0, 1);
-        Region fill = (Region) bar.getChildren().get(0);
-        fill.setPrefWidth(width);
-        fill.resize(width, HEALTH_BAR_HEIGHT);
-    }
-
-    private static final class OverlayAnimationSequence {
-
-        private final Image image;
-        private final List<Rectangle2D> frames;
-        private final double fps;
-        private final boolean loop;
-
-        private OverlayAnimationSequence(Image image, List<Rectangle2D> frames, double fps, boolean loop) {
-            this.image = image;
-            this.frames = frames;
-            this.fps = Math.max(0.1, fps);
-            this.loop = loop;
-        }
-    }
-
-    private static final class OverlaySpriteAnimator {
-
-        private final ImageView view;
-        private OverlayAnimationSequence sequence;
-        private int currentFrame;
-        private long lastFrameTime;
-        private long frameDurationNs;
-        private boolean playing;
-        private boolean looping;
-        private Runnable onFinished;
-
-        private final AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (!playing || sequence == null) {
-                    return;
-                }
-                if (lastFrameTime == 0L) {
-                    lastFrameTime = now;
-                    return;
-                }
-                if (now - lastFrameTime >= frameDurationNs) {
-                    lastFrameTime = now;
-                    advanceFrame();
-                }
-            }
-        };
-
-        private OverlaySpriteAnimator(ImageView view) {
-            this.view = view;
-            view.setPreserveRatio(true);
-            view.setSmooth(true);
-        }
-
-        private void setSequence(OverlayAnimationSequence sequence) {
-            if (sequence == null || sequence.frames.isEmpty()) {
-                return;
-            }
-            this.sequence = sequence;
-            this.currentFrame = 0;
-            this.frameDurationNs = (long) (1_000_000_000L / sequence.fps);
-            this.lastFrameTime = 0L;
-            view.setImage(sequence.image);
-            applyFrame();
-        }
-
-        private void play(boolean loop, Runnable onFinished) {
-            if (sequence == null || sequence.frames.isEmpty()) {
-                return;
-            }
-            this.looping = loop;
-            this.onFinished = onFinished;
-            this.currentFrame = 0;
-            this.lastFrameTime = 0L;
-            this.playing = true;
-            applyFrame();
-            timer.start();
-        }
-
-        private void stop() {
-            playing = false;
-            onFinished = null;
-            timer.stop();
-        }
-
-        private void advanceFrame() {
-            currentFrame++;
-            if (currentFrame >= sequence.frames.size()) {
-                if (looping) {
-                    currentFrame = 0;
-                } else {
-                    currentFrame = sequence.frames.size() - 1;
-                    playing = false;
-                    timer.stop();
-                    if (onFinished != null) {
-                        onFinished.run();
-                    }
-                }
-            }
-            applyFrame();
-        }
-
-        private void applyFrame() {
-            if (sequence != null && !sequence.frames.isEmpty()) {
-                int safeFrame = Math.max(0, Math.min(currentFrame, sequence.frames.size() - 1));
-                view.setViewport(sequence.frames.get(safeFrame));
-            }
-        }
-    }
-
-    private final class MonsterNode {
-
-        private final Monster monster;
-        private final Pane node = new Pane();
-        private final ImageView sprite = new ImageView();
-        private final Pane health = createLifeBar("jfx-fill-life-red");
-        private SpriteAnimator animator;
-        private SpriteAnimationId animationId;
-        private SpriteAnimationSpec currentSpec;
-        private int deathHurtLoops;
-
-        private MonsterNode(Monster monster) {
-            this.monster = monster;
-            node.setPickOnBounds(false);
-            node.getChildren().addAll(sprite, health);
-            switchAnimation(SpriteAnimationId.IDLE);
-            animator.setFlipX(true);
-            update();
-        }
-
-        private void update() {
-            SpriteAnimationId desired = monsterAnimationFor(monster);
-            if (desired != animationId) {
-                switchAnimation(desired);
-            }
-            if (monster.getState() == EntityState.FROZEN) {
-                animator.setAnimationFps(2);
-            } else if (currentSpec != null) {
-                animator.setAnimationFps(currentSpec.getFps());
-            }
-            double visualOffset = currentSpec != null && currentSpec.getFrameWidth() > 128 ? -128 : 0;
-            node.setLayoutX(monster.getX() + visualOffset);
-            node.setLayoutY(monster.getY() - 10);
-            health.setLayoutX((currentSpec == null ? 128 : currentSpec.getFrameWidth()) / 2.0 - HEALTH_BAR_WIDTH / 2.0);
-            health.setLayoutY(3);
-            health.setVisible(monster.isAlive());
-            setLifeBarProgress(health, monster.getHealthPercent());
-        }
-
-        private void switchAnimation(SpriteAnimationId newAnimationId) {
-            SpriteAnimationSpec spec = SpriteCatalog.getMonsterAnimation(monster.getType(), newAnimationId);
-            if (spec == null) {
-                if (monster.isDead()) {
-                    monster.markDeathAnimationComplete();
-                    return;
-                }
-                spec = SpriteCatalog.getMonsterAnimation(monster.getType(), SpriteAnimationId.IDLE);
-                newAnimationId = SpriteAnimationId.IDLE;
-            }
-            currentSpec = spec;
-            animationId = newAnimationId;
-            if (animator == null) {
-                animator = new SpriteAnimator(sprite, spec);
-            } else {
-                animator.setAnimation(spec);
-            }
-            animator.setFlipX(true);
-            if (spec.isLoop()) {
-                animator.playLoop();
-            } else {
-                animator.playOnce(() -> {
-                    if (monster.isDead()) {
-                        deathHurtLoops++;
-                        if (deathHurtLoops < 3) {
-                            animationId = null;
-                            switchAnimation(SpriteAnimationId.HURT);
-                        } else {
-                            monster.markDeathAnimationComplete();
-                        }
-                        return;
-                    }
-                    if (monster.isAlive() && !monster.isFrozen()
-                            && (monster.getState() == EntityState.ATTACKING || monster.getState() == EntityState.HURT)) {
-                        monster.setState(EntityState.IDLE);
-                    }
-                    animationId = null;
-                    switchAnimation(SpriteAnimationId.IDLE);
-                });
-            }
-        }
-
-        private void pause() {
-            animator.pause();
-        }
-
-        private void resume() {
-            animator.resume();
-        }
-
-        private void stop() {
-            animator.stop();
-        }
-
-        private Node getNode() {
-            return node;
-        }
-    }
-
-    private final class HeroNode {
-
-        private final Hero hero;
-        private final Pane node = new Pane();
-        private final List<ImageView> layers = new ArrayList<>();
-        private final Pane health = createLifeBar("jfx-fill-life-blue");
-        private SpriteAnimator animator;
-        private SpriteAnimationId animationId;
-
-        private HeroNode(Hero hero) {
-            this.hero = hero;
-            node.setPickOnBounds(false);
-            node.setScaleX(Hero.VISUAL_SCALE);
-            node.setScaleY(Hero.VISUAL_SCALE);
-            for (int i = 0; i < 8; i++) {
-                ImageView layer = new ImageView();
-                layers.add(layer);
-                node.getChildren().add(layer);
-            }
-            node.getChildren().add(health);
-            health.setScaleX(1.0 / Hero.VISUAL_SCALE);
-            health.setScaleY(1.0 / Hero.VISUAL_SCALE);
-            switchAnimation(SpriteAnimationId.IDLE);
-            update();
-        }
-
-        private void update() {
-            SpriteAnimationId desired;
-            if (hero.isDead()) {
-                desired = SpriteAnimationId.DEATH;
-            } else if (animationId == SpriteAnimationId.ATTACK && animator != null && animator.isPlaying()) {
-                desired = SpriteAnimationId.ATTACK;
-            } else if (hero.getState() == EntityState.ATTACKING) {
-                desired = SpriteAnimationId.ATTACK;
-            } else if (hero.getState() == EntityState.MOVING) {
-                desired = SpriteAnimationId.MOVE;
-            } else {
-                desired = SpriteAnimationId.IDLE;
-            }
-            if (desired != animationId) {
-                switchAnimation(desired);
-            }
-            animator.setRow(hero.getFacing().getSpriteRow());
-            node.setLayoutX(hero.getX());
-            node.setLayoutY(hero.getY());
-            health.setLayoutX(21);
-            health.setLayoutY(18);
-            health.setVisible(hero.isAlive());
-            setLifeBarProgress(health, hero.getHealthPercent());
-        }
-
-        private void setSelected(boolean selected) {
-            node.getStyleClass().remove("jfx-hero-selected");
-            if (selected) {
-                node.getStyleClass().add("jfx-hero-selected");
-            }
-        }
-
-        private void switchAnimation(SpriteAnimationId newAnimationId) {
-            List<SpriteAnimationSpec> stack = SpriteCatalog.getHeroAnimationStack(hero.getLoadout(), newAnimationId);
-            if (stack.isEmpty()) {
-                stack = SpriteCatalog.getHeroAnimationStack(hero.getLoadout(), SpriteAnimationId.IDLE);
-                newAnimationId = SpriteAnimationId.IDLE;
-            }
-            animationId = newAnimationId;
-            if (animator == null) {
-                animator = SpriteAnimator.fromSpecs(layers, stack, hero.getFacing().getSpriteRow());
-            } else {
-                animator.setAnimationStack(stack);
-            }
-            animator.setRow(hero.getFacing().getSpriteRow());
-            if (stack.get(0).isLoop()) {
-                animator.playLoop();
-            } else {
-                final SpriteAnimationId playedAnimationId = newAnimationId;
-                animator.playOnce(() -> {
-                    if (hero.isDead() && playedAnimationId == SpriteAnimationId.DEATH) {
-                        return;
-                    }
-                    animationId = null;
-                    switchAnimation(SpriteAnimationId.IDLE);
-                });
-            }
-        }
-
-        private void pause() {
-            animator.pause();
-        }
-
-        private void resume() {
-            animator.resume();
-        }
-
-        private void stop() {
-            animator.stop();
-        }
-
-        private Node getNode() {
-            return node;
-        }
-    }
 }
 
