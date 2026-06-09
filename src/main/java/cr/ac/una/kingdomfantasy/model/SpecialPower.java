@@ -5,7 +5,6 @@ import java.util.List;
 public class SpecialPower {
 
     public static final int MAX_LEVEL = 20;
-
     private final SpecialPowerType type;
     private int primaryLevel;
     private int radiusLevel;

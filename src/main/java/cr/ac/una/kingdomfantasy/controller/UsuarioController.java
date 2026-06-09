@@ -149,9 +149,7 @@ public class UsuarioController extends Controller implements Initializable {
 
         lbJugador.setText(playerDto.getNombre());
         cargarImagenActual(playerDto.getFotoPerfil());
-        selectedDesign = playerDto.getIdBallesta() != null && playerDto.getIdBallesta() == 2
-                ? CrossbowDesign.PURPLE
-                : CrossbowDesign.GREEN;
+        selectedDesign = playerDto.getIdBallesta() != null && playerDto.getIdBallesta() == 2  ? CrossbowDesign.PURPLE   : CrossbowDesign.GREEN;
         actualizarSeleccionBallesta();
     }
 

@@ -50,7 +50,7 @@ public class SpriteAnimator {
     public SpriteAnimator(List<ImageView> imageViews, List<Image> spriteSheets,
             SpriteAnimationSpec spec, int startRow) {
         if (imageViews == null || imageViews.isEmpty()) {
-            throw new IllegalArgumentException("At least one ImageView is required.");
+            throw new IllegalArgumentException(" Es requerido el ImageView.");
         }
         this.imageViews.addAll(imageViews);
         configure(spriteSheets, spec, startRow);
@@ -59,15 +59,12 @@ public class SpriteAnimator {
     public SpriteAnimator(ImageView imageView, Image spriteSheet,
             int frameWidth, int frameHeight, int columns, int rows,
             int startRow, double animationFps) {
-        this(Collections.singletonList(imageView),
-                Collections.singletonList(spriteSheet),
-                new SpriteAnimationSpec(null, frameWidth, frameHeight, columns, rows, animationFps, true),
-                startRow);
+        this(Collections.singletonList(imageView), Collections.singletonList(spriteSheet), new SpriteAnimationSpec(null, frameWidth, frameHeight, columns, rows, animationFps, true), startRow);
     }
 
     public static SpriteAnimator fromSpecs(List<ImageView> imageViews, List<SpriteAnimationSpec> specs, int startRow) {
         if (specs == null || specs.isEmpty()) {
-            throw new IllegalArgumentException("At least one animation spec is required.");
+            throw new IllegalArgumentException("Es necesario un animation spec.");
         }
         List<Image> images = new ArrayList<>();
         for (SpriteAnimationSpec layerSpec : specs) {
@@ -102,14 +99,14 @@ public class SpriteAnimator {
 
     private void configure(List<Image> sheets, SpriteAnimationSpec newSpec, int startRow) {
         if (newSpec == null) {
-            throw new IllegalArgumentException("Animation spec is required.");
+            throw new IllegalArgumentException("Se necesita Animation spec.");
         }
         spriteSheets.clear();
         if (sheets != null) {
             spriteSheets.addAll(sheets);
         }
         if (spriteSheets.isEmpty()) {
-            throw new IllegalArgumentException("At least one sprite sheet is required.");
+            throw new IllegalArgumentException("Se requiere el sprite sheet.");
         }
         this.spec = newSpec;
         this.currentRow = Math.max(0, Math.min(newSpec.getRows() - 1, startRow));

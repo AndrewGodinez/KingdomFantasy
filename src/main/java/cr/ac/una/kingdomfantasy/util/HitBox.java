@@ -73,11 +73,7 @@ public class HitBox {
     }
 
     public Rectangle2D expanded(double amount) {
-        return new Rectangle2D(
-                bounds.getMinX() - amount,
-                bounds.getMinY() - amount,
-                bounds.getWidth() + amount * 2,
-                bounds.getHeight() + amount * 2);
+        return new Rectangle2D( bounds.getMinX() - amount, bounds.getMinY() - amount, bounds.getWidth() + amount * 2, bounds.getHeight() + amount * 2);
     }
 
     private void recalculate() {

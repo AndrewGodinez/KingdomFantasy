@@ -28,9 +28,7 @@ public class Projectile extends GameEntity {
     }
 
     public Projectile(ProjectileOwner owner, double x, double y, double width, double height, Vector2D velocity, double damage, double maxDistance, double knockbackForce) {
-        super(x, y, width, height,
-              HB_HALF * 2, HB_HALF * 2,          
-              SPRITE_HALF_W - HB_HALF, -HB_HALF); 
+        super(x, y, width, height, HB_HALF * 2, HB_HALF * 2, SPRITE_HALF_W - HB_HALF, -HB_HALF); 
         this.owner           = owner;
         this.velocity        = velocity == null ? Vector2D.ZERO : velocity;
         this.damage          = Math.max(0, damage);

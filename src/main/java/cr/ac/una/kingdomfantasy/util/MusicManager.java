@@ -12,36 +12,13 @@ import javafx.scene.media.MediaPlayer;
 
 public final class MusicManager {
 
-    public enum MusicTrack {
-        MAIN_MENU,
-        GAME,
-        IMPROVEMENTS
-    }
-
-    public enum SoundEffect {
-        CROSSBOW_SHOT,
-        PROJECTILE_HIT,
-        MONSTER_DEFEATED,
-        NEW_WAVE,
-        METEOR_CAST,
-        ICE_CAST,
-        SPELL_IMPACT,
-        HERO_ATTACK,
-        ENEMY_ATTACK,
-        VICTORY,
-        DEFEAT,
-        GAME_COMPLETE,
-        BUTTON_CLICK
-        
-    }
-
+    public enum MusicTrack { MAIN_MENU, GAME, IMPROVEMENTS }
+    public enum SoundEffect { CROSSBOW_SHOT, PROJECTILE_HIT, MONSTER_DEFEATED, NEW_WAVE, METEOR_CAST, ICE_CAST, SPELL_IMPACT, HERO_ATTACK, ENEMY_ATTACK, VICTORY, DEFEAT, GAME_COMPLETE, BUTTON_CLICK }
     private static final Logger LOGGER = Logger.getLogger(MusicManager.class.getName());
     private static final MusicManager INSTANCE = new MusicManager();
-
     private final Map<MusicTrack, String> trackSources = new EnumMap<>(MusicTrack.class);
     private final Map<SoundEffect, String> effectSources = new EnumMap<>(SoundEffect.class);
     private final Set<MediaPlayer> activeEffectPlayers = new HashSet<>();
-
     private volatile MediaPlayer currentTrackPlayer;
     private MusicTrack currentTrack;
     private double musicVolume = 0.45;
@@ -104,7 +81,7 @@ public final class MusicManager {
         stopTrack();
         String mediaUrl = resolveResourceUrl(trackSources.get(track));
         if (mediaUrl == null) {
-            LOGGER.log(Level.WARNING, "Audio track resource not found: {0}", track);
+            LOGGER.log(Level.WARNING, "Audio no encontrado", track);
             return;
         }
         try {
@@ -114,7 +91,7 @@ public final class MusicManager {
             currentTrack = track;
             currentTrackPlayer = player;
             player.setOnError(() ->
-                LOGGER.log(Level.WARNING, "MediaPlayer error on track: " + track));
+                LOGGER.log(Level.WARNING, "Ocurrió un error de MediaPlayer " + track));
             if (!muted) {
                 player.play();
             }
@@ -165,7 +142,7 @@ public final class MusicManager {
             player.setOnError(()       -> disposeEffectPlayer(player));
             player.play();
         } catch (Exception ex) {
-            LOGGER.log(Level.WARNING, "El efecto de sonido no puede ser transmitido: " + effect, ex);
+            LOGGER.log(Level.WARNING, "El efecto de sonido no puede ser transmitido " + effect, ex);
         }
     }
 

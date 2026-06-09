@@ -13,7 +13,7 @@ public final class OverlaySpriteAnimator {
     private boolean playing;
     private boolean looping;
     private Runnable onFinished;
-
+    
     private final AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long now) {

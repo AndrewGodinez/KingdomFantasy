@@ -1,10 +1,6 @@
 package cr.ac.una.kingdomfantasy.model;
 
-public enum Direction {
-    DOWN(0, 0, 1),
-    LEFT(1, -1, 0),
-    RIGHT(2, 1, 0),
-    UP(3, 0, -1);
+public enum Direction { DOWN(0, 0, 1), LEFT(1, -1, 0),  RIGHT(2, 1, 0), UP(3, 0, -1);
 
     private final int spriteRow;
     private final double dx;

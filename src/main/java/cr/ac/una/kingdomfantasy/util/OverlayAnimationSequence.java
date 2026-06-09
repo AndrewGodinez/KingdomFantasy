@@ -18,8 +18,20 @@ public final class OverlayAnimationSequence {
         this.loop = loop;
     }
 
-    public Image getImage() { return image; }
-    public List<Rectangle2D> getFrames() { return frames; }
-    public double getFps() { return fps; }
-    public boolean isLoop() { return loop; }
+    public Image getImage(){
+        return image; 
+    }
+    
+    public List<Rectangle2D> getFrames(){ 
+        return frames; 
+    }
+    
+    public double getFps(){
+        return fps; 
+    }
+    
+    public boolean isLoop(){
+        return loop; 
+    }
+    
 }

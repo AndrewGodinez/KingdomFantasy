@@ -1,15 +1,6 @@
 package cr.ac.una.kingdomfantasy.model;
 
-public enum HeroAccessory {
-    BEARD("Beard"),
-    BOOTS("Boots"),
-    CHESTPLATE("Chestplate"),
-    GLOVES("Gloves"),
-    HAIR("Hair"),
-    HAT("Hat"),
-    LEGGINGS("Leggings"),
-    SWORD("Sword"),
-    SWORD_ALT("Sword_2");
+public enum HeroAccessory { BEARD("Beard"), BOOTS("Boots"), CHESTPLATE("Chestplate"), GLOVES("Gloves"), HAIR("Hair"), HAT("Hat"), LEGGINGS("Leggings"), SWORD("Sword"), SWORD_ALT("Sword_2");
 
     private final String resourceSuffix;
 

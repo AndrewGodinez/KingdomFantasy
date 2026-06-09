@@ -197,15 +197,11 @@ public class JuegoController extends Controller implements Initializable {
     private final Set<KeyCode> pressedKeys = new HashSet<>();
     private final EnumSet<KeyCode> movementKeys = EnumSet.of(KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D);
     private final java.util.ArrayDeque<KeyCode> movementKeyOrder = new java.util.ArrayDeque<>();
-
     private GameSession session;
     private HeroNode heroNode;
     private AnimationTimer gameLoop;
     private long lastUpdate;
     private Vector2D lastAim = new Vector2D(WORLD_WIDTH * 0.75, WORLD_HEIGHT * 0.5);
-    // Last known mouse position in world coordinates. The spell aim circle
-    // always follows this point, in BOTH control schemes, so the player aims
-    // spells with the mouse even while moving the hero with the keyboard.
     private Vector2D spellPointer = new Vector2D(WORLD_WIDTH * 0.75, WORLD_HEIGHT * 0.5);
     private Vector2D heroMoveTarget;
     private ControlScheme controlScheme;
@@ -555,8 +551,6 @@ public class JuegoController extends Controller implements Initializable {
             clearDebugHitboxes();
         }
         if ((session.isWon() || session.isLost()) && !endShown) {
-            // Force one last HUD refresh so the castle bar is seen reaching 0
-            // (or its final value) BEFORE the victory/defeat animation appears.
             updateHud();
             updateSpellHud();
             showEndOverlay();
@@ -794,7 +788,6 @@ public class JuegoController extends Controller implements Initializable {
         if (session == null) {
             return;
         }
-        // Always track the mouse for spell aiming, even in keyboard mode.
         spellPointer = worldPointFromMouseEvent(event);
         updateSpellAim();
         if (!mouseFireHeld || controlScheme != ControlScheme.MOUSE
@@ -810,7 +803,6 @@ public class JuegoController extends Controller implements Initializable {
         if (session == null) {
             return;
         }
-        // The spell aim circle follows the mouse in both control schemes.
         spellPointer = worldPointFromMouseEvent(event);
         updateSpellAim();
         if (controlScheme != ControlScheme.MOUSE) {
@@ -897,16 +889,10 @@ public class JuegoController extends Controller implements Initializable {
         hideSpellAim();
         double fx = worldPoint.getX();
         double fy = worldPoint.getY() - effectsPane.getLayoutY();
-        MusicManager.getInstance().playEffect(type == SpecialPowerType.ICE
-                ? MusicManager.SoundEffect.ICE_CAST
-                : MusicManager.SoundEffect.METEOR_CAST);
+        MusicManager.getInstance().playEffect(type == SpecialPowerType.ICE ? MusicManager.SoundEffect.ICE_CAST : MusicManager.SoundEffect.METEOR_CAST);
         showSpellEffect(type, fx, fy, power.getRadius(), () -> {
             MusicManager.getInstance().playEffect(MusicManager.SoundEffect.SPELL_IMPACT);
-            SpecialPowerCast cast = session.resolvePowerCast(type, worldPoint.getX(), worldPoint.getY());
-            String detail = type == SpecialPowerType.ICE
-                    ? String.format("Congelados: %d por %.1fs.", cast.getAffectedMonsters(), cast.getFreezeSeconds())
-                    : "Impactados: " + cast.getAffectedMonsters() + ".";
-            
+            SpecialPowerCast cast = session.resolvePowerCast(type, worldPoint.getX(), worldPoint.getY());           
         });
         selectedPower = null;
         updateSpellHud();

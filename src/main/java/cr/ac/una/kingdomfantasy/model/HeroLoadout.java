@@ -35,9 +35,7 @@ public class HeroLoadout {
     }
 
     public HeroLoadout without(HeroAccessory accessory) {
-        EnumSet<HeroAccessory> copy = accessories.isEmpty()
-                ? EnumSet.noneOf(HeroAccessory.class)
-                : EnumSet.copyOf(accessories);
+        EnumSet<HeroAccessory> copy = accessories.isEmpty() ? EnumSet.noneOf(HeroAccessory.class) : EnumSet.copyOf(accessories);
         copy.remove(accessory);
         return new HeroLoadout(copy);
     }

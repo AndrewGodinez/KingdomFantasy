@@ -21,13 +21,11 @@ public class SpriteAnimationSpec {
     private final double fps;
     private final boolean loop;
 
-    public SpriteAnimationSpec(String resourcePath, int frameWidth, int frameHeight,
-            int frameCount, int rows, double fps, boolean loop) {
+    public SpriteAnimationSpec(String resourcePath, int frameWidth, int frameHeight, int frameCount, int rows, double fps, boolean loop) {
         this(resourcePath, frameWidth, frameHeight, frameCount, frameCount, rows, 0, fps, loop);
     }
 
-    private SpriteAnimationSpec(String resourcePath, int frameWidth, int frameHeight,
-            int columns, int frameCount, int rows, int startFrame, double fps, boolean loop) {
+    private SpriteAnimationSpec(String resourcePath, int frameWidth, int frameHeight, int columns, int frameCount, int rows, int startFrame, double fps, boolean loop) {
         this.resourcePath = resourcePath;
         this.frameWidth = Math.max(1, frameWidth);
         this.frameHeight = Math.max(1, frameHeight);
@@ -39,32 +37,29 @@ public class SpriteAnimationSpec {
         this.loop = loop;
     }
 
-    public static SpriteAnimationSpec fromResource(String fileName, int frameWidth, int frameHeight,
-            int frameCount, int rows, double fps, boolean loop) {
+    public static SpriteAnimationSpec fromResource(String fileName, int frameWidth, int frameHeight, int frameCount, int rows, double fps, boolean loop) {
         return new SpriteAnimationSpec(RESOURCE_ROOT + fileName, frameWidth, frameHeight, frameCount, rows, fps, loop);
     }
 
-    public static SpriteAnimationSpec fromResourceGrid(String fileName, int frameWidth, int frameHeight,
-            int columns, int rows, int startFrame, int frameCount, double fps, boolean loop) {
-        return new SpriteAnimationSpec(RESOURCE_ROOT + fileName, frameWidth, frameHeight,
-                columns, frameCount, rows, startFrame, fps, loop);
+    public static SpriteAnimationSpec fromResourceGrid(String fileName, int frameWidth, int frameHeight, int columns, int rows, int startFrame, int frameCount, double fps, boolean loop) {
+        return new SpriteAnimationSpec(RESOURCE_ROOT + fileName, frameWidth, frameHeight, columns, frameCount, rows, startFrame, fps, loop);
     }
 
     public Image loadImage() {
         if (resourcePath == null || resourcePath.isBlank()) {
-            throw new IllegalStateException("This animation spec does not have a resource path.");
+            throw new IllegalStateException("No hay un resourcePath.");
         }
         return loadCachedResource(resourcePath);
     }
 
     public static Image loadCachedResource(String resourcePath) {
         if (resourcePath == null || resourcePath.isBlank()) {
-            throw new IllegalArgumentException("Image resource path is required.");
+            throw new IllegalArgumentException("la imagen del resourcepath es necesaria.");
         }
         return IMAGE_CACHE.computeIfAbsent(resourcePath, path -> {
             URL resourceUrl = SpriteAnimationSpec.class.getResource(path);
             if (resourceUrl == null) {
-                throw new IllegalArgumentException("Sprite resource not found: " + path);
+                throw new IllegalArgumentException("Sprite no encontrado " + path);
             }
             return new Image(resourceUrl.toExternalForm(), false);
         });
@@ -80,11 +75,7 @@ public class SpriteAnimationSpec {
         int frameColumn = absoluteFrame % columns;
         int frameRowOffset = absoluteFrame / columns;
         int safeRow = Math.max(0, Math.min(rows - 1, row + frameRowOffset));
-        return new Rectangle2D(
-                frameColumn * (double) frameWidth,
-                safeRow * (double) frameHeight,
-                frameWidth,
-                frameHeight);
+        return new Rectangle2D( frameColumn * (double) frameWidth, safeRow * (double) frameHeight, frameWidth, frameHeight);
     }
 
     public SpriteAnimationSpec withLoop(boolean loop) {

@@ -7,7 +7,6 @@ public class Hero extends LivingEntity {
     public static final double SPRITE_WIDTH = 128;
     public static final double SPRITE_HEIGHT = 128;
     public static final double VISUAL_SCALE = 2.08;
-
     private final HeroLoadout loadout;
 
     public Hero(double x, double y) {
@@ -15,9 +14,7 @@ public class Hero extends LivingEntity {
     }
 
     public Hero(double x, double y, HeroLoadout loadout) {
-        super(x, y, SPRITE_WIDTH, SPRITE_HEIGHT,
-                84, 96, 22, 22,
-                new CombatStats(430, 1, 168, 42, 1.05, 0, 0, 0.25));
+        super(x, y, SPRITE_WIDTH, SPRITE_HEIGHT, 84, 96, 22, 22, new CombatStats(430, 1, 168, 42, 1.05, 0, 0, 0.25));
         this.loadout = loadout == null ? HeroLoadout.defaultKnightNoHelmetNoBeard() : loadout;
         setFacing(Direction.RIGHT);
     }
@@ -59,10 +56,7 @@ public class Hero extends LivingEntity {
             setState(EntityState.ATTACKING);
             return true;
         }
-        Vector2D knockback = Vector2D
-                .fromPoints(getCenterX(), getCenterY(), monster.getCenterX(), monster.getCenterY())
-                .normalize()
-                .multiply(18);
+        Vector2D knockback = Vector2D.fromPoints(getCenterX(), getCenterY(), monster.getCenterX(), monster.getCenterY()).normalize().multiply(18);
         monster.takeDamage(damageAgainst(monster), knockback);
         resetAttackCooldown();
         setState(EntityState.ATTACKING);

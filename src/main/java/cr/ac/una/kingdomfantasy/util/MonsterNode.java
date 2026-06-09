@@ -92,10 +92,22 @@ public final class MonsterNode {
         }
     }
 
-    public void pause() { animator.pause(); }
-    public void resume() { animator.resume(); }
-    public void stop() { animator.stop(); }
-    public Node getNode() { return node; }
+    public void pause(){ 
+        animator.pause(); 
+    }
+    
+    public void resume(){ 
+        animator.resume(); 
+    }
+    
+    public void stop(){
+        animator.stop(); 
+    }
+    
+    public Node getNode(){
+        return node; 
+    }
+    
 
     private static SpriteAnimationId monsterAnimationFor(Monster monster) {
         EntityState state = monster.getState();

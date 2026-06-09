@@ -97,10 +97,22 @@ public final class HeroNode {
         }
     }
 
-    public void pause() { animator.pause(); }
-    public void resume() { animator.resume(); }
-    public void stop() { animator.stop(); }
-    public Node getNode() { return node; }
+    public void pause(){
+        animator.pause(); 
+    }
+    
+    public void resume(){ 
+        animator.resume();
+    }
+    
+    public void stop(){ 
+        animator.stop();
+    }
+    
+    public Node getNode(){
+        return node; 
+    }
+    
 
     private static Pane createLifeBar(String fillClass) {
         Pane track = new Pane();

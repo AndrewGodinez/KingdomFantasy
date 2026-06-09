@@ -62,6 +62,7 @@ public class Monster extends LivingEntity {
                 fraction = 0.028;
                 break;
             case DINO_REX:
+                fraction = 0.025;
             default:
                 fraction = 0.025;
                 break;
@@ -96,9 +97,7 @@ public class Monster extends LivingEntity {
             return null;
         }
         Vector2D start = new Vector2D(getCenterX(), getCenterY() - 10);
-        Vector2D direction = Vector2D
-                .fromPoints(start.getX(), start.getY(), target.getCenterX(), target.getCenterY())
-                .normalize();
+        Vector2D direction = Vector2D.fromPoints(start.getX(), start.getY(), target.getCenterX(), target.getCenterY()).normalize();
         resetAttackCooldown();
         setState(EntityState.ATTACKING);
 
@@ -121,8 +120,7 @@ public class Monster extends LivingEntity {
         if (target == null) {
             return false;
         }
-        if (type.getAttackStyle() == AttackStyle.MELEE
-                && getHitBox().intersectsExpanded(target.getHitBox(), getStats().getAttackRange())) {
+        if (type.getAttackStyle() == AttackStyle.MELEE && getHitBox().intersectsExpanded(target.getHitBox(), getStats().getAttackRange())) {
             return true;
         }
         return distanceTo(target) <= getStats().getAttackRange();

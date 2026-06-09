@@ -21,7 +21,6 @@ public class GameSession {
     private static final double HERO_RANGED_AGGRO_DISTANCE = 138 * 3;
     private static final double HERO_RANGED_AGGRO_VERTICAL = 26;
     private static final double HERO_ATTACK_PROXIMITY_PADDING = 14;
-
     private final LevelDefinition levelDefinition;
     private final Hero hero;
     private final Castle castle;

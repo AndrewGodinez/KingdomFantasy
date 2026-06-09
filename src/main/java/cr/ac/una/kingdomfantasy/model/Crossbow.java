@@ -11,7 +11,6 @@ public class Crossbow {
     private static final double MAX_PROJECTILE_SPEED = 564;
     private static final double MIN_KNOCKBACK = 26;
     private static final double MAX_KNOCKBACK = 47.6;
-
     private CrossbowDesign design;
     private int damageLevel;
     private int speedLevel;
