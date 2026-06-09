@@ -12,13 +12,13 @@ public enum MonsterType {
             new CombatStats(40, 70, 250, 70, 1.05, 0, 10, 0.08),
             90, 46, 18, 80),
     GOLLUX("Gollux", "gollux", AttackStyle.MELEE, 40,
-            new CombatStats(250, 80, 40, 78, 1.85, 0, 15, 0.45),
+            new CombatStats(110, 80, 40, 78, 1.85, 0, 15, 0.45),
             66, 60, 34, 68),
     PENGU("Pengu", "pengu", AttackStyle.RANGED, 60,
             new CombatStats(60, 50, 100, 300, 2.35, 550, 20, 0.15),
             74, 86, 27, 34),
     CAT("Cat", "cat", AttackStyle.RANGED, 80,
-            new CombatStats(210, 250, 120, 350, 2.75, 650, 25, 0.35),
+            new CombatStats(90, 250, 120, 350, 2.75, 650, 25, 0.35),
             88, 78, 20, 50);
 
     private static final double RANGED_ATTACK_RANGE_MULTIPLIER = 3.0;

@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../style/MainStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.kingdomfantasy.controller.InstruccionesController">
    <children>
       <ImageView fx:id="imvFondo" fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" smooth="false">
@@ -46,7 +45,7 @@
 
                                   <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                 <Label styleClass="jfx-label-instruction-title" text="Hechizos" />
-                                <Label styleClass="jfx-label-instruction-copy" text="Meteoro causa dano en area. Si deja a un monstruo sin vida, el monstruo muere y reproduce su animacion de derrota." wrapText="true" />
+                                <Label styleClass="jfx-label-instruction-copy" text="Meteoro causa daño en area. Si deja a un monstruo sin vida, el monstruo muere y reproduce su animacion de derrota." wrapText="true" />
                                 <Label styleClass="jfx-label-instruction-copy" text="Hielo congela a los enemigos dentro del radio. Ambos hechizos consumen mana y tienen tiempo de recarga." wrapText="true" />
                             </VBox>
 
@@ -58,8 +57,7 @@
 
                                   <VBox spacing="10.0" styleClass="jfx-card-settings" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                 <Label styleClass="jfx-label-instruction-title" text="Arbol de habilidades" />
-                                <Label styleClass="jfx-label-instruction-copy" text="Despues de cada victoria puedes gastar monedas en Mejoras. Sube dano y velocidad de la ballesta, vida del castillo, capacidad de mana, dano/radio del meteoro y duracion/radio del hielo." wrapText="true" />
-                                <Label styleClass="jfx-label-instruction-copy" text="Tambien puedes cambiar la skin de la ballesta. Las mejoras se guardan en el progreso del jugador actual." wrapText="true" />
+                                <Label styleClass="jfx-label-instruction-copy" text="Despues de cada victoria puedes gastar monedas en Mejoras. Sube daño y velocidad de la ballesta, vida del castillo, capacidad de mana, daño/radio del meteoro y duracion/radio del hielo." wrapText="true" />
                             </VBox>
                         </children>
                   <rowConstraints>

@@ -66,7 +66,7 @@ public class Monster extends LivingEntity {
                 fraction = 0.025;
                 break;
         }
-        return castle.getStats().getMaxHealth() * fraction;
+        return castle.getStats().getMaxHealth() * fraction +(0.5*level);
     }
 
     public boolean attackLiving(LivingEntity target) {

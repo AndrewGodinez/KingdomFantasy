@@ -1,7 +1,7 @@
 package cr.ac.una.kingdomfantasy.model;
 
 public enum SpecialPowerType {
-    METEOR(55, 96, 0, 5.0),
+    METEOR(90, 96, 0, 5.0),
     ICE(0, 112, 3.0, 5.0);
 
     private final double baseDamage;

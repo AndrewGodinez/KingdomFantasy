@@ -393,7 +393,7 @@ public class GameSession {
     }
 
     private double castleDamagePerHit() {
-        return castle.getStats().getMaxHealth() * 0.025;
+        return castle.getStats().getMaxHealth() * 0.025+ (0.5*levelDefinition.getNumber());
     }
 
     private double clamp(double value, double min, double max) {
