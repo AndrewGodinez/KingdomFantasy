@@ -15,12 +15,7 @@ public final class LevelFactory {
         int safeLevel = Math.max(MIN_LEVEL, Math.min(MAX_LEVEL, level));
         List<MonsterType> availableTypes = MonsterType.availableForLevel(safeLevel);
         List<WaveDefinition> waves = new ArrayList<>();
-
-        // The total number of monsters grows slowly with the level.
         int totalMonsters = 7 + safeLevel / 3;
-
-        // Divide the monsters equally among the available types. The first
-        // "remainder" types get one extra monster so the totals add up.
         int perType = totalMonsters / availableTypes.size();
         int remainder = totalMonsters % availableTypes.size();
         for (int i = 0; i < availableTypes.size(); i++) {

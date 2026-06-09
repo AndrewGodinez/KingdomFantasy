@@ -12,8 +12,7 @@ public abstract class GameEntity {
     private EntityState state = EntityState.IDLE;
     private final HitBox hitBox;
 
-    protected GameEntity(double x, double y, double width, double height,
-            double hitBoxWidth, double hitBoxHeight, double hitBoxOffsetX, double hitBoxOffsetY) {
+    protected GameEntity(double x, double y, double width, double height, double hitBoxWidth, double hitBoxHeight, double hitBoxOffsetX, double hitBoxOffsetY) {
         this.x = x;
         this.y = y;
         this.width = width;

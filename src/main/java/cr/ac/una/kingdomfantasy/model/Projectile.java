@@ -16,9 +16,7 @@ public class Projectile extends GameEntity {
     private double traveledDistance;
     private boolean active = true;
 
-    public Projectile(ProjectileOwner owner, double x, double y, double width, double height,
-            double hitBoxWidth, double hitBoxHeight, double hitBoxOffsetX, double hitBoxOffsetY,
-            Vector2D velocity, double damage, double maxDistance, double knockbackForce, String imageAsset) {
+    public Projectile(ProjectileOwner owner, double x, double y, double width, double height, double hitBoxWidth, double hitBoxHeight, double hitBoxOffsetX, double hitBoxOffsetY, Vector2D velocity, double damage, double maxDistance, double knockbackForce, String imageAsset) {
         super(x, y, width, height, hitBoxWidth, hitBoxHeight, hitBoxOffsetX, hitBoxOffsetY);
         this.owner           = owner;
         this.velocity        = velocity == null ? Vector2D.ZERO : velocity;
@@ -29,8 +27,7 @@ public class Projectile extends GameEntity {
         this.isCrossbowArrow = false;
     }
 
-    public Projectile(ProjectileOwner owner, double x, double y, double width, double height,
-            Vector2D velocity, double damage, double maxDistance, double knockbackForce) {
+    public Projectile(ProjectileOwner owner, double x, double y, double width, double height, Vector2D velocity, double damage, double maxDistance, double knockbackForce) {
         super(x, y, width, height,
               HB_HALF * 2, HB_HALF * 2,          
               SPRITE_HALF_W - HB_HALF, -HB_HALF); 
@@ -82,12 +79,35 @@ public class Projectile extends GameEntity {
         return true;
     }
 
-    public ProjectileOwner getOwner()            { return owner; }
-    public Vector2D        getVelocity()          { return velocity; }
-    public double          getDamage()            { return damage; }
-    public double          getMaxDistance()       { return maxDistance; }
-    public double          getTraveledDistance()  { return traveledDistance; }
-    public boolean         isActive()             { return active; }
-    public void            deactivate()           { active = false; }
-    public String          getImageAsset()        { return imageAsset; }
+    public ProjectileOwner getOwner(){
+        return owner; 
+    }
+    
+    public Vector2D getVelocity(){ 
+        return velocity;
+    }
+    
+    public double getDamage(){ 
+        return damage; 
+    }
+    
+    public double getMaxDistance(){ 
+        return maxDistance;
+    }
+    
+    public double getTraveledDistance(){ 
+        return traveledDistance; 
+    }
+    
+    public boolean isActive(){ 
+        return active; 
+    }
+    
+    public void deactivate(){ 
+        active = false; 
+    }
+    
+    public String getImageAsset(){ 
+        return imageAsset; 
+    }
 }

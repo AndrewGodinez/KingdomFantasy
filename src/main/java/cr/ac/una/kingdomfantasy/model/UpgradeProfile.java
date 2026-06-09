@@ -35,8 +35,6 @@ public class UpgradeProfile {
 
     public int getUpgradeCost(UpgradeType type) {
         int level = getLevel(type);
-        // Simple linear cost: each new level costs a fixed amount more than the
-        // previous one (baseCost for level 1, then baseCost + increment per level).
         int baseCost;
         int increment;
         switch (type) {

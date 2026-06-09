@@ -11,8 +11,7 @@ public class CombatStats {
     private int scoreValue;
     private double knockbackResistance;
 
-    public CombatStats(double maxHealth, double damage, double speed, double attackRange,
-            double attackCooldown, double projectileSpeed, int scoreValue, double knockbackResistance) {
+    public CombatStats(double maxHealth, double damage, double speed, double attackRange, double attackCooldown, double projectileSpeed, int scoreValue, double knockbackResistance) {
         this.maxHealth = Math.max(1, maxHealth);
         this.damage = Math.max(0, damage);
         this.speed = Math.max(0, speed);
@@ -24,20 +23,11 @@ public class CombatStats {
     }
 
     public CombatStats copy() {
-        return new CombatStats(maxHealth, damage, speed, attackRange, attackCooldown,
-                projectileSpeed, scoreValue, knockbackResistance);
+        return new CombatStats(maxHealth, damage, speed, attackRange, attackCooldown, projectileSpeed, scoreValue, knockbackResistance);
     }
 
     public CombatStats scaled(double healthScale, double damageScale, double speedScale, double scoreScale) {
-        return new CombatStats(
-                maxHealth * healthScale,
-                damage * damageScale,
-                speed * speedScale,
-                attackRange,
-                attackCooldown,
-                projectileSpeed,
-                (int) Math.round(scoreValue * scoreScale),
-                knockbackResistance);
+        return new CombatStats(maxHealth * healthScale, damage * damageScale, speed * speedScale, attackRange, attackCooldown, projectileSpeed, (int) Math.round(scoreValue * scoreScale), knockbackResistance);
     }
 
     public double getMaxHealth() {

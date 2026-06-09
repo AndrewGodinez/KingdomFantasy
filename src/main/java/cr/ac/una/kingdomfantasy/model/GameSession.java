@@ -34,7 +34,6 @@ public class GameSession {
     private final int totalMonsters;
     private final double heroSpawnX;
     private final double heroSpawnY;
-
     private int score;
     private int defeatedMonsters;
     private double elixir;
@@ -87,14 +86,11 @@ public class GameSession {
         checkEndState();
     }
 
-    // Advances the level clock and refills the elixir bar.
     private void updateTimers(double delta) {
         elapsedSeconds = Math.min(LEVEL_DURATION_SECONDS, elapsedSeconds + delta);
         regenerateElixir(delta);
     }
 
-    // Advances every per-frame timer of the player's entities: the crossbow
-    // cooldown, the hero, the castle and the special power cooldowns.
     private void updateEntities(double delta) {
         crossbow.update(delta);
         hero.update(delta);
@@ -261,8 +257,6 @@ public class GameSession {
     }
 }
 
-    // Adds the points of every monster that just died (each monster is only
-    // counted once because claimScoreValue() returns 0 after the first call).
     private void collectDeadMonsterScores() {
         for (Monster monster : monsters) {
             int value = monster.claimScoreValue();
@@ -273,8 +267,6 @@ public class GameSession {
         }
     }
 
-    // Removes monsters that are dead, already scored, and whose death
-    // animation has finished playing.
     private void removeFinishedMonsters() {
         Iterator<Monster> iterator = monsters.iterator();
         while (iterator.hasNext()) {
@@ -371,7 +363,6 @@ public class GameSession {
     }
 
     private List<Integer> buildGroupSizes(int totalMonsters) {
-        // Split the monsters into small random groups of 1 to 3.
         List<Integer> groupSizes = new ArrayList<>();
         int remaining = totalMonsters;
         while (remaining > 0) {
@@ -383,8 +374,7 @@ public class GameSession {
     }
 
     private double spawnWindowForLevel(int level) {
-        // The higher the level, the longer the spawn window so monsters keep
-        // coming for more time.
+
         if (level < 20) {
             return 30;
         }
@@ -402,9 +392,6 @@ public class GameSession {
         return hero.getStats().getMaxHealth() / 6.0;
     }
 
-    // A monster projectile that reaches the castle deals a small, fixed fraction
-    // of the castle's max health (same idea as the melee attack): proportional
-    // to the castle's health and never a one-shot, the cat included.
     private double castleDamagePerHit() {
         return castle.getStats().getMaxHealth() * 0.025;
     }

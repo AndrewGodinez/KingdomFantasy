@@ -12,8 +12,7 @@ public class LevelDefinition {
     private final double maxElixir;
     private final double elixirRegenPerSecond;
 
-    public LevelDefinition(int number, List<WaveDefinition> waves,
-            double castleHealth, double maxElixir, double elixirRegenPerSecond) {
+    public LevelDefinition(int number, List<WaveDefinition> waves, double castleHealth, double maxElixir, double elixirRegenPerSecond) {
         this.number = Math.max(1, Math.min(100, number));
         List<WaveDefinition> safeWaves = waves == null ? Collections.emptyList() : waves;
         this.waves = Collections.unmodifiableList(new ArrayList<>(safeWaves));

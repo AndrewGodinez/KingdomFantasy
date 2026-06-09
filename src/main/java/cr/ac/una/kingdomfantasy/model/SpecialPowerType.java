@@ -9,8 +9,7 @@ public enum SpecialPowerType {
     private final double baseFreezeSeconds;
     private final double baseCooldown;
 
-    SpecialPowerType(double baseDamage, double baseRadius, double baseFreezeSeconds,
-            double baseCooldown) {
+    SpecialPowerType(double baseDamage, double baseRadius, double baseFreezeSeconds, double baseCooldown) {
         this.baseDamage = baseDamage;
         this.baseRadius = baseRadius;
         this.baseFreezeSeconds = baseFreezeSeconds;

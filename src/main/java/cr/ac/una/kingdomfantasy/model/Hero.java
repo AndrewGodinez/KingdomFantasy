@@ -92,6 +92,11 @@ public class Hero extends LivingEntity {
                         body.getWidth() + 56,
                         reach + 18);
             case RIGHT:
+                return new Rectangle2D(
+                        body.getMaxX() - 18,
+                        body.getMinY() - 22,
+                        reach + 18,
+                        body.getHeight() + 44);
             default:
                 return new Rectangle2D(
                         body.getMaxX() - 18,
@@ -103,12 +108,16 @@ public class Hero extends LivingEntity {
 
     private double damageAgainst(Monster monster) {
         switch (monster.getType()) {
+            case DINO_REX:
+                return monster.getStats().getMaxHealth() / 3.0;
             case BADGER:
                 return monster.getStats().getMaxHealth() / 3.0;
             case GOLLUX:
-                return monster.getStats().getMaxHealth() / 6.0;
+                return monster.getStats().getMaxHealth() / 4.0;
             case PENGU:
-            case DINO_REX:
+                return monster.getStats().getMaxHealth() / 3.0;
+            case CAT:
+                return monster.getStats().getMaxHealth() / 4.0;
             default:
                 return monster.getStats().getMaxHealth() / 4.0;
         }

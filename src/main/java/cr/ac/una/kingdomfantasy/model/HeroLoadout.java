@@ -17,13 +17,7 @@ public class HeroLoadout {
     }
 
     public static HeroLoadout defaultKnightNoHelmetNoBeard() {
-        return new HeroLoadout(EnumSet.of(
-                HeroAccessory.HAIR,
-                HeroAccessory.BOOTS,
-                HeroAccessory.CHESTPLATE,
-                HeroAccessory.GLOVES,
-                HeroAccessory.LEGGINGS,
-                HeroAccessory.SWORD_ALT));
+        return new HeroLoadout(EnumSet.of( HeroAccessory.HAIR, HeroAccessory.BOOTS, HeroAccessory.CHESTPLATE, HeroAccessory.GLOVES,  HeroAccessory.LEGGINGS, HeroAccessory.SWORD_ALT));
     }
 
     public boolean has(HeroAccessory accessory) {

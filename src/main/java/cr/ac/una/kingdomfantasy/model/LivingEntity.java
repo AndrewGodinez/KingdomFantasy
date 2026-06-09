@@ -7,9 +7,7 @@ public abstract class LivingEntity extends GameEntity {
     private double attackCooldownRemaining;
     private double frozenRemaining;
 
-    protected LivingEntity(double x, double y, double width, double height,
-            double hitBoxWidth, double hitBoxHeight, double hitBoxOffsetX, double hitBoxOffsetY,
-            CombatStats stats) {
+    protected LivingEntity(double x, double y, double width, double height, double hitBoxWidth, double hitBoxHeight, double hitBoxOffsetX, double hitBoxOffsetY, CombatStats stats) {
         super(x, y, width, height, hitBoxWidth, hitBoxHeight, hitBoxOffsetX, hitBoxOffsetY);
         this.stats = stats.copy();
         this.health = stats.getMaxHealth();

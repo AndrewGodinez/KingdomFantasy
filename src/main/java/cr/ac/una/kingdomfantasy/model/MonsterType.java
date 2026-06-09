@@ -33,9 +33,7 @@ public enum MonsterType {
     private final double hitBoxOffsetX;
     private final double hitBoxOffsetY;
 
-    MonsterType(String displayName, String assetPrefix, AttackStyle attackStyle, int introLevel,
-            CombatStats baseStats, double hitBoxWidth, double hitBoxHeight,
-            double hitBoxOffsetX, double hitBoxOffsetY) {
+    MonsterType(String displayName, String assetPrefix, AttackStyle attackStyle, int introLevel, CombatStats baseStats, double hitBoxWidth, double hitBoxHeight, double hitBoxOffsetX, double hitBoxOffsetY) {
         this.displayName = displayName;
         this.assetPrefix = assetPrefix;
         this.attackStyle = attackStyle;
@@ -49,15 +47,6 @@ public enum MonsterType {
 
     public CombatStats createStatsForLevel(int level) {
         int safeLevel = Math.max(1, Math.min(100, level));
-        // Monster toughness grows gradually with the GAME LEVEL (the player's
-        // progress), not with the player's upgrades. Health rises ~4% per level
-        // (about x5 at level 100), so higher levels are hard but still beatable
-        // with a maxed crossbow + hero + spells.
-        //
-        // The damage a monster deals to the CASTLE is handled apart and is
-        // proportional to the castle's maximum health (see Monster.attackCastle
-        // and GameSession.castleDamagePerHit), so it never depends on this
-        // damageScale and can never drain the castle in a single hit.
         double healthScale = 1.0 + (safeLevel - 1) * 0.04;
         double damageScale = 1.0 + (safeLevel - 1) * 0.04;
         double speedScale = 1.0 + Math.min(0.15, (safeLevel - 1) * 0.005);

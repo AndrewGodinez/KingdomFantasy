@@ -16,16 +16,7 @@ public final class SpriteCatalog {
     private static final Map<MonsterType, Map<SpriteAnimationId, SpriteAnimationSpec>> MONSTER_ANIMATIONS = buildMonsterAnimations();
     private static final Map<SpriteAnimationId, SpriteAnimationSpec> HERO_BASE_ANIMATIONS = buildHeroBaseAnimations();
     private static final Map<SpriteAnimationId, SpriteAnimationSpec> SPELL_ANIMATIONS = buildSpellAnimations();
-    private static final List<HeroAccessory> HERO_LAYER_ORDER = Collections.unmodifiableList(Arrays.asList(
-            HeroAccessory.HAIR,
-            HeroAccessory.LEGGINGS,
-            HeroAccessory.BOOTS,
-            HeroAccessory.CHESTPLATE,
-            HeroAccessory.GLOVES,
-            HeroAccessory.SWORD,
-            HeroAccessory.SWORD_ALT,
-            HeroAccessory.HAT,
-            HeroAccessory.BEARD));
+    private static final List<HeroAccessory> HERO_LAYER_ORDER = Collections.unmodifiableList(Arrays.asList(HeroAccessory.HAIR, HeroAccessory.LEGGINGS, HeroAccessory.BOOTS, HeroAccessory.CHESTPLATE, HeroAccessory.GLOVES, HeroAccessory.SWORD, HeroAccessory.SWORD_ALT, HeroAccessory.HAT, HeroAccessory.BEARD));
 
     private SpriteCatalog() {
     }
