@@ -33,11 +33,6 @@ public class SpecialPower {
         return cooldownRemaining <= 0 && availableMana >= getManaCost(maxMana);
     }
 
-    public SpecialPowerCast castAt(double x, double y, List<Monster> monsters) {
-        beginCast();
-        return applyAt(x, y, monsters);
-    }
-
     public void beginCast() {
         cooldownRemaining = getCooldown();
     }

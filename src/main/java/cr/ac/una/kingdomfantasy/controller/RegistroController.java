@@ -35,7 +35,7 @@ public class RegistroController extends Controller implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private Label lblMessage;
+    private Label lbMessage;
     @FXML
     private MFXButton btnCancel;
     @FXML
@@ -65,7 +65,7 @@ public class RegistroController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txfName.setTextFormatter(Formato.getInstance().letrasFormat(40));
-        lblMessage.setText("");
+        lbMessage.setText("");
         imvFondo.fitHeightProperty().bind(root.heightProperty());
         imvFondo.fitWidthProperty().bind(root.widthProperty());
     }    
@@ -85,16 +85,16 @@ public class RegistroController extends Controller implements Initializable {
         MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         String nombre = txfName.getText().trim();
         if (nombre.isEmpty()) {
-            lblMessage.setText("Debe ingresar un nombre.");
+            lbMessage.setText("Debe ingresar un nombre.");
             return;
         }
         if (idBallestaSeleccionada == 0) {
-            lblMessage.setText("Debe seleccionar un tipo de ballesta.");
+            lbMessage.setText("Debe seleccionar un tipo de ballesta.");
             return;
         }
         Respuesta existe = playerService.getPlayerByName(nombre);
         if (existe.getEstado()) {
-            lblMessage.setText("Ya existe un jugador con ese nombre.");
+            lbMessage.setText("Ya existe un jugador con ese nombre.");
             return;
         }
         try {
@@ -131,10 +131,10 @@ public class RegistroController extends Controller implements Initializable {
                 AppContext.getInstance().set("Player", playerCreado);
                 FlowController.getInstance().goViewInStage("MejorasView", getStage());
             } else {
-                lblMessage.setText(resPlayer.getMensaje());
+                lbMessage.setText(resPlayer.getMensaje());
             }
         } catch (Exception ex) {
-            lblMessage.setText("Error inesperado al crear el jugador.");
+            lbMessage.setText("Error inesperado al crear el jugador.");
         }
     }
 
@@ -186,7 +186,7 @@ public class RegistroController extends Controller implements Initializable {
             imagenPerfilBytes = bos.toByteArray();
             
         } catch (IOException ex) {
-            lblMessage.setText("Error al cargar la imagen.");
+            lbMessage.setText("Error al cargar la imagen.");
         }
     }
     }

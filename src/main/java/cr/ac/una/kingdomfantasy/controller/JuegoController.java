@@ -26,9 +26,7 @@ import cr.ac.una.kingdomfantasy.util.SpriteAnimationSpec;
 import cr.ac.una.kingdomfantasy.util.SpriteAnimator;
 import cr.ac.una.kingdomfantasy.util.SpriteCatalog;
 import java.net.URL;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -102,7 +100,6 @@ public class JuegoController extends Controller implements Initializable {
     private static final int OVERLAY_ATLAS_ROWS = 4;
     private static final int OVERLAY_FRAME_COUNT = 16;
     private static final int DEFEAT_TEXT_FRAME_COUNT = 13;
-    private static final int MAX_PROJECTILE_NODE_POOL_SIZE = 64;
     private static boolean gameplayAssetsWarmed;
     @FXML
     private MFXButton btnBackToMenu;
@@ -144,21 +141,21 @@ public class JuegoController extends Controller implements Initializable {
     @FXML
     private StackPane pauseOverlay;
     @FXML
-    private Label lblLevel;
+    private Label lbLevel;
     @FXML
-    private Label lblTimer;
+    private Label lbTimer;
     @FXML
-    private Label lblLevelPoints;
+    private Label lbLevelPoints;
     @FXML
-    private Label lblScoreMultiplier;
+    private Label lbScoreMultiplier;
     @FXML
-    private Label lblCastleValue;
+    private Label lbCastleValue;
     @FXML
-    private Label lblManaValue;
+    private Label lbManaValue;
     @FXML
-    private Label lblWaveValue;
+    private Label lbWaveValue;
     @FXML
-    private Label lblReviewMode;
+    private Label lbReviewMode;
     @FXML
     private ImageView imvOverlayAnimation;
     @FXML
@@ -182,7 +179,7 @@ public class JuegoController extends Controller implements Initializable {
     @FXML
     private MFXButton btnIceSpell;
     @FXML
-    private HBox reviewHud;
+    private HBox hbReviewHud;
     @FXML
     private MFXButton btnReviewPreviousLevel;
     @FXML
@@ -198,7 +195,6 @@ public class JuegoController extends Controller implements Initializable {
 
     private final Map<Monster, MonsterNode> monsterNodes = new HashMap<>();
     private final Map<Projectile, ImageView> projectileNodes = new HashMap<>();
-    private final Deque<ImageView> projectileNodePool = new ArrayDeque<>();
     private final List<SpriteAnimator> effectAnimators = new ArrayList<>();
     private final List<Timeline> effectTimelines = new ArrayList<>();
     private final Map<SpecialPowerType, Image[]> spellIconImages = new EnumMap<>(SpecialPowerType.class);
@@ -217,6 +213,10 @@ public class JuegoController extends Controller implements Initializable {
     private AnimationTimer gameLoop;
     private long lastUpdate;
     private Vector2D lastAim = new Vector2D(WORLD_WIDTH * 0.75, WORLD_HEIGHT * 0.5);
+    // Last known mouse position in world coordinates. The spell aim circle
+    // always follows this point, in BOTH control schemes, so the player aims
+    // spells with the mouse even while moving the hero with the keyboard.
+    private Vector2D spellPointer = new Vector2D(WORLD_WIDTH * 0.75, WORLD_HEIGHT * 0.5);
     private Vector2D heroMoveTarget;
     private ControlScheme controlScheme;
     private CrossbowDesign crossbowDesign;
@@ -457,9 +457,6 @@ public class JuegoController extends Controller implements Initializable {
         imvCrossbow.setSmooth(true);
         imvCrossbow.setLayoutX(CROSSBOW_X);
         imvCrossbow.setLayoutY(CROSSBOW_Y);
-        for (ImageView node : projectileNodes.values()) {
-            recycleProjectileNode(node);
-        }
         actorPane.getChildren().clear();
         projectilePane.getChildren().clear();
         effectsPane.getChildren().clear();
@@ -487,6 +484,7 @@ public class JuegoController extends Controller implements Initializable {
         heroOutOfCombatSeconds = 0;
         lastHeroHealth = hero.getHealth();
         lastAim = new Vector2D(WORLD_WIDTH - 80, CROSSBOW_SOURCE_Y);
+        spellPointer = new Vector2D(WORLD_WIDTH * 0.5, WORLD_HEIGHT * 0.5);
         lastCrossbowAngle = Double.NaN;
         hudUpdateAccumulator = 0;
         hudDirty = true;
@@ -567,6 +565,10 @@ public class JuegoController extends Controller implements Initializable {
             clearDebugHitboxes();
         }
         if ((session.isWon() || session.isLost()) && !endShown) {
+            // Force one last HUD refresh so the castle bar is seen reaching 0
+            // (or its final value) BEFORE the victory/defeat animation appears.
+            updateHud();
+            updateSpellHud();
             showEndOverlay();
         }
     }
@@ -766,6 +768,7 @@ public class JuegoController extends Controller implements Initializable {
     private void onWorldMousePressed(MouseEvent event) {
         mouseFireHeld = false;
         Vector2D worldPoint = worldPointFromMouseEvent(event);
+        spellPointer = worldPoint;
         if (session != null && session.getHero().isDead()) {
             heroMoveTarget = null;
             clearHeroSelection();
@@ -798,20 +801,32 @@ public class JuegoController extends Controller implements Initializable {
     }
 
     private void onWorldMouseDragged(MouseEvent event) {
-        if (!mouseFireHeld || controlScheme != ControlScheme.MOUSE || session == null
+        if (session == null) {
+            return;
+        }
+        // Always track the mouse for spell aiming, even in keyboard mode.
+        spellPointer = worldPointFromMouseEvent(event);
+        updateSpellAim();
+        if (!mouseFireHeld || controlScheme != ControlScheme.MOUSE
                 || session.isPaused() || session.isWon() || session.isLost()) {
             return;
         }
-        lastAim = worldPointFromMouseEvent(event);
+        lastAim = spellPointer;
         updateCrossbowAngle();
         event.consume();
     }
 
     private void onWorldMouseMoved(MouseEvent event) {
-        if (session == null || controlScheme != ControlScheme.MOUSE) {
+        if (session == null) {
             return;
         }
-        lastAim = worldPointFromMouseEvent(event);
+        // The spell aim circle follows the mouse in both control schemes.
+        spellPointer = worldPointFromMouseEvent(event);
+        updateSpellAim();
+        if (controlScheme != ControlScheme.MOUSE) {
+            return;
+        }
+        lastAim = spellPointer;
         updateCrossbowAngle();
     }
 
@@ -838,6 +853,7 @@ public class JuegoController extends Controller implements Initializable {
         selectedPower = null;
         heroSelected = true;
         heroNode.setSelected(true);
+        hideSpellAim(); 
         updateSpellHud();
         root.requestFocus();
     }
@@ -1107,7 +1123,6 @@ public class JuegoController extends Controller implements Initializable {
         for (Projectile projectile : removedProjectileScratch) {
             ImageView node = projectileNodes.remove(projectile);
             projectilePane.getChildren().remove(node);
-            recycleProjectileNode(node);
         }
         for (Projectile projectile : session.getProjectiles()) {
             ImageView node = projectileNodes.get(projectile);
@@ -1121,11 +1136,8 @@ public class JuegoController extends Controller implements Initializable {
     }
 
     private ImageView createProjectileNode(Projectile projectile) {
-        ImageView imageView = projectileNodePool.pollFirst();
-        if (imageView == null) {
-            imageView = new ImageView();
-            imageView.setSmooth(true);
-        }
+        ImageView imageView = new ImageView();
+        imageView.setSmooth(true);
         if (projectile.getImageAsset() != null) {
             imageView.setImage(loadResourceImage("enemy/" + projectile.getImageAsset()));
             if ("cat_bullet.png".equals(projectile.getImageAsset())) {
@@ -1151,17 +1163,6 @@ public class JuegoController extends Controller implements Initializable {
         }
         imageView.setVisible(true);
         return imageView;
-    }
-
-    private void recycleProjectileNode(ImageView imageView) {
-        if (imageView == null || projectileNodePool.size() >= MAX_PROJECTILE_NODE_POOL_SIZE) {
-            return;
-        }
-        imageView.setVisible(false);
-        imageView.setRotate(0);
-        imageView.setScaleX(1);
-        imageView.setViewport(null);
-        projectileNodePool.addLast(imageView);
     }
 
     private void updateProjectileNode(Projectile projectile, ImageView imageView) {
@@ -1264,8 +1265,8 @@ public class JuegoController extends Controller implements Initializable {
         double imgH = 1048.0 * scale;
         aimOverlay.setFitWidth(imgW);
         aimOverlay.setFitHeight(imgH);
-        double fx = lastAim.getX();
-        double fy = lastAim.getY() - effectsPane.getLayoutY();
+        double fx = spellPointer.getX();
+        double fy = spellPointer.getY() - effectsPane.getLayoutY();
         aimOverlay.setLayoutX(fx - imgW / 2.0);
         aimOverlay.setLayoutY(fy - imgH / 2.0);
         if (!effectsPane.getChildren().contains(aimOverlay)) {
@@ -1302,8 +1303,8 @@ public class JuegoController extends Controller implements Initializable {
 
     private void updateSpellAim() {
         if (selectedPower != null && aimOverlay != null && aimOverlay.isVisible()) {
-            double fx = lastAim.getX();
-            double fy = lastAim.getY() - effectsPane.getLayoutY();
+            double fx = spellPointer.getX();
+            double fy = spellPointer.getY() - effectsPane.getLayoutY();
             positionSpellAim(fx, fy);
         }
     }
@@ -1384,15 +1385,15 @@ public class JuegoController extends Controller implements Initializable {
         if (session == null) {
             return;
         }
-        setLabelText(lblLevel, "Nivel " + session.getLevelDefinition().getNumber());
+        setLabelText(lbLevel, "Nivel " + session.getLevelDefinition().getNumber());
         double multiplier = levelScoreMultiplier(session.getCastle().getHealthPercent());
-        setLabelText(lblLevelPoints, calculateLevelPoints(session.getScore(), session.getCastle().getHealthPercent()) + " pts");
-        setLabelText(lblScoreMultiplier, formatMultiplier(multiplier));
-        setLabelText(lblTimer, formatTime(session.getRemainingSeconds()));
-        setLabelText(lblWaveValue, session.getDefeatedMonsters() + "/" + session.getTotalMonsters());
-        setLabelText(lblCastleValue, (int) Math.ceil(session.getCastle().getHealth()) + " / "
+        setLabelText(lbLevelPoints, calculateLevelPoints(session.getScore(), session.getCastle().getHealthPercent()) + " pts");
+        setLabelText(lbScoreMultiplier, formatMultiplier(multiplier));
+        setLabelText(lbTimer, formatTime(session.getRemainingSeconds()));
+        setLabelText(lbWaveValue, session.getDefeatedMonsters() + "/" + session.getTotalMonsters());
+        setLabelText(lbCastleValue, (int) Math.ceil(session.getCastle().getHealth()) + " / "
                 + (int) Math.ceil(session.getCastle().getStats().getMaxHealth()));
-        setLabelText(lblManaValue, (int) Math.floor(session.getElixir()) + " / "
+        setLabelText(lbManaValue, (int) Math.floor(session.getElixir()) + " / "
                 + (int) Math.ceil(session.getLevelDefinition().getMaxElixir()));
         setProgress(prgWave, session.getProgress());
         setProgress(prgLevelTime, session.getTimeProgress());
@@ -1419,12 +1420,12 @@ public class JuegoController extends Controller implements Initializable {
 
     private void updateReviewHud() {
         boolean reviewMode = isReviewModeEnabled();
-        if (reviewHud != null) {
-            reviewHud.setVisible(reviewMode);
-            reviewHud.setManaged(reviewMode);
+        if (hbReviewHud != null) {
+            hbReviewHud.setVisible(reviewMode);
+            hbReviewHud.setManaged(reviewMode);
         }
-        if (reviewMode && lblReviewMode != null) {
-            lblReviewMode.setText("REVISION - NIVEL " + currentLevel);
+        if (reviewMode && lbReviewMode != null) {
+            lbReviewMode.setText("REVISION - NIVEL " + currentLevel);
         }
     }
 
@@ -1763,17 +1764,6 @@ public class JuegoController extends Controller implements Initializable {
 
     private double clamp(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
-    }
-
-    private String displayName(CrossbowDesign design) {
-        if (design == CrossbowDesign.PURPLE) {
-            return "Morada";
-        }
-        return "Verde";
-    }
-
-    private String displayName(SpecialPowerType type) {
-        return type == SpecialPowerType.ICE ? "Hielo" : "Meteoro";
     }
 
     private SpriteAnimationId monsterAnimationFor(Monster monster) {

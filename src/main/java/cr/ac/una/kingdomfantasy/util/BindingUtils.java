@@ -1,8 +1,9 @@
 package cr.ac.una.kingdomfantasy.util;
 
+import java.util.Map;
+import java.util.WeakHashMap;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
@@ -12,8 +13,9 @@ import javafx.scene.control.ToggleGroup;
  */
 public final class BindingUtils {
 
-    static ChangeListener<Toggle> changeListener = (ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
-    };
+    // Each ToggleGroup keeps its own listener so it can be removed later
+    // without affecting the bindings of other groups.
+    private static final Map<ToggleGroup, ChangeListener<Toggle>> listeners = new WeakHashMap<>();
 
     private BindingUtils() {
     }
@@ -33,13 +35,19 @@ public final class BindingUtils {
             }
         }
         // Update property value on toggle selection changes
-        changeListener = (ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
-            property.setValue((T) newValue.getUserData());
+        ChangeListener<Toggle> listener = (observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                property.setValue((T) newValue.getUserData());
+            }
         };
-        toggleGroup.selectedToggleProperty().addListener(changeListener);
+        listeners.put(toggleGroup, listener);
+        toggleGroup.selectedToggleProperty().addListener(listener);
     }
 
     public static <T> void unbindToggleGroupToProperty(final ToggleGroup toggleGroup, final ObjectProperty<T> property) {
-        toggleGroup.selectedToggleProperty().removeListener(changeListener);
+        ChangeListener<Toggle> listener = listeners.remove(toggleGroup);
+        if (listener != null) {
+            toggleGroup.selectedToggleProperty().removeListener(listener);
+        }
     }
 }

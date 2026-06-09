@@ -56,20 +56,20 @@
                 </VBox>
                 <VBox spacing="2.0">
                     <Label styleClass="jfx-label-footer-small" text="TU POSICIÓN" />
-                    <Label fx:id="lblCurrentPlayerName" styleClass="jfx-label-footer-name" text="Jugador Actual" />
+                    <Label fx:id="lbCurrentPlayerName" styleClass="jfx-label-footer-name" text="Jugador Actual" />
                 </VBox>
                 <Region HBox.hgrow="ALWAYS" />
                 <VBox alignment="CENTER" spacing="2.0">
                     <Label styleClass="jfx-label-footer-stat" text="RANKING" />
-                    <Label fx:id="lblCurrentPlayerRank" styleClass="jfx-label-footer-rank-value" text="#—" />
+                    <Label fx:id="lbCurrentPlayerRank" styleClass="jfx-label-footer-rank-value" text="#—" />
                 </VBox>
                 <VBox alignment="CENTER" spacing="2.0">
                     <Label styleClass="jfx-label-footer-stat" text="NIVEL" />
-                    <Label fx:id="lblCurrentPlayerLevel" styleClass="jfx-label-footer-level-value" text="—" />
+                    <Label fx:id="lbCurrentPlayerLevel" styleClass="jfx-label-footer-level-value" text="—" />
                 </VBox>
                 <VBox alignment="CENTER" spacing="2.0">
                     <Label styleClass="jfx-label-footer-stat" text="PUNTOS" />
-                    <Label fx:id="lblCurrentPlayerPoints" styleClass="jfx-label-footer-points-value" text="—" />
+                    <Label fx:id="lbCurrentPlayerPoints" styleClass="jfx-label-footer-points-value" text="—" />
                 </VBox>
             </HBox>
         </VBox>

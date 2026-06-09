@@ -73,6 +73,6 @@
             <MFXButton fx:id="btnCreatePlayer" onAction="#onActionBtnCreatePlayer" styleClass="jfx-btn-green" text="Crear Jugador" />
          </children>
       </HBox>
-      <Label fx:id="lblMessage" styleClass="jfx-label-status" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+      <Label fx:id="lbMessage" styleClass="jfx-label-status" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
    </children>
 </AnchorPane>

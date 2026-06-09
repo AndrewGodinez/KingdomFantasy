@@ -1,7 +1,6 @@
 package cr.ac.una.kingdomfantasy.util;
 
 import cr.ac.una.kingdomfantasy.App;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -101,24 +100,6 @@ public class FlowController {
         return loader;
     }
 
-    public void goMain() {
-        try {
-            Parent root = FXMLLoader.load(
-            App.class.getResource("view/PrincipalView.fxml"), this.idioma);
-            AnchorPane rootContainer = new AnchorPane(root);
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setBottomAnchor(root, 0.0);
-            AnchorPane.setLeftAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 0.0);
-            this.mainStage.setScene(new Scene(rootContainer));
-            MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
-            this.mainStage.show();
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(FlowController.class.getName())
-                    .log(Level.SEVERE, "Error inicializando la vista base.", ex);
-        }
-    }
-
     public void goView(String viewName) {
         goView(viewName, "Center", null);
     }
@@ -132,7 +113,6 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.setAccion(accion);
         controller.initialize();
-        this.parameter = null;
 
         Stage stage = controller.getStage();
         if (stage == null) {
@@ -140,25 +120,13 @@ public class FlowController {
             controller.setStage(stage);
         }
 
-        switch (location) {
-            case "Center":
-                BorderPane borderPane = (BorderPane) stage.getScene().getRoot();
-                VBox vBox = (VBox) borderPane.getCenter();
-                vBox.getChildren().clear();
-                Parent root = loader.getRoot();
-                VBox.setVgrow(root, Priority.ALWAYS);
-                if (root instanceof Region region) {
-                    
-                }
-                vBox.getChildren().add(root);
-                break;
-
-            case "Top":
-            case "Bottom":
-            case "Right":
-            case "Left":
-            default:
-                break;
+        if ("Center".equals(location)) {
+            BorderPane borderPane = (BorderPane) stage.getScene().getRoot();
+            VBox vBox = (VBox) borderPane.getCenter();
+            vBox.getChildren().clear();
+            Parent root = loader.getRoot();
+            VBox.setVgrow(root, Priority.ALWAYS);
+            vBox.getChildren().add(root);
         }
     }
 
@@ -205,7 +173,7 @@ public class FlowController {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
             cr.ac.una.kingdomfantasy.util.MusicManager.getInstance().shutdown();
-            System.exit(0);
+            Platform.exit();
         });
         controller.setStage(stage);
         Parent root = loader.getRoot();

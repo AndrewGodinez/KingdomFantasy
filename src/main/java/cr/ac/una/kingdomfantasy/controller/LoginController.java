@@ -32,7 +32,7 @@ public class LoginController extends Controller implements Initializable {
     @FXML
     private MFXTextField txfName;
     @FXML
-    private Label lblMessage;
+    private Label lbMessage;
     @FXML
     private MFXButton btnLogin;
     @FXML
@@ -49,14 +49,14 @@ public class LoginController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txfName.setTextFormatter(Formato.getInstance().letrasFormat(40));
-        lblMessage.setText("");
+        lbMessage.setText("");
         imvFondo.fitHeightProperty().bind(root.heightProperty());
         imvFondo.fitWidthProperty().bind(root.widthProperty());
     }
 
     @Override
     public void initialize() {
-        lblMessage.setText("");
+        lbMessage.setText("");
         txfName.clear();
     }
 
@@ -71,7 +71,7 @@ public class LoginController extends Controller implements Initializable {
         MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         String nombre = txfName.getText().trim();
         if (nombre.isEmpty()) {
-            lblMessage.setText("Debe ingresar el nombre del jugador.");
+            lbMessage.setText("Debe ingresar el nombre del jugador.");
             return;
         }
         verificarJugador(nombre);
@@ -94,19 +94,19 @@ public class LoginController extends Controller implements Initializable {
     private void verificarJugador(String nombre){
     Respuesta respuestaPlayer = playerService.getPlayerByName(nombre);
         if (!respuestaPlayer.getEstado()) {
-            lblMessage.setText("No existe un jugador con ese nombre.");
+            lbMessage.setText("No existe un jugador con ese nombre.");
             return;
         }
         PlayerDto playerDto = (PlayerDto) respuestaPlayer.getResultado("Player");
         Respuesta respuestaPartida = partidaService.getPartida(playerDto.getId());
         if (!respuestaPartida.getEstado()) {
-            lblMessage.setText("El jugador no tiene partida registrada.");
+            lbMessage.setText("El jugador no tiene partida registrada.");
             return;
         }
         PartidaDto partidaDto = (PartidaDto) respuestaPartida.getResultado("Partida");
         Respuesta respuestaMejora = mejoraService.getMejora(partidaDto.getIdmej().getId());
         if (!respuestaMejora.getEstado()) {
-            lblMessage.setText("No se encontraron las mejoras del jugador.");
+            lbMessage.setText("No se encontraron las mejoras del jugador.");
             return;
         }
         MejoraDto mejoraDto = (MejoraDto) respuestaMejora.getResultado("Mejora");

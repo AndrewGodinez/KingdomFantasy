@@ -24,7 +24,7 @@
                <children>
                   <AnchorPane HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="lblOnline" text="OFFLINE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                        <Label fx:id="lbOnline" text="OFFLINE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
                         <MFXButton fx:id="btnSalir" onAction="#onActionBtnSalir" styleClass="jfx-btn-menu-corner" text="Salir" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
                         <MFXButton fx:id="btnPerfil" onAction="#onActionBtnPerfil" styleClass="jfx-btn-primary" text="Perfil" visible="false" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
                      </children>

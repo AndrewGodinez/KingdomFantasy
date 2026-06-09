@@ -30,12 +30,6 @@ public class RankingController extends Controller implements Initializable {
     @FXML
     private BorderPane root;
     @FXML
-    private MFXButton btnPodium2;
-    @FXML
-    private MFXButton btnPodium1;
-    @FXML
-    private MFXButton btnPodium3;
-    @FXML
     private MFXButton btnBack;
     @FXML
     private TableView<PartidaDto> tvRanking;
@@ -50,13 +44,13 @@ public class RankingController extends Controller implements Initializable {
     @FXML
     private TableColumn<PartidaDto, Long> colPoints;
     @FXML
-    private Label lblCurrentPlayerName;
+    private Label lbCurrentPlayerName;
     @FXML
-    private Label lblCurrentPlayerRank;
+    private Label lbCurrentPlayerRank;
     @FXML
-    private Label lblCurrentPlayerLevel;
+    private Label lbCurrentPlayerLevel;
     @FXML
-    private Label lblCurrentPlayerPoints;
+    private Label lbCurrentPlayerPoints;
     @FXML
     private ImageView imvJugadorActual;
 
@@ -122,10 +116,10 @@ public class RankingController extends Controller implements Initializable {
             return;
         }
         int posicion = partidas.indexOf(partidaActual) + 1;
-        lblCurrentPlayerName.setText(partidaActual.getIdply().getNombre());
-        lblCurrentPlayerRank.setText("#" + posicion);
-        lblCurrentPlayerLevel.setText(String.valueOf(numero(partidaActual.getNivelActual())));
-        lblCurrentPlayerPoints.setText(String.valueOf(numero(partidaActual.getIdply().getPuntosTotales())));
+        lbCurrentPlayerName.setText(partidaActual.getIdply().getNombre());
+        lbCurrentPlayerRank.setText("#" + posicion);
+        lbCurrentPlayerLevel.setText(String.valueOf(numero(partidaActual.getNivelActual())));
+        lbCurrentPlayerPoints.setText(String.valueOf(numero(partidaActual.getIdply().getPuntosTotales())));
         if (imvJugadorActual != null) {
             cargarImagenActual(partidaActual.getIdply().getFotoPerfil());
         }
@@ -160,10 +154,10 @@ public class RankingController extends Controller implements Initializable {
     }
 
     private void limpiarJugadorActual() {
-        lblCurrentPlayerName.setText("Jugador Actual");
-        lblCurrentPlayerRank.setText("#—");
-        lblCurrentPlayerLevel.setText("—");
-        lblCurrentPlayerPoints.setText("—");
+        lbCurrentPlayerName.setText("Jugador Actual");
+        lbCurrentPlayerRank.setText("#—");
+        lbCurrentPlayerLevel.setText("—");
+        lbCurrentPlayerPoints.setText("—");
         if (imvJugadorActual != null) {
             imvJugadorActual.setImage(null);
         }

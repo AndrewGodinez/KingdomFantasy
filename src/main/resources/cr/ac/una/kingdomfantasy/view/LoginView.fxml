@@ -28,7 +28,7 @@
                         <MFXTextField fx:id="txfName" floatMode="BORDER" floatingText="Nombre" onKeyPressed="#onKeyPressedTxfName" prefHeight="59.0" prefWidth="309.0" styleClass="jfx-field-kingdom" />
                      </children>
                   </VBox>
-                  <Label fx:id="lblMessage" styleClass="jfx-label-status" />
+                  <Label fx:id="lbMessage" styleClass="jfx-label-status" />
                   <MFXButton fx:id="btnLogin" onAction="#onActionBtnLogin" prefHeight="51.0" prefWidth="307.0" styleClass="jfx-btn-primary" text="Entrar a Kingdom Fantasy" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>

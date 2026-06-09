@@ -1,9 +1,6 @@
 package cr.ac.una.kingdomfantasy.util;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Properties;
 
 
 public class AppContext {
@@ -30,18 +27,6 @@ public class AppContext {
         return INSTANCE;
     }
     
-    private void cargarPropiedades(){
-        try {
-            FileInputStream configFile;
-            configFile = new FileInputStream("config/properties.ini");
-            Properties appProperties = new Properties();
-            appProperties.load(configFile);
-            configFile.close();
-        } catch (IOException io) {
-            System.out.println("Archivo de configuración no encontrado.");
-        }
-    }
-
     @Override
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
@@ -56,7 +41,7 @@ public class AppContext {
     }
 
     public void delete(String parameter) {
-        context.put(parameter, null);
+        context.remove(parameter);
     }
 
 }

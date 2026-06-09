@@ -49,12 +49,18 @@ public enum MonsterType {
 
     public CombatStats createStatsForLevel(int level) {
         int safeLevel = Math.max(1, Math.min(100, level));
-        int activeLevels = Math.max(1, safeLevel - introLevel + 1);
-        int tenLevelSteps = Math.max(0, (safeLevel - 1) / 10);
-        double tierBonus = (introLevel - 1) / 20.0 * 0.10;
-        double healthScale = 1.0 + tierBonus + tenLevelSteps * 0.18;
-        double damageScale = 1.0 + activeLevels * 0.012;
-        double speedScale = 1.0 + Math.min(0.18, activeLevels * 0.002);
+        // Monster toughness grows gradually with the GAME LEVEL (the player's
+        // progress), not with the player's upgrades. Health rises ~4% per level
+        // (about x5 at level 100), so higher levels are hard but still beatable
+        // with a maxed crossbow + hero + spells.
+        //
+        // The damage a monster deals to the CASTLE is handled apart and is
+        // proportional to the castle's maximum health (see Monster.attackCastle
+        // and GameSession.castleDamagePerHit), so it never depends on this
+        // damageScale and can never drain the castle in a single hit.
+        double healthScale = 1.0 + (safeLevel - 1) * 0.04;
+        double damageScale = 1.0 + (safeLevel - 1) * 0.04;
+        double speedScale = 1.0 + Math.min(0.15, (safeLevel - 1) * 0.005);
         double scoreScale = 1.0;
         CombatStats stats = baseStats.scaled(healthScale, damageScale, speedScale, scoreScale);
         if (attackStyle == AttackStyle.RANGED) {

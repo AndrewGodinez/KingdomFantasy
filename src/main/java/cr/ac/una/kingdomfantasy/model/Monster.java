@@ -50,10 +50,31 @@ public class Monster extends LivingEntity {
             }
             return false;
         }
-        castle.takeDamage(getStats().getDamage());
+        castle.takeDamage(castleDamageAgainst(castle));
         resetAttackCooldown();
         setState(EntityState.ATTACKING);
         return true;
+    }
+
+    // The damage a monster does to the castle is a small fraction of the
+    // castle's MAXIMUM health. This keeps it proportional: if the player
+    // upgrades the castle's health, monsters hit proportionally harder, and no
+    // monster can ever take the castle down in a single hit.
+    private double castleDamageAgainst(Castle castle) {
+        double fraction;
+        switch (type) {
+            case GOLLUX:
+                fraction = 0.035;   // heavy bruiser, hits harder
+                break;
+            case BADGER:
+                fraction = 0.028;
+                break;
+            case DINO_REX:
+            default:
+                fraction = 0.025;
+                break;
+        }
+        return castle.getStats().getMaxHealth() * fraction;
     }
 
     public boolean attackLiving(LivingEntity target) {

@@ -41,7 +41,7 @@ public class PrincipalController extends Controller implements Initializable {
     @FXML
     private MFXButton btnSalir;
     @FXML
-    private Label lblOnline;
+    private Label lbOnline;
     
     PlayerDto playerDto= new PlayerDto();
     @FXML
@@ -67,14 +67,14 @@ public class PrincipalController extends Controller implements Initializable {
      MusicManager.getInstance().playTrack(MusicManager.MusicTrack.MAIN_MENU);
      playerDto= (PlayerDto) AppContext.getInstance().get("Player");
      if(playerDto!=null){
-        lblOnline.setText("Online");
+        lbOnline.setText("Online");
         btnCerrarSesion.setVisible(true);
         btnPerfil.setVisible(true);
         btnIniciarSesion.setDisable(true);
         btnNuevoJugador.setDisable(true);
      }
      else{
-        lblOnline.setText("OffLine");
+        lbOnline.setText("OffLine");
         btnCerrarSesion.setVisible(false);
         btnPerfil.setVisible(false);
         btnIniciarSesion.setDisable(false);

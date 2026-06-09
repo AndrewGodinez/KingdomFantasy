@@ -56,13 +56,13 @@
                </HBox>
                <HBox pickOnBounds="false" spacing="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0">
                   <children>
-                     <Label fx:id="lblLevel" styleClass="jfx-hud-pill" text="Nivel 1" />
+                     <Label fx:id="lbLevel" styleClass="jfx-hud-pill" text="Nivel 1" />
                      <VBox alignment="TOP_CENTER" styleClass="jfx-bar-ability">
                         <children>
                            <HBox alignment="CENTER" prefWidth="180.0">
                               <children>
                                  <Label styleClass="jfx-hud-strong-font" text="Oleada " />
-                                 <Label fx:id="lblWaveValue" styleClass="jfx-hud-strong-font" text="0/0" />
+                                 <Label fx:id="lbWaveValue" styleClass="jfx-hud-strong-font" text="0/0" />
                               </children>
                            </HBox>
                            <ProgressBar fx:id="prgWave" prefWidth="180.0" progress="0.0" styleClass="jfx-bar-wave" />
@@ -74,7 +74,7 @@
                            <HBox alignment="CENTER" prefWidth="150.0">
                               <children>
                                  <Label styleClass="jfx-hud-strong-font" text="Tiempo " />
-                                 <Label fx:id="lblTimer" styleClass="jfx-hud-strong-font" text="0:00" />
+                                 <Label fx:id="lbTimer" styleClass="jfx-hud-strong-font" text="0:00" />
                               </children>
                            </HBox>
                            <ProgressBar fx:id="prgLevelTime" prefWidth="150.0" progress="1.0" styleClass="jfx-bar-wave" />
@@ -85,28 +85,28 @@
                         <children>
                            <HBox alignment="CENTER" prefWidth="180.0">
                               <children>
-                                 <Label fx:id="lblLevelPoints" styleClass="jfx-label-score-caption" text="0 pts" />
+                                 <Label fx:id="lbLevelPoints" styleClass="jfx-label-score-caption" text="0 pts" />
                               </children>
                            </HBox>
                            <HBox alignment="CENTER" prefWidth="180.0">
                               <children>
                                  <Label styleClass="jfx-label-score-caption" text="Multiplicador " />
-                                 <Label fx:id="lblScoreMultiplier" styleClass="jfx-label-score-caption" text="1.00" />
+                                 <Label fx:id="lbScoreMultiplier" styleClass="jfx-label-score-caption" text="1.00" />
                               </children>
                            </HBox>
                         </children>
                      </VBox>
+                     <HBox fx:id="hbReviewHud" alignment="CENTER" managed="false" pickOnBounds="false" spacing="6.0" visible="false">
+                        <children>
+                           <Label fx:id="lbReviewMode" styleClass="jfx-hud-pill" text="REVISIÓN" />
+                           <MFXButton fx:id="btnReviewPreviousLevel" onAction="#onActionReviewPreviousLevel" styleClass="jfx-hud-pill" text="&lt; Anterior" />
+                           <MFXButton fx:id="btnReviewCompleteLevel" onAction="#onActionReviewCompleteLevel" styleClass="jfx-hud-pill" text="Completar" />
+                           <MFXButton fx:id="btnReviewNextLevel" onAction="#onActionReviewNextLevel" styleClass="jfx-hud-pill" text="Siguiente &gt;" />
+                           <MFXButton fx:id="btnReviewLevel100" onAction="#onActionReviewLevel100" styleClass="jfx-hud-pill" text="Nivel 100" />
+                        </children>
+                     </HBox>
                   </children>
                   <padding><Insets bottom="2.0" left="2.0" right="2.0" top="2.0" /></padding>
-               </HBox>
-               <HBox fx:id="reviewHud" alignment="CENTER" managed="false" pickOnBounds="false" spacing="8.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
-                  <children>
-                     <Label fx:id="lblReviewMode" styleClass="jfx-hud-pill" text="REVISIÓN" />
-                     <MFXButton fx:id="btnReviewPreviousLevel" onAction="#onActionReviewPreviousLevel" styleClass="jfx-hud-pill" text="&lt; Anterior" />
-                     <MFXButton fx:id="btnReviewCompleteLevel" onAction="#onActionReviewCompleteLevel" styleClass="jfx-hud-pill" text="Completar" />
-                     <MFXButton fx:id="btnReviewNextLevel" onAction="#onActionReviewNextLevel" styleClass="jfx-hud-pill" text="Siguiente &gt;" />
-                     <MFXButton fx:id="btnReviewLevel100" onAction="#onActionReviewLevel100" styleClass="jfx-hud-pill" text="Nivel 100" />
-                  </children>
                </HBox>
                <HBox alignment="CENTER" pickOnBounds="false" spacing="8.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
                   <children>
@@ -161,7 +161,7 @@
                         <children>
                            <Label styleClass="jfx-label-hud-caption" text="Castillo: " />
                            <Region HBox.hgrow="ALWAYS" />
-                           <Label fx:id="lblCastleValue" styleClass="jfx-label-hud-caption" text="100 / 100" />
+                           <Label fx:id="lbCastleValue" styleClass="jfx-label-hud-caption" text="100 / 100" />
                         </children>
                      </HBox>
                      <ProgressBar fx:id="prgCastle" prefWidth="220.0" progress="1.0" styleClass="jfx-bar-health" />
@@ -169,7 +169,7 @@
                         <children>
                            <Label styleClass="jfx-label-hud-caption" text="Maná: " />
                            <Region HBox.hgrow="ALWAYS" />
-                           <Label fx:id="lblManaValue" styleClass="jfx-label-hud-caption" text="0 / 0" />
+                           <Label fx:id="lbManaValue" styleClass="jfx-label-hud-caption" text="0 / 0" />
                         </children>
                      </HBox>
                      <ProgressBar fx:id="prgMana" prefWidth="220.0" progress="1.0" styleClass="jfx-bar-mana" />

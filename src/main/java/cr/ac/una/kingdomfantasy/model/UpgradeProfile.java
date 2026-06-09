@@ -33,37 +33,37 @@ public class UpgradeProfile {
         return true;
     }
 
-    private static final double COST_EXPONENT = 1.7;
-
     public int getUpgradeCost(UpgradeType type) {
         int level = getLevel(type);
-        double base;
-        double k;
+        // Simple linear cost: each new level costs a fixed amount more than the
+        // previous one (baseCost for level 1, then baseCost + increment per level).
+        int baseCost;
+        int increment;
         switch (type) {
             case CROSSBOW_DAMAGE:
-                base = 18; k = 2.62; break;
+                baseCost = 18; increment = 12; break;
             case CROSSBOW_SPEED:
-                base = 16; k = 2.35; break;
+                baseCost = 16; increment = 11; break;
             case CASTLE_HEALTH:
-                base = 16; k = 2.25; break;
+                baseCost = 16; increment = 10; break;
             case ELIXIR_CAPACITY:
-                base = 12; k = 1.51; break;
+                baseCost = 12; increment = 6; break;
             case METEOR_DAMAGE:
-                base = 12; k = 1.56; break;
+                baseCost = 12; increment = 6; break;
             case METEOR_RADIUS:
-                base = 11; k = 1.37; break;
+                baseCost = 11; increment = 5; break;
             case ICE_DURATION:
-                base = 12; k = 1.56; break;
+                baseCost = 12; increment = 6; break;
             case ICE_RADIUS:
-                base = 11; k = 1.37; break;
+                baseCost = 11; increment = 5; break;
             default:
-                base = 12; k = 1.50; break;
+                baseCost = 12; increment = 6; break;
         }
-        return (int) Math.round(base + k * Math.pow(level - 1, COST_EXPONENT));
+        return baseCost + increment * (level - 1);
     }
 
     public double getCastleHealthBonus() {
-        return 1500.0 + (getLevel(UpgradeType.ELIXIR_CAPACITY) - 1) * 500;
+        return 1500.0 + (getLevel(UpgradeType.CASTLE_HEALTH) - 1) * 500;
     }
 
     public double getElixirCapacityBonus() {

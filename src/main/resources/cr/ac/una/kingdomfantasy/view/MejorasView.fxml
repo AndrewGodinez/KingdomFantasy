@@ -229,7 +229,7 @@
                                     </HBox>
                                     <ProgressBar fx:id="pgMeteorRadius" maxWidth="1.7976931348623157E308" progress="0.1" />
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                        <Label fx:id="lblMeteorRadiusLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Label fx:id="lbMeteorRadiusLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
                                         <Region HBox.hgrow="ALWAYS" />
                                         <Label fx:id="lbMeteorRadiusCost" styleClass="jfx-label-upgrade-cost" text="12 monedas" />
                                         <MFXButton fx:id="btnReviewDecreaseMeteorRadius" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseMeteorRadius" styleClass="jfx-btn-review-step" text="-" visible="false" />
@@ -256,7 +256,7 @@
                                     </HBox>
                                     <ProgressBar fx:id="pgIce" maxWidth="1.7976931348623157E308" progress="0.1" />
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                        <Label fx:id="lblIceLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Label fx:id="lbIceLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
                                         <Region HBox.hgrow="ALWAYS" />
                                         <Label fx:id="lbIceCost" styleClass="jfx-label-upgrade-cost" text="12 monedas" />
                                         <MFXButton fx:id="btnReviewDecreaseIce" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseIce" styleClass="jfx-btn-review-step" text="-" visible="false" />
@@ -283,7 +283,7 @@
                                     </HBox>
                                     <ProgressBar fx:id="pgIceRadius" maxWidth="1.7976931348623157E308" progress="0.1" />
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
-                                        <Label fx:id="lblIceRadiusLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
+                                        <Label fx:id="lbIceRadiusLevel" styleClass="jfx-label-upgrade-level" text="Nivel 1/10" />
                                         <Region HBox.hgrow="ALWAYS" />
                                         <Label fx:id="lbIceRadiusCost" styleClass="jfx-label-upgrade-cost" text="12 monedas" />
                                         <MFXButton fx:id="btnReviewDecreaseIceRadius" managed="false" mnemonicParsing="false" onAction="#onActionBtnReviewDecreaseIceRadius" styleClass="jfx-btn-review-step" text="-" visible="false" />

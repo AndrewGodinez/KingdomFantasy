@@ -16,8 +16,6 @@ public class GameSession {
     public static final double LEVEL_DURATION_SECONDS = 150;
     public static final double HERO_RESPAWN_SECONDS = 15;
     private static final double SPAWN_START_SECONDS = 1.15;
-    private static final double SPAWN_MIN_WINDOW_SECONDS = 32;
-    private static final double SPAWN_MAX_WINDOW_SECONDS = 76;
     private static final double HERO_MELEE_AGGRO_PADDING = 12;
     private static final double HERO_MELEE_AGGRO_DISTANCE = 72;
     private static final double HERO_RANGED_AGGRO_DISTANCE = 138 * 3;
@@ -79,8 +77,25 @@ public class GameSession {
             return;
         }
         double delta = Math.max(0, deltaSeconds);
+        updateTimers(delta);
+        updateEntities(delta);
+        updateSpawning(delta);
+        updateMonsters(delta);
+        updateProjectiles(delta);
+        collectDeadMonsterScores();
+        removeFinishedMonsters();
+        checkEndState();
+    }
+
+    // Advances the level clock and refills the elixir bar.
+    private void updateTimers(double delta) {
         elapsedSeconds = Math.min(LEVEL_DURATION_SECONDS, elapsedSeconds + delta);
         regenerateElixir(delta);
+    }
+
+    // Advances every per-frame timer of the player's entities: the crossbow
+    // cooldown, the hero, the castle and the special power cooldowns.
+    private void updateEntities(double delta) {
         crossbow.update(delta);
         hero.update(delta);
         updateHeroRespawn(delta);
@@ -88,11 +103,6 @@ public class GameSession {
         for (SpecialPower power : specialPowers.values()) {
             power.update(delta);
         }
-        updateSpawning(delta);
-        updateMonsters(delta);
-        updateProjectiles(delta);
-        collectDeadMonsterScores();
-        checkEndState();
     }
 
     public Projectile fireCrossbow(Vector2D target) {
@@ -209,7 +219,7 @@ public class GameSession {
                 applyProjectileToMonsters(projectile);
             } else if (projectile.getOwner() == ProjectileOwner.MONSTER) {
                 if (!projectile.applyTo(hero, heroDamagePerHit())) {
-                    projectile.applyTo(castle);
+                    projectile.applyTo(castle, castleDamagePerHit());
                 }
             }
         }
@@ -251,15 +261,24 @@ public class GameSession {
     }
 }
 
+    // Adds the points of every monster that just died (each monster is only
+    // counted once because claimScoreValue() returns 0 after the first call).
     private void collectDeadMonsterScores() {
-        Iterator<Monster> iterator = monsters.iterator();
-        while (iterator.hasNext()) {
-            Monster monster = iterator.next();
+        for (Monster monster : monsters) {
             int value = monster.claimScoreValue();
             if (value > 0) {
                 score += value;
                 defeatedMonsters++;
             }
+        }
+    }
+
+    // Removes monsters that are dead, already scored, and whose death
+    // animation has finished playing.
+    private void removeFinishedMonsters() {
+        Iterator<Monster> iterator = monsters.iterator();
+        while (iterator.hasNext()) {
+            Monster monster = iterator.next();
             if (monster.isDead() && monster.isScoreClaimed() && monster.isDeathAnimationComplete()) {
                 iterator.remove();
             }
@@ -332,7 +351,7 @@ public class GameSession {
         }
         Collections.shuffle(monsterPool, spawnRandom);
 
-        List<Integer> groupSizes = buildGroupSizes(levelDefinition.getNumber(), monsterPool.size());
+        List<Integer> groupSizes = buildGroupSizes(monsterPool.size());
         List<SpawnEvent> events = new ArrayList<>();
         double spawnWindow = spawnWindowForLevel(levelDefinition.getNumber());
         double interval = groupSizes.size() <= 1 ? 0 : spawnWindow / (groupSizes.size() - 1);
@@ -351,26 +370,28 @@ public class GameSession {
         return events;
     }
 
-    private List<Integer> buildGroupSizes(int level, int totalMonsters) {
+    private List<Integer> buildGroupSizes(int totalMonsters) {
+        // Split the monsters into small random groups of 1 to 3.
         List<Integer> groupSizes = new ArrayList<>();
-        Random levelPattern = new Random(73_891L + level * 10_007L);
         int remaining = totalMonsters;
-        double burstChance = clamp(0.10 + level * 0.0055, 0.12, 0.62);
         while (remaining > 0) {
-            int groupSize = 1;
-            if (remaining >= 3 && levelPattern.nextDouble() < burstChance * 0.45) {
-                groupSize = 3;
-            } else if (remaining >= 2 && levelPattern.nextDouble() < burstChance) {
-                groupSize = 2;
-            }
-            groupSizes.add(Math.min(groupSize, remaining));
+            int groupSize = Math.min(remaining, spawnRandom.nextInt(1, 4));
+            groupSizes.add(groupSize);
             remaining -= groupSize;
         }
         return groupSizes;
     }
 
     private double spawnWindowForLevel(int level) {
-        return clamp(30 + level * 0.46, SPAWN_MIN_WINDOW_SECONDS, SPAWN_MAX_WINDOW_SECONDS);
+        // The higher the level, the longer the spawn window so monsters keep
+        // coming for more time.
+        if (level < 20) {
+            return 30;
+        }
+        if (level < 50) {
+            return 45;
+        }
+        return 60;
     }
 
     private double randomBetween(double min, double max) {
@@ -379,6 +400,13 @@ public class GameSession {
 
     private double heroDamagePerHit() {
         return hero.getStats().getMaxHealth() / 6.0;
+    }
+
+    // A monster projectile that reaches the castle deals a small, fixed fraction
+    // of the castle's max health (same idea as the melee attack): proportional
+    // to the castle's health and never a one-shot, the cat included.
+    private double castleDamagePerHit() {
+        return castle.getStats().getMaxHealth() * 0.025;
     }
 
     private double clamp(double value, double min, double max) {

@@ -60,15 +60,15 @@ public class MejorasController extends Controller implements Initializable {
     @FXML
     private Label lbMeteorCost;
     @FXML
-    private Label lblMeteorRadiusLevel;
+    private Label lbMeteorRadiusLevel;
     @FXML
     private Label lbMeteorRadiusCost;
     @FXML
-    private Label lblIceLevel;
+    private Label lbIceLevel;
     @FXML
     private Label lbIceCost;
     @FXML
-    private Label lblIceRadiusLevel;
+    private Label lbIceRadiusLevel;
     @FXML
     private Label lbIceRadiusCost;
     @FXML
@@ -376,11 +376,6 @@ public class MejorasController extends Controller implements Initializable {
         return true;
     }
 
-    private void setDesign(CrossbowDesign design) {
-        PlayerRegistry.setCrossbowDesign(design);
-        refresh();
-    }
-
     private void refresh() {
         profile = getActiveProfile();
         if (profile == null) {
@@ -389,7 +384,7 @@ public class MejorasController extends Controller implements Initializable {
         int gold = getGold();
         boolean reviewMode = isReviewModeEnabled();
         lbGold.setText(String.valueOf(gold));
-        lbCurrentLevel.setText(reviewMode ? "Modo revision: ajustes libres" : "Nivel actual: " + getCurrentLevel());
+        lbCurrentLevel.setText(reviewMode ? "Modo revision" : "Nivel actual: " + getCurrentLevel());
         if (lbTotalPoints != null) {
             lbTotalPoints.setText(String.valueOf(PlayerRegistry.getHistoricalPoints()));
         }
@@ -414,16 +409,16 @@ public class MejorasController extends Controller implements Initializable {
         refreshUpgrade(UpgradeType.METEOR_DAMAGE, lbMeteorLevel, lbMeteorCost,
                 pgMeteor, btnUpgradeMeteor, btnReviewDecreaseMeteor,
                 btnReviewIncreaseMeteor, gold, reviewMode);
-        refreshUpgrade(UpgradeType.METEOR_RADIUS, lblMeteorRadiusLevel, lbMeteorRadiusCost,
+        refreshUpgrade(UpgradeType.METEOR_RADIUS, lbMeteorRadiusLevel, lbMeteorRadiusCost,
                 pgMeteorRadius, btnUpgradeMeteorRadius, btnReviewDecreaseMeteorRadius,
                 btnReviewIncreaseMeteorRadius, gold, reviewMode);
-        refreshUpgrade(UpgradeType.ICE_DURATION, lblIceLevel, lbIceCost,
+        refreshUpgrade(UpgradeType.ICE_DURATION, lbIceLevel, lbIceCost,
                 pgIce, btnUpgradeIce, btnReviewDecreaseIce,
                 btnReviewIncreaseIce, gold, reviewMode);
-        refreshUpgrade(UpgradeType.ICE_RADIUS, lblIceRadiusLevel, lbIceRadiusCost,
+        refreshUpgrade(UpgradeType.ICE_RADIUS, lbIceRadiusLevel, lbIceRadiusCost,
                 pgIceRadius, btnUpgradeIceRadius, btnReviewDecreaseIceRadius,
                 btnReviewIncreaseIceRadius, gold, reviewMode);
-        CrossbowDesign design = getDesign();
+        getDesign();
         btnStartGame.setDisable(false);
     }
 
@@ -502,13 +497,6 @@ public class MejorasController extends Controller implements Initializable {
         }
         PlayerRegistry.setCrossbowDesign(CrossbowDesign.GREEN);
         return CrossbowDesign.GREEN;
-    }
-
-    private String displayName(CrossbowDesign design) {
-        if (design == CrossbowDesign.PURPLE) {
-            return "Morada";
-        }
-        return "Verde";
     }
 
     private int getGold() {

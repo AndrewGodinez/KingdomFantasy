@@ -37,15 +37,15 @@ public class AjustesController extends Controller implements Initializable {
     private static final String REVIEW_PASSWORD = "SAA2026";
 
     @FXML
-    private VBox cardMouse;
+    private VBox vbCardMouse;
     @FXML
-    private VBox cardKeyboard;
+    private VBox vbCardKeyboard;
     @FXML
-    private VBox cardReview;
+    private VBox vbCardReview;
     @FXML
-    private VBox reviewToolsBox;
+    private VBox vbReviewToolsBox;
     @FXML
-    private Label lblReviewStatus;
+    private Label lbReviewStatus;
     @FXML
     private AnchorPane root;
     @FXML
@@ -71,7 +71,7 @@ public class AjustesController extends Controller implements Initializable {
     @FXML
     private MFXPasswordField txfReviewPassword;
     @FXML
-    private HBox reviewAccessBox;
+    private HBox hbReviewAccessBox;
     private Image volumeOnImage;
     private Image volumeOffImage;
     @FXML
@@ -120,11 +120,6 @@ public class AjustesController extends Controller implements Initializable {
        FlowController.getInstance().goViewInStage("PrincipalView", getStage());
    }
 
-    private void onActionBtnInstructions(ActionEvent event) {
-        MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
-        FlowController.getInstance().goViewInStage("InstruccionesView", getStage());
-    }
-
     @FXML
     private void onActionBtnToggleAudio(ActionEvent event) {
         MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
@@ -143,7 +138,7 @@ public class AjustesController extends Controller implements Initializable {
             AppContext.getInstance().set(REVIEW_MODE_KEY, false);
             AppContext.getInstance().delete(REVIEW_UPGRADE_PROFILE_KEY);
             refresh();
-            lblReviewStatus.setText("Clave incorrecta.");
+            lbReviewStatus.setText("Clave incorrecta.");
             return;
         }
         txfReviewPassword.setText("");
@@ -160,7 +155,7 @@ public class AjustesController extends Controller implements Initializable {
     private void onActionBtnReviewToggle(ActionEvent event) {
         MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (!isReviewAccessUnlocked()) {
-            lblReviewStatus.setText("Ingresa la clave para desbloquear.");
+            lbReviewStatus.setText("Ingresa la clave para desbloquear.");
             return;
         }
         boolean enabled = !isReviewModeEnabled();
@@ -178,7 +173,7 @@ public class AjustesController extends Controller implements Initializable {
     private void onActionBtnReviewApply(ActionEvent event) {
         MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (!isReviewAccessUnlocked()) {
-            lblReviewStatus.setText("Ingresa la clave para desbloquear.");
+            lbReviewStatus.setText("Ingresa la clave para desbloquear.");
             return;
         }
         Integer level = parseReviewLevel();
@@ -195,7 +190,7 @@ public class AjustesController extends Controller implements Initializable {
     private void onActionBtnReviewLevel100(ActionEvent event) {
         MusicManager.getInstance().playEffect(MusicManager.SoundEffect.BUTTON_CLICK);
         if (!isReviewAccessUnlocked()) {
-            lblReviewStatus.setText("Ingresa la clave para desbloquear.");
+            lbReviewStatus.setText("Ingresa la clave para desbloquear.");
             return;
         }
         AppContext.getInstance().set(REVIEW_MODE_KEY, true);
@@ -206,34 +201,34 @@ public class AjustesController extends Controller implements Initializable {
 
     private void refresh() {
         ControlScheme scheme = getScheme();
-        cardMouse.getStyleClass().remove("jfx-selected-control");
-        cardKeyboard.getStyleClass().remove("jfx-selected-control");
+        vbCardMouse.getStyleClass().remove("jfx-selected-control");
+        vbCardKeyboard.getStyleClass().remove("jfx-selected-control");
         btnMouse.getStyleClass().remove("jfx-primary-action");
         btnMouse.getStyleClass().remove("jfx-ghost-action");
         btnKeyboard.getStyleClass().remove("jfx-primary-action");
         btnKeyboard.getStyleClass().remove("jfx-ghost-action");
-        cardReview.getStyleClass().remove("jfx-selected-control");
+        vbCardReview.getStyleClass().remove("jfx-selected-control");
         btnReviewToggle.getStyleClass().remove("jfx-primary-action");
         btnReviewToggle.getStyleClass().remove("jfx-ghost-action");
         if (scheme == ControlScheme.KEYBOARD) {
-            cardKeyboard.getStyleClass().add("jfx-selected-control");
+            vbCardKeyboard.getStyleClass().add("jfx-selected-control");
             btnKeyboard.getStyleClass().add("jfx-primary-action");
             btnMouse.getStyleClass().add("jfx-ghost-action");
         } else {
-            cardMouse.getStyleClass().add("jfx-selected-control");
+            vbCardMouse.getStyleClass().add("jfx-selected-control");
             btnMouse.getStyleClass().add("jfx-primary-action");
             btnKeyboard.getStyleClass().add("jfx-ghost-action");
         }
         boolean reviewUnlocked = isReviewAccessUnlocked();
-        setVisibleAndManaged(reviewAccessBox, !reviewUnlocked);
-        setVisibleAndManaged(reviewToolsBox, reviewUnlocked);
+        setVisibleAndManaged(hbReviewAccessBox, !reviewUnlocked);
+        setVisibleAndManaged(vbReviewToolsBox, reviewUnlocked);
         if (!reviewUnlocked) {
-            lblReviewStatus.setText("Acceso bloqueado.");
+            lbReviewStatus.setText("Acceso bloqueado.");
             return;
         }
         boolean reviewMode = isReviewModeEnabled();
         if (reviewMode) {
-            cardReview.getStyleClass().add("jfx-selected-control");
+            vbCardReview.getStyleClass().add("jfx-selected-control");
             btnReviewToggle.getStyleClass().add("jfx-primary-action");
             btnReviewToggle.setText("Desactivar");
         } else {
@@ -244,7 +239,7 @@ public class AjustesController extends Controller implements Initializable {
         if (txfReviewLevel.getText() == null || txfReviewLevel.getText().isBlank()) {
             txfReviewLevel.setText(String.valueOf(currentLevel));
         }
-        lblReviewStatus.setText("Acceso concedido.");
+        lbReviewStatus.setText("Acceso concedido.");
     }
 
     private void loadAudioToggleImages() {
@@ -357,7 +352,7 @@ public class AjustesController extends Controller implements Initializable {
             AppContext.getInstance().set(REVIEW_MODE_KEY, false);
             AppContext.getInstance().delete(REVIEW_UPGRADE_PROFILE_KEY);
             refresh();
-            lblReviewStatus.setText("Clave incorrecta.");
+            lbReviewStatus.setText("Clave incorrecta.");
             return;
         }
         txfReviewPassword.setText("");

@@ -94,7 +94,7 @@
 }
 
 
-.jfx-hud-pill.secondary {
+.jfx-hud-pill.jfx-secondary {
     -fx-background-color: #2b2630;
     -fx-border-color: #8c6f43;
 }
@@ -105,7 +105,7 @@
     -fx-font-weight: 900;
 }
 
-.jfx-label-gold-total.compact {
+.jfx-label-gold-total.jfx-compact {
     -fx-font-size: 28px;
     -fx-padding: 8 18;
     -fx-background-color: rgba(74, 54, 18, 0.82);
@@ -121,7 +121,7 @@
     -fx-font-weight: 900;
 }
 
-.jfx-label-points-total.compact {
+.jfx-label-points-total.jfx-compact {
     -fx-font-size: 24px;
     -fx-padding: 8 18;
     -fx-background-color: rgba(22, 55, 68, 0.82);
@@ -142,7 +142,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 12, 0.22, 0, 2);
 }
 
-.jfx-score-hud-card.multiplier {
+.jfx-score-hud-card.jfx-multiplier {
     -fx-background-color: linear-gradient(to bottom, rgba(42, 30, 6, 0.98), rgba(78, 54, 12, 0.96));
     -fx-border-color: rgba(255, 212, 92, 0.78);
 }
@@ -626,35 +626,35 @@
     -fx-border-color: transparent transparent rgba(212, 160, 23, 0.10) transparent;
 }
 
-.jfx-table-ranking .ranking-cell-rank {
+.jfx-table-ranking .jfx-ranking-cell-rank {
     -fx-text-fill: #f7f4ec;
     -fx-font-size: 22px;
     -fx-font-weight: 900;
     -fx-alignment: CENTER;
 }
 
-.jfx-table-ranking .ranking-cell-name {
+.jfx-table-ranking .jfx-ranking-cell-name {
     -fx-text-fill: #b9bdb4;
     -fx-font-size: 20px;
     -fx-font-weight: 800;
     -fx-alignment: CENTER_LEFT;
 }
 
-.jfx-table-ranking .ranking-cell-level {
+.jfx-table-ranking .jfx-ranking-cell-level {
     -fx-text-fill: #5ade88;
     -fx-font-size: 28px;
     -fx-font-weight: 900;
     -fx-alignment: CENTER;
 }
 
-.jfx-table-ranking .ranking-cell-points {
+.jfx-table-ranking .jfx-ranking-cell-points {
     -fx-text-fill: #e8b820;
     -fx-font-size: 28px;
     -fx-font-weight: 900;
     -fx-alignment: CENTER;
 }
 
-.jfx-table-ranking .ranking-cell-avatar {
+.jfx-table-ranking .jfx-ranking-cell-avatar {
     -fx-alignment: CENTER;
 }
 
@@ -675,15 +675,15 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 5, 0.15, 0, 1);
 }
 
-.jfx-table-ranking .rank-row-gold .table-cell {
+.jfx-table-ranking .jfx-rank-row-gold .table-cell {
     -fx-border-color: transparent transparent rgba(212, 160, 23, 0.16) transparent;
 }
 
-.jfx-table-ranking .rank-row-silver .table-cell {
+.jfx-table-ranking .jfx-rank-row-silver .table-cell {
     -fx-border-color: transparent transparent rgba(154, 164, 176, 0.16) transparent;
 }
 
-.jfx-table-ranking .rank-row-bronze .table-cell {
+.jfx-table-ranking .jfx-rank-row-bronze .table-cell {
     -fx-border-color: transparent transparent rgba(192, 120, 40, 0.16) transparent;
 }
 
@@ -1640,77 +1640,6 @@
     -fx-effect: dropshadow(gaussian, rgba(244,212,106,0.55), 10, 0.25, 0, 0);
 }
 
-/* ── PODIUM GOLD — todos los estados ────────────────────────────────────── */
-.jfx-btn-podium-gold {
-    -fx-background-color: linear-gradient(to bottom, #eabf2a, #c28212) !important;
-    -fx-border-color: #f4d46a;
-    -fx-border-width: 1.5px;
-    -fx-text-fill: #17120a;
-}
-.jfx-btn-podium-gold:hover {
-    -fx-background-color: linear-gradient(to bottom, #f4d46a, #d4a030) !important;
-}
-.jfx-btn-podium-gold:focused {
-    -fx-background-color: linear-gradient(to bottom, #eabf2a, #c28212) !important;
-    -fx-border-color: #ffffff;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-.jfx-btn-podium-gold:armed,
-.jfx-btn-podium-gold:pressed {
-    -fx-background-color: linear-gradient(to bottom, #c28212, #a06208) !important;
-}
-
-/* ── PODIUM SILVER — todos los estados ──────────────────────────────────── */
-.jfx-btn-podium-silver {
-    -fx-background-color: #5a6270 !important;
-    -fx-border-color: #8a94a0;
-    -fx-text-fill: #f5e8c8;
-}
-.jfx-btn-podium-silver:hover { -fx-background-color: #6a7280 !important; }
-.jfx-btn-podium-silver:focused {
-    -fx-background-color: #5a6270 !important;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-.jfx-btn-podium-silver:armed,
-.jfx-btn-podium-silver:pressed { -fx-background-color: #4a5260 !important; }
-
-/* ── PODIUM BRONZE — todos los estados ──────────────────────────────────── */
-.jfx-btn-podium-bronze {
-    -fx-background-color: #9a5818 !important;
-    -fx-border-color: #c47830;
-    -fx-text-fill: #f5e8c8;
-}
-.jfx-btn-podium-bronze:hover { -fx-background-color: #b06820 !important; }
-.jfx-btn-podium-bronze:focused {
-    -fx-background-color: #9a5818 !important;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-.jfx-btn-podium-bronze:armed,
-.jfx-btn-podium-bronze:pressed { -fx-background-color: #804810 !important; }
-
-/* ── PODIUM NAV — todos los estados ─────────────────────────────────────── */
-.jfx-btn-podium-nav {
-    -fx-background-color: rgba(238, 231, 211, 0.07) !important;
-    -fx-border-color: rgba(212, 160, 23, 0.32);
-    -fx-text-fill: #f3ead7;
-}
-.jfx-btn-podium-nav:hover {
-    -fx-background-color: rgba(212, 160, 23, 0.14) !important;
-}
-.jfx-btn-podium-nav:focused {
-    -fx-background-color: rgba(238, 231, 211, 0.07) !important;
-    -fx-border-color: #d3a234;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-.jfx-btn-podium-nav:armed,
-.jfx-btn-podium-nav:pressed {
-    -fx-background-color: rgba(212, 160, 23, 0.22) !important;
-}
-
 /* ── jfx-primary-action / jfx-ghost-action (usados por InputDeviceController) ─────── */
 .jfx-primary-action {
     -fx-background-color: linear-gradient(to bottom, #e8b840, #c48c18) !important;
@@ -1830,7 +1759,7 @@
     -fx-border-color: rgba(90, 222, 136, 0.7);
 }
 
-.jfx-btn-review.primary {
+.jfx-btn-review.jfx-primary {
     -fx-background-color: linear-gradient(to bottom, #5ade88, #228a4a) !important;
     -fx-text-fill: #101808;
     -fx-border-color: #9ef5b8;
